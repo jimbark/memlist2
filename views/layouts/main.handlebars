@@ -1,10 +1,69 @@
 <!doctype html>
-<html>
-<head>
-  <header><img src="/img/confgen_logo.png" alt="memlist logo"></header>
-  <title>Meadowlark Travel</title>
-</head>
-<body>
-  {{{body}}}
-</body>
+<html class="no-js" lang="">
+    <head>
+        <header><img src="/img/confgen_logo.png" alt="memlist logo"></header>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Memlist2</title>
+        <meta name="description" content="Cued-Recall Memory Test">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="vendor/css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- load mocha css if tests have been requested -->
+	{{#if showTests}}
+            <link rel="stylesheet" href="/vendor/css/mocha.css">
+	{{/if}}
+
+        <!-- Loading jQuery here, as per boomk, through HTML5BP loads it just after modernizer below -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+		crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+	{{{body}}}
+
+        <!-- End of site or application content here -->
+
+	<!-- Load JS scripts -->
+        <script src="vendor/js/modernizr-3.5.0.min.js"></script>
+        <!-- jQuery load from CDN line from HTML5BP was removed from here -->
+        <script>window.jQuery || document.write('<script src="vendor/js/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+	<!-- check for and run tests -->
+	{{#if showTests}}
+	    <div id="mocha"></div>
+	    <script src="/vendor/js/mocha.js"></script>
+	    <script src="/vendor/js/chai.js"></script>
+	    <script>
+	      mocha.ui('tdd');
+              var assert = chai.assert;
+	    </script>
+	    <script src="/qa/tests-global.js"></script>
+	    {{#if pageTestScript}}
+                <script src="{{pageTestScript}}"></script>
+	    {{/if}}
+	    <script>mocha.run();</script>
+	{{/if}}
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
 </html>
