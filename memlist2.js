@@ -2,11 +2,12 @@ var express = require('express');
 
 var app = express();
 
+var credentials = require('./credentials.js');
+
 // set up handlebars view engine
-var handlebars = require('express-handlebars')
-	.create({ defaultLayout:'main' });
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
+var exphbs  = require('express-handlebars');
+app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
+app.set('view engine', '.hbs');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -23,6 +24,18 @@ app.get('/', function(req, res){
 });
 app.get('/about', function(req, res){
 	res.render('about', {pageTestScript: '/qa/tests-about.js'});
+});
+app.get('/learn', function(req, res){
+	res.render('learn');
+});
+
+
+// page that display the request headers
+app.get('/headers', function(req,res){
+    res.set('Content-Type','text/plain');
+    var s = '';
+    for(var name in req.headers) s += name + ': ' + req.headers[name] + '\n';
+    res.send(s);
 });
 
 // custom 404 page
