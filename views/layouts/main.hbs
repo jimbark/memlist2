@@ -81,10 +81,22 @@
 
 	
 	<!-- fluid container holding the entire main section -->
+
         <main role="main">
           <div class="container-fluid">
+
+            {{#if flash}}
+            <div class="alert alert-dismissible alert-{{flash.type}}" role="alert">
+	      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	      </button>
+	      <strong>{{flash.intro}}</strong> {{{flash.message}}}
+	    </div>
+	    {{/if}}
+
 	    <!-- insert view here -->
 	    {{{body}}}
+
 	  </div><!-- /.container-fluid -->
 	</main>
 

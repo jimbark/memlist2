@@ -1,1 +1,40 @@
 <h1>Study the word pairs ...</h1>
+
+<p  id='studyText' style="display: none">Wordpair to memorise:     
+    <b id='wordpair'>loading</b> </p> 
+
+<p  id='testText' style="display: none">Provide the matching word:    
+    <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
+
+<p  id='feedbackCorrect' style="display: none">Correct: the correct wordpair is: 
+    <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
+
+<p  id='feedbackIncorrect' style="display: none">Incorrect: the correct wordpair is: 
+    <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
+
+<p  id='testOver' style="display: none">Test is complete! </p>
+
+<form id="studyForm" style="display: none">
+  <div class="row">
+    <div class="col">
+      <input type="text" readonly class="form-control-plaintext" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col">
+      <input type="text" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <div class="row">
+    <div class="col">
+      <input type="text" readonly class="form-control-plaintext" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" id="tAnswerWord" placeholder="Answer word">
+    </div>
+    <div class="col-auto">
+      <button type="button" onclick="checkAnswer()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>

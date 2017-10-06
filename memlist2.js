@@ -2,6 +2,9 @@ var express = require('express');
 
 var app = express();
 
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+
 var credentials = require('./credentials.js');
 
 // set up handlebars view engine
@@ -13,22 +16,52 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
+//app.use(require('cookie-parser')(credentials.cookieSecret));
+//app.use(require('express-session')());
+
+
+app.use(cookieParser(credentials.cookieSecret));
+
+// use session store running against MemoryStore
+app.use(expressSession({
+    secret: credentials.cookieSecret,
+    resave: false,
+    saveUninitialized: false,
+}));
+
+// delete any old flash message
 app.use(function(req, res, next){
-	res.locals.showTests = app.get('env') !== 'production' &&
-		req.query.test === '1';
-	next();
+    delete res.locals.flash;
+    next();
+});
+
+app.use(function(req, res, next){
+    res.locals.showTests = app.get('env') !== 'production' &&
+	req.query.test === '1';
+    next();
 });
 
 app.get('/', function(req, res){
-	res.render('home');
+    res.clearCookie("signed_monster");
+    res.render('home');
 });
 app.get('/about', function(req, res){
-	res.render('about', {pageTestScript: '/qa/tests-about.js'});
+    var signedMonster = req.signedCookies.signed_monster;
+    console.log(signedMonster);
+    res.render('about', {pageTestScript: '/qa/tests-about.js'});
+
 });
 app.get('/learn', function(req, res){
-	res.render('learn');
-});
+    res.cookie('signed_monster', 'nom nom', { signed: true });
 
+    res.locals.flash = {
+	    type: 'success',
+	    intro: 'Thank you!',
+	    message: 'You have now been signed up for the newsletter.',
+	};
+
+    res.render('learn');
+});
 
 // page that display the request headers
 app.get('/headers', function(req,res){
