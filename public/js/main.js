@@ -89,17 +89,17 @@ function test() {
 
 	document.getElementById("testOver").style.display = "block";
 
-/*
+
 	// TODO - send data to server
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
 	    url: "/studySave",
 
 	    data: {
-		listid: $(this).attr('id'),
-		list1: llists,
-		start: startDate,
-		end: endDate,
+		llists: JSON.stringify(llists),
+		startDate: JSON.stringify(startDate),
+		endDate: JSON.stringify(endDate),
+		message: 'post message'
 	    },
 
 	    type: "POST",
@@ -122,7 +122,7 @@ function test() {
 	    }
 
 	});
-*/
+
 
 
     }

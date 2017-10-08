@@ -4,7 +4,8 @@ var app = express();
 
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
-
+var bodyParser  = require('body-parser');
+var fs = require('fs');
 var credentials = require('./credentials.js');
 
 // set up handlebars view engine
@@ -35,6 +36,11 @@ app.use(function(req, res, next){
     next();
 });
 
+// process url encoded body for POST requests
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
 app.use(function(req, res, next){
     res.locals.showTests = app.get('env') !== 'production' &&
 	req.query.test === '1';
@@ -62,6 +68,75 @@ app.get('/learn', function(req, res){
 
     res.render('learn');
 });
+
+
+
+app.post('/studySave', function(req, res){
+    if(req.xhr || req.accepts('json,html')==='json'){
+	console.log('Valid POST request to save study session data ');
+	console.log(req.body.message);
+	var llists = JSON.parse(req.body.llists);
+	var startDate = JSON.parse(req.body.startDate);
+	var endDate = JSON.parse(req.body.endDate);
+	console.log('here are the unstringified objects:');
+	console.log(llists);
+	console.log(startDate);
+	console.log(endDate);
+
+	var dataDir = __dirname + '/data';
+	fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
+
+	var studyFile = dataDir + '/' + req.body.startDate;
+	fs.writeFile(studyFile, req.body.llists, function (err) {
+	    if (err) {
+		console.log('error saving file');
+		res.send({success: true, message: 'valid POST received but error saving file to server'});
+		throw err;
+	    } else {
+		console.log("File named " + studyFile + " saved!");
+		res.send({success: true, message: 'Study file successfully saved to server!'});
+	    }
+	});
+
+
+
+
+    } else {
+	console.log('Invalid POST request to configdisplay.');
+	res.send({success: false, message: 'invalid POST received'});
+    }
+
+});
+
+/*  route to handle request to save config file to ZTP server
+app.post('/listload', function(req, res){
+    if(req.xhr || req.accepts('json,html')==='json' || req.body.buttonid==='ztpsave'){
+	console.log('Valid POST request to configdisplay with buttonid = ' + req.body.buttonid);
+
+	// save the .cfg file in the files/ztpready directory
+	var cfgfile = 'public/files/ztpready/' + info.params.localswitchname + '.cfg';
+	fs.writeFile(cfgfile, info.conf, function (err) {
+	    if (err) {
+		console.log('error saving file');
+		throw err;
+	    } else {
+		console.log("File named " + cfgfile + " saved!");
+		res.send({success: true, message: 'Config file successfully saved to ZTP server!'});
+	    }
+	});
+    } else {
+	console.log('Invalid POST request to configdisplay.');
+	res.send({success: false, message: 'Webserver unable to save file on ZTP server; check Webserver log for
+ further information.'});
+    }
+});
+
+*/
+
+
+
+
+
 
 // page that display the request headers
 app.get('/headers', function(req,res){
