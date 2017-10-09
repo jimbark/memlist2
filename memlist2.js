@@ -75,31 +75,47 @@ app.post('/studySave', function(req, res){
     if(req.xhr || req.accepts('json,html')==='json'){
 	console.log('Valid POST request to save study session data ');
 	console.log(req.body.message);
-	var llists = JSON.parse(req.body.llists);
+	console.log('here are the stringified objects:');
+	console.log(req.body.lists);
+	console.log(req.body.testType);
+	var lists = JSON.parse(req.body.lists);
 	var startDate = JSON.parse(req.body.startDate);
 	var endDate = JSON.parse(req.body.endDate);
 	console.log('here are the unstringified objects:');
-	console.log(llists);
+	console.log(lists);
 	console.log(startDate);
 	console.log(endDate);
 
 	var dataDir = __dirname + '/data';
-	fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
+//	fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
+	if (!fs.existsSync(dataDir)) {fs.mkdirSync(dataDir);}
 
-	var studyFile = dataDir + '/' + req.body.startDate;
-	fs.writeFile(studyFile, req.body.llists, function (err) {
+	var studyFile = dataDir + '/' + req.body.testType + req.body.startDate.replace(/\"/g,"");
+
+	fs.writeFile(studyFile, req.body.lists, function (err) {
 	    if (err) {
 		console.log('error saving file');
 		res.send({success: true, message: 'valid POST received but error saving file to server'});
 		throw err;
+
 	    } else {
 		console.log("File named " + studyFile + " saved!");
 		res.send({success: true, message: 'Study file successfully saved to server!'});
+
+		// read file back just to test the code to do this
+		fs.readFile(studyFile, function(err, data) {
+		    if (err) {
+			console.log('error reading studysave file');
+			throw err;
+		    } else {
+			console.log('reloaded file as:' + data); // show stringified content
+			var reloadData = JSON.parse(data);
+			console.log('reloaded and unstringified object:' + reloadData);  // not object display
+			console.log(reloadData);  // need to do this to display as object
+		    }
+		});
 	    }
 	});
-
-
-
 
     } else {
 	console.log('Invalid POST request to configdisplay.');

@@ -10,6 +10,7 @@ var studyPresentations = 3;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
 var studyDuration = 1000;  // ms to display each word pair
 var feedbackDuration = 1000;  // ms to display correct/incorrect feedback
+var testInterval = 50; // interval between delayed test items
 
 // initialise global variables
 var sL1 = mL1;
@@ -21,10 +22,17 @@ var llists = [lL1, lL2];
 var i = 0;  // item counter
 var l = 0;  // list counter
 var c = 1;  // presentations counter
+var tL1 = mL1;
+var tL2 = mL2;
+var tlists = [tL1, tL2];
+var fL1 = [];
+var fL2 = [];
+var flists = [lL1, lL2];
 var startDate = new Date();
 var endDate = new Date();
+var testType = "";
 
-
+/*
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
 	var j = Math.floor(Math.random() * (i + 1));
@@ -32,16 +40,45 @@ function shuffleArray(array) {
     }
     return array;
 }
+*/
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+	var j = Math.floor(Math.random() * (i + 1));
+	var temp = array[i];
+	array[i] = array[j];
+	array[j] = temp;
+    }
+    return array;
+}
 
+// function striggered by 'start learning' button
+function startLearn() {
+    // initialise counters and variables
+    sL1 = mL1;
+    sL2 = mL2;
+    lists = [sL1, sL2];
+    lL1 = [];
+    lL2 = [];
+    llists = [lL1, lL2];
+    i = 0;  // item counter
+    l = 0;  // list counter
+    c = 1;  // presentations counter
+    testType = "study";
+    startDate.setTime(Date.now());
+    study();
+}
+
+/*
 (function start() {
     startDate.setTime(Date.now());
     study();
 })();  // function start() is called immediately to start it off
-
+*/
 
 function study() {
 
+    document.getElementById("introduction").style.display = "none";
     document.getElementById("studyText").style.display = "block";
     document.getElementById("testText").style.display = "none";
     document.getElementById("feedbackCorrect").style.display = "none";
@@ -76,6 +113,8 @@ function test() {
     // all pairs learnt to criterion, so end of test
     if (lists[l].length == 0) {
 	endDate.setTime(Date.now());
+
+	document.getElementById("introduction").style.display = "none";
 	document.getElementById("studyText").style.display = "none";
 	document.getElementById("testText").style.display = "none";
 	document.getElementById("feedbackCorrect").style.display = "none";
@@ -89,17 +128,16 @@ function test() {
 
 	document.getElementById("testOver").style.display = "block";
 
-
-	// TODO - send data to server
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
 	    url: "/studySave",
 
 	    data: {
-		llists: JSON.stringify(llists),
+		lists: JSON.stringify(llists),
 		startDate: JSON.stringify(startDate),
 		endDate: JSON.stringify(endDate),
-		message: 'post message'
+		message: 'post message',
+		testType: testType
 	    },
 
 	    type: "POST",
@@ -122,13 +160,12 @@ function test() {
 	    }
 
 	});
-
-
-
     }
 
     // still have pairs not learnt to criterion, so test next element
     if (lists[l].length > 0) {
+	document.getElementById("check").onclick= function(){ checkAnswer();};
+	document.getElementById("introduction").style.display = "none";
 	document.getElementById("studyText").style.display = "none";
 	document.getElementById("testText").style.display = "block";
 	document.getElementById("feedbackCorrect").style.display = "none";
@@ -165,4 +202,109 @@ function checkAnswer() {
     }
     setTimeout(test, feedbackDuration); // display feedback, then test next pair
 
+}
+
+
+function checkNoFeedback() {
+
+    if (document.getElementById("tAnswerWord").value === tlists[l][i][1]) {
+	++tlists[l][i][2];  // increment correct counter
+	// move to finished list and remove from test list
+	flists[l].push(tlists[l][i]);
+	//tlists[l].splice(i,1);
+    }
+    else {
+	++tlists[l][i][3];  // increment incorrect counter
+	// move to finished list and remove from test list
+	flists[l].push(tlists[l][i]);
+	//tlists[l].splice(i,1);
+    }
+    ++i;
+    setTimeout(delayedTest, testInterval); // display feedback, then test next pair
+}
+
+
+// function striggered by 'start recall test' button
+function startTest() {
+    // initialise counters and variables
+    i = 0;  // item counter
+    l = 0;  // list counter
+    c = 1;  // presentations counter
+    tL1 = mL1;
+    tL2 = mL2;
+    tlists = [tL1, tL2];
+    fL1 = [];
+    fL2 = [];
+    flists = [fL1, fL2];
+    testType = "delayed";
+    // randomise order
+    shuffleArray(tlists[l]);
+    // start testing
+    delayedTest();
+}
+
+function delayedTest() {
+
+    // all pairs tested, so end of test
+    if (flists[l].length == tlists[l].length) {
+	endDate.setTime(Date.now());
+	document.getElementById("introduction").style.display = "none";
+	document.getElementById("studyText").style.display = "none";
+	document.getElementById("testText").style.display = "none";
+	document.getElementById("feedbackCorrect").style.display = "none";
+	document.getElementById("feedbackIncorrect").style.display = "none";
+	document.getElementById("studyForm").style.display = "none";
+	document.getElementById("testForm").style.display = "none";
+	document.getElementById("duration").innerHTML= (endDate.getTime() - startDate.getTime());
+	document.getElementById("correctAnswers").innerHTML= 100;
+	document.getElementById("incorrectAnswers").innerHTML= 100;
+	document.getElementById("testOver").style.display = "block";
+
+	// Using the core $.ajax() method to send test run data to server
+	$.ajax({
+	    url: "/studySave",
+
+	    data: {
+		lists: JSON.stringify(flists),
+		startDate: JSON.stringify(startDate),
+		endDate: JSON.stringify(endDate),
+		message: 'post message',
+		testType: testType
+	    },
+
+	    type: "POST",
+
+	    dataType : "json",
+
+	    success: function( json ) {
+		alert('Got json object back with message: ' + json.message);
+	    },
+
+	    error: function( xhr, status, errorThrown ) {
+		alert( "Sorry, there was a problem!" );
+		console.log( "Error: " + errorThrown );
+		console.log( "Status: " + status );
+		console.dir( xhr );
+	    },
+
+	    complete: function( xhr, status ) {
+		alert( "The request is complete!" );
+	    }
+
+	});
+    }
+
+    // still have pairs to test, so test next element
+    if (flists[l].length < tlists[l].length) {
+	document.getElementById("check").onclick= function(){ checkNoFeedback();};
+	document.getElementById("introduction").style.display = "none";
+	document.getElementById("studyText").style.display = "none";
+	document.getElementById("testText").style.display = "block";
+	document.getElementById("feedbackCorrect").style.display = "none";
+	document.getElementById("feedbackIncorrect").style.display = "none";
+	document.getElementById("studyForm").style.display = "none";
+	document.getElementById("testForm").style.display = "block";
+	document.getElementById("tCueWord").value = tlists[l][i][0];
+	document.getElementById("tAnswerWord").value = tlists[l][i][1];
+    }
 }
