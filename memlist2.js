@@ -17,18 +17,53 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
-//app.use(require('cookie-parser')(credentials.cookieSecret));
-//app.use(require('express-session')());
-
-
+// enable handling of secure cookies
 app.use(cookieParser(credentials.cookieSecret));
 
+// enable session store using Dynamodb
+var options = {
+    // Optional DynamoDB table name, defaults to 'sessions'
+    table: 'myapp-sessions',
+
+    // Optional path to AWS credentials and configuration file
+    // AWSConfigPath: './path/to/credentials.json',
+
+    // Optional JSON object of AWS credentials and configuration
+    AWSConfigJSON: {
+	accessKeyId: credentials.aws.development.accessKeyId,
+	secretAccessKey: credentials.aws.development.secretAccessKey,
+	region: 'eu-west-1'
+    },
+
+    // Optional client for alternate endpoint, such as DynamoDB Local
+    //client: new AWS.DynamoDB({ endpoint: new AWS.Endpoint('http://localhost:8000')}),
+
+    // Optional ProvisionedThroughput params, defaults to 5
+    readCapacityUnits: 2,
+    writeCapacityUnits: 2
+};
+
+var DynamoDBStore = require('connect-dynamodb')({session: expressSession});
+//app.use(expressSession({store: new DynamoDBStore(options), secret: credentials.cookieSecret}));
+
+app.use(expressSession({
+    store: new DynamoDBStore(options),
+    secret: credentials.cookieSecret,
+    resave: false, 
+    saveUninitialized: true
+}));
+
+
+/*
+//app.use(require('cookie-parser')(credentials.cookieSecret));
+//app.use(require('express-session')());
 // use session store running against MemoryStore
 app.use(expressSession({
     secret: credentials.cookieSecret,
     resave: false,
     saveUninitialized: false,
 }));
+*/
 
 // delete any old flash message
 app.use(function(req, res, next){

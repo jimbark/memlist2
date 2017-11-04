@@ -9,3 +9,6 @@ html-boilerplate/*
 bootstrap/*
 fred.txt
 creds.js
+.aws/*
+junk/*
+samples/*

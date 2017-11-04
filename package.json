@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/jimbark/memlist2#readme",
   "dependencies": {
+    "aws-sdk": "^2.141.0",
+    "connect-dynamodb": "^2.0.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.5",
     "express-handlebars": "^3.0.0",
