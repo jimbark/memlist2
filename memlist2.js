@@ -8,6 +8,16 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var credentials = require('./credentials.js');
 
+// setup authetication
+var auth = require('./lib/auth.js')(app, {
+	providers: credentials.authProviders,
+	successRedirect: '/learn',
+	failureRedirect: '/login',
+});
+
+// auth.init() links in Passport middleware:
+auth.init();
+
 // set up handlebars view engine
 var exphbs  = require('express-handlebars');
 app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
@@ -49,7 +59,7 @@ var DynamoDBStore = require('connect-dynamodb')({session: expressSession});
 app.use(expressSession({
     store: new DynamoDBStore(options),
     secret: credentials.cookieSecret,
-    resave: false, 
+    resave: false,
     saveUninitialized: true
 }));
 
@@ -92,6 +102,8 @@ app.get('/about', function(req, res){
     res.render('about', {pageTestScript: '/qa/tests-about.js'});
 
 });
+
+/*
 app.get('/learn', function(req, res){
     res.cookie('signed_monster', 'nom nom', { signed: true });
 
@@ -103,7 +115,33 @@ app.get('/learn', function(req, res){
 
     res.render('learn');
 });
+*/
 
+// make use of authentication when start study
+app.get('/learn', function(req, res){
+
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+    //if(!req.user) return res.redirect(303, '/login');
+
+    res.cookie('signed_monster', 'nom nom', { signed: true });
+
+    res.locals.flash = {
+	    type: 'success',
+	    intro: 'Thank you!',
+	    message: 'You are logged in and can start learning.',
+	};
+
+    res.render('learn');
+
+});
+
+app.get('/login', function(req, res){
+    res.render('login');
+});
+
+
+// specify our auth routes:
+auth.registerRoutes();
 
 
 app.post('/studySave', function(req, res){
