@@ -1,15 +1,31 @@
-<h1>Welcome. </h1>
+<h1 class='text-center'>Welcome. </h1>
 
-<div id="introduction" style="display: block" class="row">
-    <div class="col">
-       <p  id='introduction' style="display: none">Press button to start learning!</p>
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center">
+        <div class="col text-center">
+       	    <p  id='study' style="display: block">Press button below to start learning!</p>
+    	</div>
     </div>
-    <div class="col-auto">
-      <button type="button" onclick="startLearn()" class="btn btn-primary">Start Learning</button>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <button type="button" onclick="startLearn()" class="btn btn-primary">Start Learning</button>
+        </div>
     </div>
-    <div class="col-auto">
-      <button type="button" onclick="startTest()" class="btn btn-primary">Start Testing</button>
+
+    <div class="row justify-content-center">
+        <div class="col text-center">
+           <p  id='delayed_test' style="display: block">Press button below if you have come back for testing.</p>
+        </div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest()" class="btn btn-primary">Start Testing</button>
+        </div>
+    </div>
+
 </div>
 
 <p  id='studyText' style="display: none">Wordpair to memorise:     
@@ -18,10 +34,10 @@
 <p  id='testText' style="display: none">Provide the matching word:    
     <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
 
-<p  id='feedbackCorrect' style="display: none">Correct: the correct wordpair is: 
+<p  id='feedbackCorrect' style="display: none"><span class="text-success">Correct:</span> the correct wordpair is: 
     <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
 
-<p  id='feedbackIncorrect' style="display: none">Incorrect: the correct wordpair is: 
+<p  id='feedbackIncorrect' style="display: none"><span class="text-danger">Inorrect:</span> the correct wordpair is: 
     <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
 
 <p  id='testOver' style="display: none">Test is complete! 
@@ -32,26 +48,31 @@
 
 
 <form id="studyForm" style="display: none">
-  <div class="row">
-    <div class="col">
-      <input type="text" readonly class="form-control-plaintext" id="sCueWord" value="Cue word">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
     </div>
-    <div class="col">
+    <div class="col-auto">
       <input type="text" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
     </div>
   </div>
 </form>
 
 <form id="testForm" style="display: none">
-  <div class="row">
-    <div class="col">
-      <input type="text" readonly class="form-control-plaintext" id="tCueWord" value="Cue word">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" readonly class="form-control-plaintext text-right" id="tCueWord" value="Cue word">
     </div>
-    <div class="col">
+    <div class="col-auto">
       <input type="text" class="form-control" id="tAnswerWord" placeholder="Answer word">
     </div>
+  </div>
+
+  <div class="row justify-content-center">
     <div class="col-auto">
       <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Submit</button>
     </div>
   </div>
+
 </form>
+

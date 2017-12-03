@@ -8,6 +8,8 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var credentials = require('./credentials.js');
 
+var User = require('./lib/userdb.js');     // module with all dynamodb methods to access userDb
+
 // setup authetication
 var auth = require('./lib/auth.js')(app, {
 	providers: credentials.authProviders,
@@ -120,6 +122,7 @@ app.get('/learn', function(req, res){
 // make use of authentication when start study
 app.get('/learn', function(req, res){
 
+    if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
     //if(!req.user) return res.redirect(303, '/login');
 
@@ -131,8 +134,37 @@ app.get('/learn', function(req, res){
 	    message: 'You are logged in and can start learning.',
 	};
 
-    res.render('learn');
+    // TODO if a new participant then display consent page
 
+    // get the user ID
+    var authId = req.session.passport.user;
+
+    User.findById(authId, function (err, user) {
+	if (err) {
+	    console.log('Unable to find user record in database');
+	    return res.redirect(303, '/login');
+	}
+	// if new user get their consent to participate
+	if (user.status == 'new') {
+	    res.render('consent');
+	}
+	else if (user.status == 'consented'){
+	    // if existing participant display learn page
+	    res.render('register');
+	}
+	else if (user.status == 'registered'){
+	    // if existing participant display learn page
+	    res.render('learn');
+	}
+	else if (user.status == 'returning'){
+	    // if existing participant display learn page
+	    res.render('learn');
+	}
+	else {
+	    // if any other status display learn page
+	    res.render('login');
+	}
+    });
 });
 
 app.get('/login', function(req, res){
@@ -144,6 +176,115 @@ app.get('/login', function(req, res){
 auth.registerRoutes();
 
 
+
+app.get('/consent', function(req, res){
+    res.render('consent');
+});
+
+app.get('/withdraw', function(req, res){
+    res.render('withdraw');
+});
+
+app.get('/register', function(req, res){
+    res.render('register');
+});
+
+app.post('/register', function(req, res){
+
+    console.log('Form (from querystring): ' + req.query.form);
+    //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+    console.log('Checkbox status (from visible form field): ' + req.body.consented);
+
+    // TODO - store the consent in userdb
+    //User.updateById = function(authId, attr, value, cb) {
+
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+
+    // get the user id
+    var authId = req.session.passport.user;
+
+    if (req.body.consented == "on") {
+	User.updateById(authId, 'status', 'consented', function (err, data) {
+	    if (err) {
+		console.log('Unable to update user consent in database');
+		return res.redirect(303, '/consent');
+	    }
+	    // if update successful log data to console and move to
+	    console.log('Updated user consent in database');
+	    res.render('register');
+	    //return res.redirect(303, '/register');
+	});
+    }
+    else {
+	 console.log('Consent not detected');
+    }
+});
+
+app.post('/demographics', function(req, res){
+
+    console.log('Form (from querystring): ' + req.query.form);
+    //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+    console.log('Age(from visible form field): ' + req.body.age);
+    console.log('Email (from visible form field): ' + req.body.email);
+    console.log('Gender (from visible form field): ' + req.body.gender);
+
+    // TODO - store the demographics info in userdb
+    //User.updateById = function(authId, attr, value, cb) {
+
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+
+    // get the user id
+    var authId = req.session.passport.user;
+
+
+    User.updateById(authId, 'userEmail', req.body.email, function (err, data) {
+	if (err) {
+	    console.log('Unable to update user email address in database');
+	    return res.redirect(303, '/register');
+	}
+	// if update successful log data to console and move to
+	console.log('Updated user email address in database');
+	return res.redirect(303, '/instructions');
+    });
+
+/*
+    User.updateById(authId, 'gender', req.body.gender, function (err, data) {
+	if (err) {
+	    console.log('Unable to update user gender in database');
+	    return res.redirect(303, '/register');
+	}
+	// if update successful log data to console and move to
+	console.log('Updated user gender in database');
+	return res.redirect(303, '/about');
+    });
+*/
+/*
+    User.updateById(authId, 'age', req.body.age, function (err, data) {
+	if (err) {
+	    console.log('Unable to update user age in database');
+	    return res.redirect(303, '/register');
+	}
+	// if update successful log data to console and move to
+	console.log('Updated user age in database');
+	return res.redirect(303, '/about');
+    });
+*/
+
+});
+
+
+app.get('/instructions', function(req, res){
+    res.render('instructions');
+});
+
+
+
+/*  TODO
+// version of route that saves study data to dynamodb userdb
 app.post('/studySave', function(req, res){
     if(req.xhr || req.accepts('json,html')==='json'){
 	console.log('Valid POST request to save study session data ');
@@ -196,6 +337,67 @@ app.post('/studySave', function(req, res){
     }
 
 });
+*/
+
+
+// version of route that saves study data as local file on server
+app.post('/studySave', function(req, res){
+    if(req.xhr || req.accepts('json,html')==='json'){
+	console.log('Valid POST request to save study session data ');
+	console.log(req.body.message);
+	console.log('here are the stringified objects:');
+	console.log(req.body);
+	console.log(req.body.lists);
+	console.log(req.body.testType);
+	var lists = JSON.parse(req.body.lists);
+	var startDate = new Date(JSON.parse(req.body.startDate));
+	var endDate = new Date(JSON.parse(req.body.endDate));
+	var duration = endDate.getTime() - startDate.getTime();
+	console.log('duration of test: ', duration);
+	console.log('here are the unstringified objects:');
+	console.log(lists);
+	console.log(startDate);
+	console.log(endDate);
+
+	var dataDir = __dirname + '/data';
+//	fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
+	if (!fs.existsSync(dataDir)) {fs.mkdirSync(dataDir);}
+
+	var studyFile = dataDir + '/' + req.body.testType + req.body.startDate.replace(/\"/g,"");
+
+	fs.writeFile(studyFile, JSON.stringify(req.body), function (err) {
+	//fs.writeFile(studyFile, req.body.lists, function (err) {
+	    if (err) {
+		console.log('error saving file');
+		res.send({success: true, message: 'valid POST received but error saving file to server'});
+		throw err;
+
+	    } else {
+		console.log("File named " + studyFile + " saved!");
+		res.send({success: true, message: 'Study file successfully saved to server!'});
+
+		// read file back just to test the code to do this
+		fs.readFile(studyFile, function(err, data) {
+		    if (err) {
+			console.log('error reading studysave file');
+			throw err;
+		    } else {
+			console.log('reloaded file as:' + data); // show stringified content
+			var reloadData = JSON.parse(data);
+			console.log('reloaded and unstringified object:' + reloadData);  // not object display
+			console.log(reloadData);  // need to do this to display as object
+		    }
+		});
+	    }
+	});
+
+    } else {
+	console.log('Invalid POST request to configdisplay.');
+	res.send({success: false, message: 'invalid POST received'});
+    }
+
+});
+
 
 /*  route to handle request to save config file to ZTP server
 app.post('/listload', function(req, res){

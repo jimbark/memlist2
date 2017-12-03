@@ -136,6 +136,7 @@ function test() {
 		lists: JSON.stringify(llists),
 		startDate: JSON.stringify(startDate),
 		endDate: JSON.stringify(endDate),
+		duration: JSON.stringify(endDate.getTime() - startDate.getTime()),
 		message: 'post message',
 		testType: testType
 	    },
@@ -174,10 +175,11 @@ function test() {
 	document.getElementById("testForm").style.display = "block";
 	document.getElementById("tCueWord").value = lists[l][i][0];
 	document.getElementById("tAnswerWord").value = lists[l][i][1];
+	document.getElementById("tAnswerWord").focus();
     }
 }
 
-
+// fucntion trieggered by 'Submit' button or <CR> after entering an answer
 function checkAnswer() {
 
     if (document.getElementById("tAnswerWord").value === lists[l][i][1]) {
@@ -203,6 +205,40 @@ function checkAnswer() {
     setTimeout(test, feedbackDuration); // display feedback, then test next pair
 
 }
+
+// respond to <CR> key press within Answer field, run checkAnswer()
+function enterRespond(){
+    // your code
+    console.log('enterRespond has been called');
+
+    if($('tAnswerWord').length != 0) {
+
+	document.getElementById("tAnswerWord").onkeypress = function(e){
+	    console.log('key press detected');
+	    if (!e) e = window.event;
+	    var keyCode = e.keyCode || e.which;
+	    console.log(keyCode);
+	    if (keyCode == '13'){
+		// Enter pressed
+		console.log('enter key pressed');
+
+		// if testing during study phase
+		if (testType == 'study'){
+		    checkAnswer();
+		}
+
+		// if testing for delayed cued-recall test
+		if (testType == 'delayed'){
+		    checkNoFeedback();
+		}
+
+		// original had this line, don’t  know why
+		return false;
+	    }
+	};
+    }
+}
+window.onload = enterRespond;
 
 
 function checkNoFeedback() {
@@ -237,6 +273,7 @@ function startTest() {
     fL2 = [];
     flists = [fL1, fL2];
     testType = "delayed";
+    startDate.setTime(Date.now());
     // randomise order
     shuffleArray(tlists[l]);
     // start testing
@@ -268,6 +305,7 @@ function delayedTest() {
 		lists: JSON.stringify(flists),
 		startDate: JSON.stringify(startDate),
 		endDate: JSON.stringify(endDate),
+		duration: JSON.stringify(endDate.getTime() - startDate.getTime()),
 		message: 'post message',
 		testType: testType
 	    },
@@ -306,5 +344,6 @@ function delayedTest() {
 	document.getElementById("testForm").style.display = "block";
 	document.getElementById("tCueWord").value = tlists[l][i][0];
 	document.getElementById("tAnswerWord").value = tlists[l][i][1];
+	document.getElementById("tAnswerWord").focus();
     }
 }
