@@ -206,7 +206,21 @@ app.post('/register', function(req, res){
     var authId = req.session.passport.user;
 
     if (req.body.consented == "on") {
-	User.updateById(authId, 'status', 'consented', function (err, data) {
+
+	var updates = {
+	    TableName: 'userDb',
+	    Key: {'authId' : {S: authId}},
+	    ExpressionAttributeNames: {
+		"#A": 'status'
+	    },
+	    ExpressionAttributeValues: {
+		":a": { S: 'consented'}
+	    },
+	    ReturnValues: "ALL_NEW",
+	    UpdateExpression: "SET #A = :a"
+	};
+
+	User.updateById(authId, updates, function (err, data) {
 	    if (err) {
 		console.log('Unable to update user consent in database');
 		return res.redirect(303, '/consent');
@@ -240,7 +254,40 @@ app.post('/demographics', function(req, res){
     // get the user id
     var authId = req.session.passport.user;
 
+    // build params object for the userdb update
+    var updates = {
+	TableName: 'userDb',
+	Key: {
+	    'authId' : {S: authId},
+	},
+	ExpressionAttributeNames: {
+	    "#A": 'userEmail',
+	    "#B": 'gender',
+	    "#C": 'age',
+	    "#D": 'status',
+	},
+	ExpressionAttributeValues: {
+	    ":a": { S: req.body.email},
+	    ":b": { S: req.body.gender},
+	    ":c": { N: req.body.age},
+	    ":d": { S: 'registered'},
+	},
+	ReturnValues: "ALL_NEW",
+	UpdateExpression: "SET #A = :a, #B = :b, #C = :c, #D = :d"
+    };
 
+    User.updateById(authId, updates, function (err, data) {
+	if (err) {
+	    console.log('Unable to update user email address in database');
+	    return res.redirect(303, '/register');
+	}
+	// if update successful log data to console and move to
+	console.log('Updated user email address in database');
+	return res.redirect(303, '/instructions');
+    });
+
+
+/*
     User.updateById(authId, 'userEmail', req.body.email, function (err, data) {
 	if (err) {
 	    console.log('Unable to update user email address in database');
@@ -251,7 +298,6 @@ app.post('/demographics', function(req, res){
 	return res.redirect(303, '/instructions');
     });
 
-/*
     User.updateById(authId, 'gender', req.body.gender, function (err, data) {
 	if (err) {
 	    console.log('Unable to update user gender in database');
@@ -261,8 +307,7 @@ app.post('/demographics', function(req, res){
 	console.log('Updated user gender in database');
 	return res.redirect(303, '/about');
     });
-*/
-/*
+
     User.updateById(authId, 'age', req.body.age, function (err, data) {
 	if (err) {
 	    console.log('Unable to update user age in database');
@@ -281,6 +326,34 @@ app.get('/instructions', function(req, res){
     res.render('instructions');
 });
 
+
+// display demo page
+app.get('/demo', function(req, res){
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+    res.render('demo');
+});
+
+// display post study phase instructions page
+app.get('/postInstructions', function(req, res){
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+    res.render('postInstructions');
+});
+
+// display delayed test page
+app.get('/delayed', function(req, res){
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+    res.render('delayed');
+});
+
+// display post delayed test instructions
+app.get('/postDelayedInstructions', function(req, res){
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+    res.render('postDelayedInstructions');
+});
 
 
 /*  TODO

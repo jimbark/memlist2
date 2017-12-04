@@ -6,6 +6,8 @@
 // Constants
 var mL1 = [['L1C1','L1A1',0,0], ['L1C2','L1A2',0,0],['L1C3','L1A3',0,0]];
 var mL2 = ['L2C1:L2A1', 'L2C2:L2A2', 'L2C3:L2A3'];
+var dL1 = [['dL1C1','dL1A1',0,0], ['dL1C2','dL1A2',0,0],['dL1C3','dL1A3',0,0]];
+var dL2 = ['dL2C1:dL2A1', 'dL2C2:dL2A2', 'dL2C3:dL2A3'];
 var studyPresentations = 3;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
 var studyDuration = 1000;  // ms to display each word pair
@@ -31,6 +33,16 @@ var flists = [lL1, lL2];
 var startDate = new Date();
 var endDate = new Date();
 var testType = "";
+
+// respond to consent checkbox by enabling or disabling submit button
+$('#consented').change(function(){
+  if (this.checked) {
+      $('#consentSubmit').prop('disabled', false);
+  }
+  if (!this.checked) {
+      $('#consentSubmit').prop('disabled', true);
+  }
+});
 
 /*
 function shuffleArray(array) {
@@ -65,6 +77,23 @@ function startLearn() {
     l = 0;  // list counter
     c = 1;  // presentations counter
     testType = "study";
+    startDate.setTime(Date.now());
+    study();
+}
+
+// function striggered by 'start demo' button
+function startDemo() {
+    // initialise counters and variables
+    sL1 = dL1;
+    sL2 = dL2;
+    lists = [sL1, sL2];
+    lL1 = [];
+    lL2 = [];
+    llists = [lL1, lL2];
+    i = 0;  // item counter
+    l = 0;  // list counter
+    c = 1;  // presentations counter
+    testType = "demo";
     startDate.setTime(Date.now());
     study();
 }
@@ -158,6 +187,12 @@ function test() {
 
 	    complete: function( xhr, status ) {
 		alert( "The request is complete!" );
+		if (testType == 'demo'){
+		    window.location.href = "/learn";
+		}
+		if (testType == 'study'){
+		    window.location.href = "/postInstructions";
+		}
 	    }
 
 	});
@@ -221,6 +256,11 @@ function enterRespond(){
 	    if (keyCode == '13'){
 		// Enter pressed
 		console.log('enter key pressed');
+
+		// if testing during demo phase
+		if (testType == 'demo'){
+		    checkAnswer();
+		}
 
 		// if testing during study phase
 		if (testType == 'study'){
@@ -327,6 +367,10 @@ function delayedTest() {
 
 	    complete: function( xhr, status ) {
 		alert( "The request is complete!" );
+
+		if (testType == 'delayed'){
+		    window.location.href = "/postDelayedInstructions";
+		}
 	    }
 
 	});

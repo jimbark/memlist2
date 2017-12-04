@@ -33,7 +33,7 @@ If you have any questions or concerns about how the study has been conducted, pl
      <p>I have the read the information relating to the above research study, which has explained the nature and purposes of the research, and the procedure I will be involved in.</p>
      <p>I understand that my involvement in this study, and particular data from this research, will remain strictly confidential. Only the researchers involved in the study will have access to identifying data. It has been explained to me what will happen once the research study has been completed.</p>
      <p>I hereby freely and fully consent to participate in the study which has been fully explained to me. Having given this consent I understand that I have the right to withdraw from the study at any time without disadvantage to myself and without being obliged to give any reason. I also understand that should I withdraw, the researcher reserves the right to use my anonymous data in the write-up of the study and in any further analysis that may be conducted by the researcher.</p>
-     <p>If you are happy to continue then please confirm that you consent to taking part in this study by selecting "Yes, participate" below. If you do not wish to participate then select "No thanks"</p>
+     <p>If you are happy to continue then please confirm that you consent to taking part in this study by checking the box below and selecting "Next". If you do not wish to participate then select "No thanks"</p>
 
 </div>
 
@@ -42,11 +42,11 @@ If you have any questions or concerns about how the study has been conducted, pl
      	   <div class="form-group row">
   	   	<div class="form-check">
  		      <label class="form-check-label">
-  		      <input type="checkbox" class="form-check-input" name="consented">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
   		      I agree to participate.
   		      </label>
   		</div>
-  		<button type="submit" class="btn btn-primary">Next</button>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Next</button>
   	   </div>
      </form>
 </div>
@@ -54,9 +54,6 @@ If you have any questions or concerns about how the study has been conducted, pl
 
 
 <div class="row justify-content-center">
-     <div class="col-auto text-center">
-     	  <a href="/register" class="btn btn-primary" role="button">Yes, participate</a>
-     </div>
 
      <div class="col-auto text-center">
      	  <a href="/withdraw" class="btn btn-primary" role="button">No thanks</a>

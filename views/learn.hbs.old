@@ -1,4 +1,4 @@
-<h1 class='text-center'>Welcome to main study phase.</h1>
+<h1 class='text-center'>Welcome. </h1>
 
 <div id="introduction" style="display: block">
 
@@ -16,13 +16,13 @@
 
     <div class="row justify-content-center">
         <div class="col text-center">
-       	    <p  id='redemo' style="display: block">Press button below if you would like to try the demo again before doing the main test.</p>
-    	</div>
+           <p  id='delayed_test' style="display: block">Press button below if you have come back for testing.</p>
+        </div>
     </div>
 
     <div class="row justify-content-center">
         <div class="col-auto text-center">
-          <a href="/demo" class="btn btn-primary" role="button">Try demo again</a>
+           <button type="button" onclick="startTest()" class="btn btn-primary">Start Testing</button>
         </div>
     </div>
 
