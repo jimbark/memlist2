@@ -9,6 +9,7 @@ var fs = require('fs');
 var credentials = require('./credentials.js');
 
 var User = require('./lib/userdb.js');     // module with all dynamodb methods to access userDb
+var s3Store = require('./lib/s3lib.js');    // module with all methods to access S3
 
 // setup authetication
 var auth = require('./lib/auth.js')(app, {
@@ -28,6 +29,15 @@ app.set('view engine', '.hbs');
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
+
+
+app.use(function(req, res, next){
+	res.locals.copyrightYear = '2017';
+	next();
+});
+
+
+
 
 // enable handling of secure cookies
 app.use(cookieParser(credentials.cookieSecret));
@@ -105,6 +115,10 @@ app.get('/about', function(req, res){
 
 });
 
+app.get('/FAQ', function(req, res){
+    res.render('faq');
+});
+
 /*
 app.get('/learn', function(req, res){
     res.cookie('signed_monster', 'nom nom', { signed: true });
@@ -149,20 +163,24 @@ app.get('/learn', function(req, res){
 	    res.render('consent');
 	}
 	else if (user.status == 'consented'){
-	    // if existing participant display learn page
+	    // if consented display demographics regsiter page
 	    res.render('register');
 	}
 	else if (user.status == 'registered'){
-	    // if existing participant display learn page
+	    // if registered display demo page
+	    res.render('demo');
+	}
+	else if (user.status == 'learnt'){
+	    // if returning participant display learn page
 	    res.render('learn');
 	}
-	else if (user.status == 'returning'){
-	    // if existing participant display learn page
+	else if (user.status == 'demoed'){
+	    // if demo has been completed display learn page
 	    res.render('learn');
 	}
 	else {
-	    // if any other status display learn page
-	    res.render('login');
+	    // if any other status display 500 error page
+	    res.render('500');
 	}
     });
 });
@@ -243,6 +261,8 @@ app.post('/demographics', function(req, res){
     console.log('Age(from visible form field): ' + req.body.age);
     console.log('Email (from visible form field): ' + req.body.email);
     console.log('Gender (from visible form field): ' + req.body.gender);
+    console.log('Education (from visible form field): ' + req.body.education);
+    console.log('English standard (from visible form field): ' + req.body.english);
 
     // TODO - store the demographics info in userdb
     //User.updateById = function(authId, attr, value, cb) {
@@ -265,15 +285,23 @@ app.post('/demographics', function(req, res){
 	    "#B": 'gender',
 	    "#C": 'age',
 	    "#D": 'status',
+	    "#E": 'education',
+	    "#F": 'english',
+	    "#G": 'nationality',
+
 	},
 	ExpressionAttributeValues: {
 	    ":a": { S: req.body.email},
 	    ":b": { S: req.body.gender},
 	    ":c": { N: req.body.age},
 	    ":d": { S: 'registered'},
+	    ":e": { S: req.body.education},
+	    ":f": { S: req.body.english},
+	    ":g": { S: req.body.nationality},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b, #C = :c, #D = :d"
+	UpdateExpression: "SET #A = :a, #B = :b, #C = :c, #D = :d, #E = :e, #F = :f, #G = :g"
     };
 
     User.updateById(authId, updates, function (err, data) {
@@ -356,8 +384,8 @@ app.get('/postDelayedInstructions', function(req, res){
 });
 
 
-/*  TODO
-// version of route that saves study data to dynamodb userdb
+//  TODO
+// version of route that saves study data to S3
 app.post('/studySave', function(req, res){
     if(req.xhr || req.accepts('json,html')==='json'){
 	console.log('Valid POST request to save study session data ');
@@ -374,33 +402,19 @@ app.post('/studySave', function(req, res){
 	console.log(endDate);
 
 	var dataDir = __dirname + '/data';
-//	fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
-	if (!fs.existsSync(dataDir)) {fs.mkdirSync(dataDir);}
 
-	var studyFile = dataDir + '/' + req.body.testType + req.body.startDate.replace(/\"/g,"");
+	var bucket = 'tmcgbucket1';
+	var studyFile = req.body.testType + req.body.startDate.replace(/\"/g,"");
 
-	fs.writeFile(studyFile, req.body.lists, function (err) {
+	s3Store.s3Upload(bucket, studyFile, req.body.lists, function (err) {
 	    if (err) {
 		console.log('error saving file');
-		res.send({success: true, message: 'valid POST received but error saving file to server'});
+		res.send({success: true, message: 'valid POST received but error saving file'});
 		throw err;
 
 	    } else {
 		console.log("File named " + studyFile + " saved!");
-		res.send({success: true, message: 'Study file successfully saved to server!'});
-
-		// read file back just to test the code to do this
-		fs.readFile(studyFile, function(err, data) {
-		    if (err) {
-			console.log('error reading studysave file');
-			throw err;
-		    } else {
-			console.log('reloaded file as:' + data); // show stringified content
-			var reloadData = JSON.parse(data);
-			console.log('reloaded and unstringified object:' + reloadData);  // not object display
-			console.log(reloadData);  // need to do this to display as object
-		    }
-		});
+		res.send({success: true, message: 'Study file successfully saved!'});
 	    }
 	});
 
@@ -410,9 +424,9 @@ app.post('/studySave', function(req, res){
     }
 
 });
-*/
 
 
+/*
 // version of route that saves study data as local file on server
 app.post('/studySave', function(req, res){
     if(req.xhr || req.accepts('json,html')==='json'){
@@ -447,7 +461,7 @@ app.post('/studySave', function(req, res){
 
 	    } else {
 		console.log("File named " + studyFile + " saved!");
-		res.send({success: true, message: 'Study file successfully saved to server!'});
+		//res.send({success: true, message: 'Study file successfully saved to server!'});
 
 		// read file back just to test the code to do this
 		fs.readFile(studyFile, function(err, data) {
@@ -461,6 +475,50 @@ app.post('/studySave', function(req, res){
 			console.log(reloadData);  // need to do this to display as object
 		    }
 		});
+
+		// status change to dynamically use testType to set demoed or learnt
+		var reqStatus = req.body.testType;
+		var status = "";
+		if (reqStatus == "demo") {
+		    status = "demoed";
+		    }
+		if (reqStatus == "study") {
+		    status = "learnt";
+		    }
+		if (reqStatus == "delayed") {
+		    status = "delayed1";
+		    }
+
+		// get the user id
+		var authId = req.session.passport.user;
+
+		// build params object for the userdb update
+		var updates = {
+		    TableName: 'userDb',
+		    Key: {
+			'authId' : {S: authId},
+		    },
+		    ExpressionAttributeNames: {
+			"#A": 'status',
+		    },
+		    ExpressionAttributeValues: {
+			":a": { S: status},
+		    },
+		    ReturnValues: "ALL_NEW",
+		    UpdateExpression: "SET #A = :a"
+		};
+
+		User.updateById(authId, updates, function (err, data) {
+		    if (err) {
+			console.log('Unable to update status to demoed in database');
+			return res.redirect(303, '/demo');
+		    }
+		    // if update successful log data to console and move to
+		    console.log('Updated user status to demoed in database');
+		    res.send({success: true, message: 'Study file successfully saved to server!'});
+		    //return res.redirect(303, '/instructions');
+		});
+
 	    }
 	});
 
@@ -470,7 +528,7 @@ app.post('/studySave', function(req, res){
     }
 
 });
-
+*/
 
 /*  route to handle request to save config file to ZTP server
 app.post('/listload', function(req, res){

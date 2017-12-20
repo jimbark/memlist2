@@ -5,10 +5,11 @@
 
 // Constants
 var mL1 = [['L1C1','L1A1',0,0], ['L1C2','L1A2',0,0],['L1C3','L1A3',0,0]];
-var mL2 = ['L2C1:L2A1', 'L2C2:L2A2', 'L2C3:L2A3'];
+var mL2 = [['L2C1','L2A1',0,0], ['L2C2','L2A2',0,0],['L2C3','L2A3',0,]];
 var dL1 = [['dL1C1','dL1A1',0,0], ['dL1C2','dL1A2',0,0],['dL1C3','dL1A3',0,0]];
+var dL2 = [['dL2C1','dL2A1',0,0], ['dL2C2','dL2A2',0,0],['dL2C3','dL2A3',0,0]];
 var dL2 = ['dL2C1:dL2A1', 'dL2C2:dL2A2', 'dL2C3:dL2A3'];
-var studyPresentations = 3;  // number of study presentations
+var studyPresentations = 1;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
 var studyDuration = 1000;  // ms to display each word pair
 var feedbackDuration = 1000;  // ms to display correct/incorrect feedback
@@ -131,7 +132,7 @@ function study() {
 	}
 	else {
 	    shuffleArray(lists[l]);	    // randomise order before testing
-	    setTimeout(test, studyDuration);  // switch to test mode after 3rd presentation of full list
+	    setTimeout(test, studyDuration);  // switch to test mode after final presentation of full list
 	}
     }
 }
@@ -151,11 +152,12 @@ function test() {
 	document.getElementById("studyForm").style.display = "none";
 	document.getElementById("testForm").style.display = "none";
 
+	/* displaying debug test stats
 	document.getElementById("duration").innerHTML= (endDate.getTime() - startDate.getTime());
 	document.getElementById("correctAnswers").innerHTML= 100;
 	document.getElementById("incorrectAnswers").innerHTML= 100;
-
 	document.getElementById("testOver").style.display = "block";
+	*/
 
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
@@ -208,13 +210,17 @@ function test() {
 	document.getElementById("feedbackIncorrect").style.display = "none";
 	document.getElementById("studyForm").style.display = "none";
 	document.getElementById("testForm").style.display = "block";
+	document.getElementById("cue").innerHTML = lists[l][i][0];
+	document.getElementById("answer").innerHTML = lists[l][i][1];
+	document.getElementById("icue").innerHTML = lists[l][i][0];
+	document.getElementById("ianswer").innerHTML = lists[l][i][1];
 	document.getElementById("tCueWord").value = lists[l][i][0];
 	document.getElementById("tAnswerWord").value = lists[l][i][1];
 	document.getElementById("tAnswerWord").focus();
     }
 }
 
-// fucntion trieggered by 'Submit' button or <CR> after entering an answer
+// function trieggered by 'Submit' button or <CR> after entering an answer in demo or study phase
 function checkAnswer() {
 
     if (document.getElementById("tAnswerWord").value === lists[l][i][1]) {
@@ -225,10 +231,14 @@ function checkAnswer() {
 	    lists[l].splice(i,1);
 	}
 	document.getElementById("feedbackCorrect").style.display = "block";
+	document.getElementById("testForm").style.display = "none";
+	document.getElementById("testText").style.display = "none";
     }
     else {
 	++lists[l][i][3];  // increment incorrect counter
 	document.getElementById("feedbackIncorrect").style.display = "block";
+	document.getElementById("testForm").style.display = "none";
+	document.getElementById("testText").style.display = "none";
     }
 
     ++i;
@@ -241,12 +251,12 @@ function checkAnswer() {
 
 }
 
-// respond to <CR> key press within Answer field, run checkAnswer()
+// respond to <CR> key press within Answer field, run checkAnswer() or checkNoFeedback()
 function enterRespond(){
     // your code
     console.log('enterRespond has been called');
 
-    if($('tAnswerWord').length != 0) {
+    if($('#tAnswerWord').length != 0) {
 
 	document.getElementById("tAnswerWord").onkeypress = function(e){
 	    console.log('key press detected');
@@ -280,7 +290,7 @@ function enterRespond(){
 }
 window.onload = enterRespond;
 
-
+// function trieggered by 'Submit' button or <CR> after entering an answer in delayed test phase
 function checkNoFeedback() {
 
     if (document.getElementById("tAnswerWord").value === tlists[l][i][1]) {
@@ -332,9 +342,18 @@ function delayedTest() {
 	document.getElementById("feedbackIncorrect").style.display = "none";
 	document.getElementById("studyForm").style.display = "none";
 	document.getElementById("testForm").style.display = "none";
-	document.getElementById("duration").innerHTML= (endDate.getTime() - startDate.getTime());
-	document.getElementById("correctAnswers").innerHTML= 100;
-	document.getElementById("incorrectAnswers").innerHTML= 100;
+	
+	// display stats on delayed test 
+	//document.getElementById("duration").innerHTML= (endDate.getTime() - startDate.getTime());
+	var correct = 0;
+        var incorrect = 0;
+	for (var lk = tlists[l].length -1; lk > -1; lk--) {
+            correct += tlists[l][lk][2];
+            incorrect += tlists[l][lk][3];
+	}
+        var total = correct + incorrect;
+	document.getElementById("correctAnswers").innerHTML= correct;
+	document.getElementById("totalAnswers").innerHTML= total;
 	document.getElementById("testOver").style.display = "block";
 
 	// Using the core $.ajax() method to send test run data to server

@@ -1,0 +1,33 @@
+<h1 class='text-center'>Welcome. </h1>
+
+<div class="row justify-content-center">
+
+   <div class="col-3">
+   	<img src="/img/Mr_pipo_Learning_and_forgetting.png" class="img-fluid" alt="Responsive image of forgetting">
+   </div>
+
+   <div class="col-9 text-center">
+     <p>We are studying human memory, and how this varies within the general popluation. If you would like to participate you just need to have English as a first language.
+     </p>
+   </div>
+</div>
+
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
+     <p>First tell us whether you are a new participant, or a returning participant.
+     </p>
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+     	  <a href="/learn" class="btn btn-primary" role="button">New participant</a>
+     </div>
+
+     <div class="col-auto text-center">
+     	  <a href="/delayed" class="btn btn-primary" role="button">Returning participant</a>
+     </div>
+
+</div>
+
+

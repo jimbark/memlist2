@@ -17,9 +17,6 @@
         <link rel="stylesheet" href="vendor/css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
 
-	<!-- Bootstrap Form Helpers -->
-	<link href="vendor/css/bootstrap-form-helpers.min.css" rel="stylesheet" media="screen">
-
         <!-- load mocha css if tests have been requested -->
 	{{#if showTests}}
             <link rel="stylesheet" href="/vendor/css/mocha.css">
@@ -45,8 +42,8 @@
 	<header role="banner">
 
 	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	    <a class="navbar-brand" href="/">
-	      <img src="/img/Memlist_Neon.png" width="40" height="40" alt="memlist logo">
+	    <a class="navbar-brand" href="#">
+	      <img src="/img/confgen_logo.png" width="30" height="30" alt="memlist logo">
 	    </a>
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
 		    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,13 +52,24 @@
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav">
 		<li class="nav-item active">
-		  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 		</li>
 		<li class="nav-item">
-		  <a class="nav-link" href="/about">About</a>
+		  <a class="nav-link" href="#">Features</a>
 		</li>
 		<li class="nav-item">
-		  <a class="nav-link" href="/FAQ">FAQ</a>
+		  <a class="nav-link" href="#">Pricing</a>
+		</li>
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" 
+		     aria-haspopup="true" aria-expanded="false">
+		    Dropdown link
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		    <a class="dropdown-item" href="#">Something else here</a>
+		  </div>
 		</li>
 	      </ul>
 	    </div>
@@ -95,7 +103,7 @@
         <footer role="contentinfo">
           <div class="container-fluid">
 
-	      <p class="text-center mt-5" ><small>Copyright &copy; {{copyrightYear}} Terry McGibbon</small></p>
+	      <p class="text-center"><small>Copyright &copy; {{copyrightYear}} Memlist</small></p>
 
           </div><!-- /.container-fluid -->
 	</footer>
@@ -110,10 +118,6 @@
 	<!-- Bootstrap and its Popper depenedency -->
 	<script src="vendor/js/popper.min.js"></script>
 	<script src="vendor/js/bootstrap.min.js"></script>
-
-	<!-- Bootstrap Form Helpers -->
-	<script src="vendor/js/bootstrap-formhelpers.min.js"></script>
-
         <!-- main custom js  -->
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>

@@ -1,15 +1,16 @@
-<h1 class='text-center'>Welcome. </h1>
 
 <div id="introduction" style="display: block">
 
-    <div class="row justify-content-center">
-        <div class="col text-center">
-       	    <p  id='study' style="display: block">Thankyou for coming back for your delayed test. You will be tested on the same word pairs your learnt previously, and in the same way as before. You will be show the first word in a pair, and asked to enter the second word in the pair.</p>
-       	    <p  id='study' style="display: block">Press button below to start learning!</p>
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Welcome back! </h5>
+
+       	    <p  id='study' style="display: block">Thankyou for coming back for your delayed test. You will be tested on the same word pairs your learnt previously, and in the same way as before. You will be shown the first word in a pair, and asked to enter the second word.</p>
+       	    <p  id='study' style="display: block">When you are ready press the button below to start.</p>
     	</div>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center pt-3">
         <div class="col-auto text-center">
            <button type="button" onclick="startTest()" class="btn btn-primary">Start Testing</button>
         </div>
@@ -17,23 +18,40 @@
 
 </div>
 
-<p  id='studyText' style="display: none">Wordpair to memorise:     
-    <b id='wordpair'>loading</b> </p> 
 
-<p  id='testText' style="display: none">Provide the matching word:    
-    <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
 
-<p  id='feedbackCorrect' style="display: none"><span class="text-success">Correct:</span> the correct wordpair is: 
-    <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
 
-<p  id='feedbackIncorrect' style="display: none"><span class="text-danger">Inorrect:</span> the correct wordpair is: 
-    <b id='cue'>Cue word  </b> : <b id='answer'>Answer</b> </p>
+<div id='testText' style="display: none">
+     <p>Type in the second word in the pair. Press Return or the Submit button to continue
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
 
-<p  id='testOver' style="display: none">Test is complete! 
-    Total learning time was: <b id='duration'>0ms</b>
-    Total correct answers:  <b id='correctAnswers'>0</b>
-    Total incorrect answers:  <b id='incorrectAnswers'>0</b>
-</p>
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+<div id='testOver' style="display: none">
+<h5>Well done. The test is complete!</h5>
+<p> You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span>.</p>
+</div>
+
+   </div>
+</div>
 
 
 <form id="studyForm" style="display: none">
@@ -57,7 +75,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center pt-5">
     <div class="col-auto">
       <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Submit</button>
     </div>

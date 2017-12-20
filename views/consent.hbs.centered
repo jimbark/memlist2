@@ -1,50 +1,79 @@
 
+<div class="text-center">
+
+     <h5>Consent to Participate in a Research Study</h5>
 <div class="row justify-content-center">
-   <div class="col-10">
-
-     <h5 class="pt-3">Consent to Participate in a Research Study</h5>
-
+   <div class="col-10 text-center">
      <p>The purpose of this page is to provide you with the information that you need to consider in deciding whether to participate in this research study. The study is being conducted by Goldsmiths Univeristy.
      </p>
+   </div>
+</div>
 
      <h5>Study Description</h5>
-
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
      <p>People's ability to learn and recall new information varies with age, and is influenced by brain related conditions such as epilepsy and Alzheimer's disease. This study aims to show how memory varies within the general population.
 
 Participants are required to memorise pairs of words, and recall them at a later time. 
 
 This study will not cause any physical or mental harm, so you will not experience any distress whilst participating in this study.
      </p>
+   </div>
+</div>
 
      <h5>Data Confidentiality</h5>
-
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
      <p>
 There is complete anonymity and confidentiality of the data, which will be kept safely electronically. Your details such as your email address will be personally unidentifiable and only seen by the researchers when collecting the data. This information will not be shared with any other organisation, and will not be included in any report or other publications arising from the study, and only the results will be kept after the study is completed. 
      </p>
+   </div>
+</div>
 
      <h5>Right to withdraw</h5>
-
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
      <p>
 You are not obliged to take part in this study and should not feel coerced. You are free to withdraw at any time. Should you choose to withdraw from the study you may do so without disadvantage to yourself and without any obligation to give a reason.
      </p>
+   </div>
+</div>
 
      <h5>Contacts</h5>
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
 
      <p>
 If you have any questions or concerns about how the study has been conducted, please contact Terry McGibbon (tmcgi001@gold.ac.uk) or Dr Ashok Jansari (a.jansari@gold.ac.uk)
      </p>
+   </div>
+</div>
 
      <h5>Disclaimer</h5>
-
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
      <p>I have the read the information relating to the above research study, which has explained the nature and purposes of the research, and the procedure I will be involved in.</p>
-
-     <p>I understand that my involvement in this study, and particular data from this research, will remain strictly confidential. Only the researchers involved in the study will have access to identifying data. It has been explained to me what will happen once the research study has been completed.</p>
-
-     <p>I hereby freely and fully consent to participate in the study which has been fully explained to me. Having given this consent I understand that I have the right to withdraw from the study at any time without disadvantage to myself and without being obliged to give any reason. I also understand that should I withdraw, the researcher reserves the right to use my anonymous data in the write-up of the study and in any further analysis that may be conducted by the researcher.</p>
-
-     <p>If you are happy to continue then please confirm that you consent to taking part in this study by checking the box below and selecting "Next". If you do not wish to participate then select "No thanks"</p>
-
    </div>
+</div>
+
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
+     <p>I understand that my involvement in this study, and particular data from this research, will remain strictly confidential. Only the researchers involved in the study will have access to identifying data. It has been explained to me what will happen once the research study has been completed.</p>
+   </div>
+</div>
+
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
+     <p>I hereby freely and fully consent to participate in the study which has been fully explained to me. Having given this consent I understand that I have the right to withdraw from the study at any time without disadvantage to myself and without being obliged to give any reason. I also understand that should I withdraw, the researcher reserves the right to use my anonymous data in the write-up of the study and in any further analysis that may be conducted by the researcher.</p>
+   </div>
+</div>
+
+<div class="row justify-content-center">
+   <div class="col-10 text-center">
+     <p>If you are happy to continue then please confirm that you consent to taking part in this study by checking the box below and selecting "Next". If you do not wish to participate then select "No thanks"</p>
+   </div>
+</div>
+
 </div>
 
 <div class="row justify-content-center">
