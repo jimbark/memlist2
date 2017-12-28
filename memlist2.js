@@ -403,18 +403,67 @@ app.post('/studySave', function(req, res){
 
 	var dataDir = __dirname + '/data';
 
-	var bucket = 'tmcgbucket1';
-	var studyFile = req.body.testType + req.body.startDate.replace(/\"/g,"");
+	// get the user id
+	var authId = req.session.passport.user;
 
-	s3Store.s3Upload(bucket, studyFile, req.body.lists, function (err) {
+	var bucket = 'tmcgbucket1';
+	var studyFile = authId + "/" + req.body.testType + "-" + req.body.startDate.replace(/\"/g,"");
+	studyFile = studyFile.replace(/:/g,"-");
+	studyFile = studyFile.replace(/\./g,"-");
+
+	s3Store.s3Upload(bucket, studyFile, req.body.lists, function (err,data) {
 	    if (err) {
-		console.log('error saving file');
+		console.log('error saving file to S3');
 		res.send({success: true, message: 'valid POST received but error saving file'});
 		throw err;
 
 	    } else {
-		console.log("File named " + studyFile + " saved!");
-		res.send({success: true, message: 'Study file successfully saved!'});
+		console.log("File named " + studyFile + " saved to S3!");
+		//res.send({success: true, message: 'Study file successfully saved!'});
+
+		// status change to dynamically use testType to set demoed or learnt
+		var reqStatus = req.body.testType;
+		var status = "";
+		if (reqStatus == "demo") {
+		    status = "demoed";
+		    }
+		if (reqStatus == "study") {
+		    status = "learnt";
+		    }
+		if (reqStatus == "delayed") {
+		    status = "delayed1";
+		    }
+
+		// get the user id
+		var authId = req.session.passport.user;
+
+		// build params object for the userdb update
+		var updates = {
+		    TableName: 'userDb',
+		    Key: {
+			'authId' : {S: authId},
+		    },
+		    ExpressionAttributeNames: {
+			"#A": 'status',
+		    },
+		    ExpressionAttributeValues: {
+			":a": { S: status},
+		    },
+		    ReturnValues: "ALL_NEW",
+		    UpdateExpression: "SET #A = :a"
+		};
+
+		User.updateById(authId, updates, function (err, data) {
+		    if (err) {
+			console.log('Unable to update status to demoed in database');
+			return res.redirect(303, '/demo');
+		    }
+		    // if update successful log data to console and move to
+		    console.log('Updated user status to demoed in database');
+		    res.send({success: true, message: 'Study file successfully saved!'});
+		    //return res.redirect(303, '/instructions');
+		});
+
 	    }
 	});
 
