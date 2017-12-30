@@ -155,11 +155,15 @@ app.get('/learn', function(req, res){
 
     User.findById(authId, function (err, user) {
 	if (err) {
+	    console.log('Error when trying to find user record in database');
+	    return res.redirect(303, '/login');
+	}
+	else if (Object.keys(user).length === 0) {
 	    console.log('Unable to find user record in database');
 	    return res.redirect(303, '/login');
 	}
 	// if new user get their consent to participate
-	if (user.status == 'new') {
+	else if (user.status == 'new') {
 	    res.render('consent');
 	}
 	else if (user.status == 'consented'){
@@ -171,12 +175,20 @@ app.get('/learn', function(req, res){
 	    res.render('demo');
 	}
 	else if (user.status == 'learnt'){
-	    // if returning participant display learn page
-	    res.render('learn');
+	    // if returning participant display delayed test page
+	    res.render('delayed');
 	}
 	else if (user.status == 'demoed'){
 	    // if demo has been completed display learn page
 	    res.render('learn');
+	}
+	else if (user.status == 'delayed1'){
+	    // if demo has been completed display learn page
+	    res.render('delayed');
+	}
+	else if (user.status == 'delayed2'){
+	    // if demo has been completed display learn page
+	    res.render('end');
 	}
 	else {
 	    // if any other status display 500 error page
@@ -196,14 +208,20 @@ auth.registerRoutes();
 
 
 app.get('/consent', function(req, res){
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('consent');
 });
 
-app.get('/withdraw', function(req, res){
-    res.render('withdraw');
+app.get('/withdrawn', function(req, res){
+    res.render('withdrawn');
 });
 
 app.get('/register', function(req, res){
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('register');
 });
 
@@ -252,6 +270,74 @@ app.post('/register', function(req, res){
     else {
 	 console.log('Consent not detected');
     }
+});
+
+app.get('/withdraw', function(req, res){
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+    res.render('withdraw');
+});
+
+app.post('/withdraw', function(req, res){
+
+    console.log('Form (from querystring): ' + req.query.form);
+    //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
+
+    // get the user id
+    var authId = req.session.passport.user;
+
+    // first get the existing user object
+    User.findById(authId, function (err, user) {
+	if (err) {
+	    console.log('Unable to find user record in database');
+	    return res.redirect(303, '/login');
+	}
+
+	// if got the user update values
+	var myDate = new Date();
+	myDate.setTime(Date.now());
+	myDate = JSON.stringify(myDate);
+	myDate = myDate.replace(/\"/g,"");
+	myDate = myDate.replace(/:/g,"-");
+	myDate = myDate.replace(/\./g,"-");
+
+	user.authId = 'wd-' + user.authId + "-" + myDate;
+	user.status = 'withdrawn';
+
+	// save updated record as new record
+	User.createById('wdUserDb', user, function (err,data) {
+	    if (err) {
+		console.log('Unable create withdraw entry in database');
+		return res.redirect(303, '/consent');
+	    }
+	    // if update successful log data to console
+	    console.log('Consent withdrawn record created in database');
+
+	    // delete the old record
+	    User.deleteById('userDb', authId, function (err,data) {
+		if (err) {
+		    console.log('Unable to delete old user record in database');
+		    return res.redirect(303, '/consent');
+		}
+		// if update successful log data to console
+		console.log('Old user record deleted from database');
+		//req.logOut();
+		//res.render('withdrawn');
+
+		req.session.destroy(function (err) {
+		    //res.render('withdrawn'); //Inside a callback… bulletproof!
+		    return res.redirect(303, '/withdrawn');
+		});
+
+		//return res.redirect(303, '/register');
+	    });
+	});
+    });
 });
 
 app.post('/demographics', function(req, res){
@@ -351,12 +437,16 @@ app.post('/demographics', function(req, res){
 
 
 app.get('/instructions', function(req, res){
+    // check user is logged in
+    if(!req.session.passport) return res.redirect(303, '/login');
+    if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('instructions');
 });
 
 
 // display demo page
 app.get('/demo', function(req, res){
+    // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('demo');
@@ -364,6 +454,7 @@ app.get('/demo', function(req, res){
 
 // display post study phase instructions page
 app.get('/postInstructions', function(req, res){
+    // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('postInstructions');
@@ -371,13 +462,58 @@ app.get('/postInstructions', function(req, res){
 
 // display delayed test page
 app.get('/delayed', function(req, res){
+
+    // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
-    res.render('delayed');
+
+    // get the user ID
+    var authId = req.session.passport.user;
+
+    User.findById(authId, function (err, user) {
+	if (err) {
+	    console.log('Unable to find user record in database');
+	    return res.redirect(303, '/login');
+	}
+	// if new user get their consent to participate
+	if (user.status == 'new') {
+	    res.render('consent');
+	}
+	else if (user.status == 'consented'){
+	    // if consented display demographics regsiter page
+	    res.render('register');
+	}
+	else if (user.status == 'registered'){
+	    // if registered display demo page
+	    res.render('demo');
+	}
+	else if (user.status == 'learnt'){
+	    // if returning participant display learn page
+	    res.render('delayed');
+	}
+	else if (user.status == 'demoed'){
+	    // if demo has been completed display learn page
+	    res.render('learn');
+	}
+	else if (user.status == 'delayed1'){
+	    // if demo has been completed display learn page
+	    res.render('delayed');
+	}
+	else if (user.status == 'delayed2'){
+	    // if demo has been completed display learn page
+	    res.render('end');
+	}
+	else {
+	    // if any other status display 500 error page
+	    res.render('500');
+	}
+    });
+
 });
 
 // display post delayed test instructions
 app.get('/postDelayedInstructions', function(req, res){
+    // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('postDelayedInstructions');
@@ -402,6 +538,10 @@ app.post('/studySave', function(req, res){
 	console.log(endDate);
 
 	var dataDir = __dirname + '/data';
+
+	// check user is logged in
+	if(!req.session.passport) return res.redirect(303, '/login');
+	if(!req.session.passport.user) return res.redirect(303, '/login');
 
 	// get the user id
 	var authId = req.session.passport.user;
@@ -605,7 +745,18 @@ app.post('/listload', function(req, res){
 */
 
 
+// logout, destrioyiong any session
+app.get('/logout', function(req, res){
+    // check user is logged in 
+    //if(!req.session.passport) return res.redirect(303, '/login');
+    //if(!req.session.passport.user) return res.redirect(303, '/login');
 
+    req.session.destroy(function (err) {
+        //res.render('withdrawn'); //Inside a callback… bulletproof!                                                                
+        return res.redirect(303, '/');
+    });
+
+});
 
 
 
