@@ -55,6 +55,7 @@
 
 
 <form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
   <div class="row justify-content-center">
     <div class="col-auto">
       <input type="text" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
@@ -66,6 +67,7 @@
 </form>
 
 <form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
   <div class="row justify-content-center">
     <div class="col-auto">
       <input type="text" readonly class="form-control-plaintext text-right" id="tCueWord" value="Cue word">

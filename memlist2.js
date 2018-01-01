@@ -30,14 +30,10 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
-
 app.use(function(req, res, next){
 	res.locals.copyrightYear = '2017';
 	next();
 });
-
-
-
 
 // enable handling of secure cookies
 app.use(cookieParser(credentials.cookieSecret));
@@ -75,7 +71,6 @@ app.use(expressSession({
     saveUninitialized: true
 }));
 
-
 /*
 //app.use(require('cookie-parser')(credentials.cookieSecret));
 //app.use(require('express-session')());
@@ -96,7 +91,12 @@ app.use(function(req, res, next){
 // process url encoded body for POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+// use csurf for cross site request forgery protection
+app.use(require('csurf')());
+app.use(function(req, res, next){
+	res.locals._csrfToken = req.csrfToken();
+	next();
+});
 
 app.use(function(req, res, next){
     res.locals.showTests = app.get('env') !== 'production' &&
@@ -104,51 +104,38 @@ app.use(function(req, res, next){
     next();
 });
 
+// exmaple of clearing a cookie
 app.get('/', function(req, res){
     res.clearCookie("signed_monster");
     res.render('home');
 });
+
+// exmaple of reading a cookie from a request
 app.get('/about', function(req, res){
     var signedMonster = req.signedCookies.signed_monster;
     console.log(signedMonster);
     res.render('about', {pageTestScript: '/qa/tests-about.js'});
-
 });
 
 app.get('/FAQ', function(req, res){
     res.render('faq');
 });
 
-/*
-app.get('/learn', function(req, res){
-    res.cookie('signed_monster', 'nom nom', { signed: true });
-
-    res.locals.flash = {
-	    type: 'success',
-	    intro: 'Thank you!',
-	    message: 'You have now been signed up for the newsletter.',
-	};
-
-    res.render('learn');
-});
-*/
-
-// make use of authentication when start study
+// make use of authentication when start study, with cookie setting exmaple
 app.get('/learn', function(req, res){
 
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
-    //if(!req.user) return res.redirect(303, '/login');
 
     res.cookie('signed_monster', 'nom nom', { signed: true });
 
-    res.locals.flash = {
+    // set a flash message
+    /* res.locals.flash = {
 	    type: 'success',
 	    intro: 'Thank you!',
 	    message: 'You are logged in and can start learning.',
 	};
-
-    // TODO if a new participant then display consent page
+    */
 
     // get the user ID
     var authId = req.session.passport.user;
@@ -230,9 +217,6 @@ app.post('/register', function(req, res){
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
     console.log('Checkbox status (from visible form field): ' + req.body.consented);
-
-    // TODO - store the consent in userdb
-    //User.updateById = function(authId, attr, value, cb) {
 
     // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
@@ -350,9 +334,6 @@ app.post('/demographics', function(req, res){
     console.log('Education (from visible form field): ' + req.body.education);
     console.log('English standard (from visible form field): ' + req.body.english);
 
-    // TODO - store the demographics info in userdb
-    //User.updateById = function(authId, attr, value, cb) {
-
     // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
@@ -399,40 +380,6 @@ app.post('/demographics', function(req, res){
 	console.log('Updated user email address in database');
 	return res.redirect(303, '/instructions');
     });
-
-
-/*
-    User.updateById(authId, 'userEmail', req.body.email, function (err, data) {
-	if (err) {
-	    console.log('Unable to update user email address in database');
-	    return res.redirect(303, '/register');
-	}
-	// if update successful log data to console and move to
-	console.log('Updated user email address in database');
-	return res.redirect(303, '/instructions');
-    });
-
-    User.updateById(authId, 'gender', req.body.gender, function (err, data) {
-	if (err) {
-	    console.log('Unable to update user gender in database');
-	    return res.redirect(303, '/register');
-	}
-	// if update successful log data to console and move to
-	console.log('Updated user gender in database');
-	return res.redirect(303, '/about');
-    });
-
-    User.updateById(authId, 'age', req.body.age, function (err, data) {
-	if (err) {
-	    console.log('Unable to update user age in database');
-	    return res.redirect(303, '/register');
-	}
-	// if update successful log data to console and move to
-	console.log('Updated user age in database');
-	return res.redirect(303, '/about');
-    });
-*/
-
 });
 
 
@@ -519,8 +466,6 @@ app.get('/postDelayedInstructions', function(req, res){
     res.render('postDelayedInstructions');
 });
 
-
-//  TODO
 // version of route that saves study data to S3
 app.post('/studySave', function(req, res){
     if(req.xhr || req.accepts('json,html')==='json'){
@@ -603,17 +548,13 @@ app.post('/studySave', function(req, res){
 		    res.send({success: true, message: 'Study file successfully saved!'});
 		    //return res.redirect(303, '/instructions');
 		});
-
 	    }
 	});
-
     } else {
 	console.log('Invalid POST request to configdisplay.');
 	res.send({success: false, message: 'invalid POST received'});
     }
-
 });
-
 
 /*
 // version of route that saves study data as local file on server
@@ -719,46 +660,17 @@ app.post('/studySave', function(req, res){
 });
 */
 
-/*  route to handle request to save config file to ZTP server
-app.post('/listload', function(req, res){
-    if(req.xhr || req.accepts('json,html')==='json' || req.body.buttonid==='ztpsave'){
-	console.log('Valid POST request to configdisplay with buttonid = ' + req.body.buttonid);
-
-	// save the .cfg file in the files/ztpready directory
-	var cfgfile = 'public/files/ztpready/' + info.params.localswitchname + '.cfg';
-	fs.writeFile(cfgfile, info.conf, function (err) {
-	    if (err) {
-		console.log('error saving file');
-		throw err;
-	    } else {
-		console.log("File named " + cfgfile + " saved!");
-		res.send({success: true, message: 'Config file successfully saved to ZTP server!'});
-	    }
-	});
-    } else {
-	console.log('Invalid POST request to configdisplay.');
-	res.send({success: false, message: 'Webserver unable to save file on ZTP server; check Webserver log for
- further information.'});
-    }
-});
-
-*/
-
 
 // logout, destrioyiong any session
 app.get('/logout', function(req, res){
-    // check user is logged in 
+    // check user is logged in
     //if(!req.session.passport) return res.redirect(303, '/login');
     //if(!req.session.passport.user) return res.redirect(303, '/login');
 
     req.session.destroy(function (err) {
-        //res.render('withdrawn'); //Inside a callback… bulletproof!                                                                
-        return res.redirect(303, '/');
+	//res.render('withdrawn'); //Inside a callback… bulletproof!                                               return res.redirect(303, '/');
     });
-
 });
-
-
 
 // page that display the request headers
 app.get('/headers', function(req,res){
@@ -772,6 +684,14 @@ app.get('/headers', function(req,res){
 app.use(function(req, res){
 	res.status(404);
 	res.render('404');
+});
+
+// 403 error handler for CSRF error
+app.use(function (err, req, res, next) {
+  if (err.code !== 'EBADCSRFTOKEN') return next(err);
+  // handle CSRF token errors here
+  res.status(403);
+  res.render('403');
 });
 
 // custom 500 page

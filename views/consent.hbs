@@ -49,6 +49,7 @@ If you have any questions or concerns about how the study has been conducted, pl
 
 <div class="row justify-content-center">
      <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
      	   <div class="form-group row align-items-center">
   	   	<div class="form-check pr-3">
  		      <label class="form-check-label">
@@ -63,6 +64,7 @@ If you have any questions or concerns about how the study has been conducted, pl
 
 <div class="row justify-content-center">
      <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
      	   <div class="form-group row align-items-center">
   		<button type="submit" class="btn btn-primary" id="consentWithdraw">No thanks</button>
   	   </div>

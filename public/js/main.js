@@ -4,11 +4,26 @@
 // *********************************************************
 
 // Constants
-var mL1 = [['L1C1','L1A1',0,0], ['L1C2','L1A2',0,0],['L1C3','L1A3',0,0]];
-var mL2 = [['L2C1','L2A1',0,0], ['L2C2','L2A2',0,0],['L2C3','L2A3',0,]];
-var dL1 = [['dL1C1','dL1A1',0,0], ['dL1C2','dL1A2',0,0],['dL1C3','dL1A3',0,0]];
-var dL2 = [['dL2C1','dL2A1',0,0], ['dL2C2','dL2A2',0,0],['dL2C3','dL2A3',0,0]];
-var dL2 = ['dL2C1:dL2A1', 'dL2C2:dL2A2', 'dL2C3:dL2A3'];
+
+// list format:
+// [cueword, target_word, correct_count, wrong_count, study_criterion]
+
+// study lists
+var mL1 = [['l1c1','l1a1',0,0,1], ['l1c2','l1a2',0,0,1],['l1c3','l1a3',0,0,3]];
+var mL2 = [['l2c1','l2a1',0,0,1], ['l2c2','l2a2',0,0,1],['l2c3','l2a3',0,0,3]];
+
+// first delayed test lists
+var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
+var del1L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
+
+// second delayed test lists
+var del2L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
+var del2L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
+
+// demo lists
+var dL1 = [['dl1c1','dl1a1',0,0,1], ['dl1c2','dl1a2',0,0,3],['dl1c3','dl1a3',0,0,3]];
+var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
+
 var studyPresentations = 1;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
 var studyDuration = 1000;  // ms to display each word pair
@@ -55,6 +70,7 @@ function shuffleArray(array) {
 }
 */
 
+// function to shuffle an array
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
 	var j = Math.floor(Math.random() * (i + 1));
@@ -65,7 +81,7 @@ function shuffleArray(array) {
     return array;
 }
 
-// function striggered by 'start learning' button
+// function triggered by 'start main study' button
 function startLearn() {
     // initialise counters and variables
     sL1 = mL1;
@@ -82,7 +98,7 @@ function startLearn() {
     study();
 }
 
-// function striggered by 'start demo' button
+// function triggered by 'start demo' button
 function startDemo() {
     // initialise counters and variables
     sL1 = dL1;
@@ -159,9 +175,18 @@ function test() {
 	document.getElementById("testOver").style.display = "block";
 	*/
 
+	// Assumes the token was rendered into a meta tag
+	var token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
 	    url: "/studySave",
+
+	    credentials: "same-origin",
+
+	    headers: {
+		"csrf-token": token
+	    },
 
 	    data: {
 		lists: JSON.stringify(llists),
@@ -220,13 +245,13 @@ function test() {
     }
 }
 
-// function trieggered by 'Submit' button or <CR> after entering an answer in demo or study phase
+// function triggered by 'Submit' button or <CR> after entering an answer in demo or study phase
 function checkAnswer() {
 
-    if (document.getElementById("tAnswerWord").value === lists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toLowerCase() === lists[l][i][1]) {
 	++lists[l][i][2];  // increment correct counter
 	// if criterion reached move to learnt list and remove from study list
-	if (lists[l][i][2] === 3) {
+	if (lists[l][i][2] === lists[l][i][4]) {
 	    llists[l].push(lists[l][i]);
 	    lists[l].splice(i,1);
 	}
@@ -316,8 +341,8 @@ function startTest() {
     i = 0;  // item counter
     l = 0;  // list counter
     c = 1;  // presentations counter
-    tL1 = mL1;
-    tL2 = mL2;
+    tL1 = del1L1;
+    tL2 = del1L2;
     tlists = [tL1, tL2];
     fL1 = [];
     fL2 = [];
@@ -342,23 +367,32 @@ function delayedTest() {
 	document.getElementById("feedbackIncorrect").style.display = "none";
 	document.getElementById("studyForm").style.display = "none";
 	document.getElementById("testForm").style.display = "none";
-	
-	// display stats on delayed test 
+
+	// display stats on delayed test
 	//document.getElementById("duration").innerHTML= (endDate.getTime() - startDate.getTime());
 	var correct = 0;
-        var incorrect = 0;
+	var incorrect = 0;
 	for (var lk = tlists[l].length -1; lk > -1; lk--) {
-            correct += tlists[l][lk][2];
-            incorrect += tlists[l][lk][3];
+	    correct += tlists[l][lk][2];
+	    incorrect += tlists[l][lk][3];
 	}
-        var total = correct + incorrect;
+	var total = correct + incorrect;
 	document.getElementById("correctAnswers").innerHTML= correct;
 	document.getElementById("totalAnswers").innerHTML= total;
 	document.getElementById("testOver").style.display = "block";
 
+	// Assumes the token was rendered into a meta tag
+	var token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
 	    url: "/studySave",
+
+	    credentials: "same-origin",
+
+	    headers: {
+		"csrf-token": token
+	    },
 
 	    data: {
 		lists: JSON.stringify(flists),

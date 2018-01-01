@@ -11,6 +11,7 @@
 </div>
 
 <form action="/demographics?form=demographics" method="POST">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
 
   <div class="form-group row">
     <label for="inputEmail" class="col-sm-2 col-form-label text-left">Email address</label>
