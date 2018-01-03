@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser  = require('body-parser');
 var fs = require('fs');
+
+var env = app.get('env');
+
 var credentials = require('./credentials.js');
 
 var User = require('./lib/userdb.js');     // module with all dynamodb methods to access userDb
@@ -48,8 +51,8 @@ var options = {
 
     // Optional JSON object of AWS credentials and configuration
     AWSConfigJSON: {
-	accessKeyId: credentials.aws.development.accessKeyId,
-	secretAccessKey: credentials.aws.development.secretAccessKey,
+	accessKeyId: credentials.aws[env].accessKeyId,
+	secretAccessKey: credentials.aws[env].secretAccessKey,
 	region: 'eu-west-1'
     },
 
@@ -702,6 +705,7 @@ app.use(function(err, req, res, next){
 });
 
 app.listen(app.get('port'), function(){
-  console.log( 'Express started on http://localhost:' +
-    app.get('port') + '; press Ctrl-C to terminate.' );
+    console.log( 'Express started in ' + app.get('env') +
+		 ' mode on http://localhost:' + app.get('port') +
+		 '; press Ctrl-C to terminate.' );
 });
