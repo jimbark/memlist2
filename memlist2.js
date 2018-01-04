@@ -663,15 +663,15 @@ app.post('/studySave', function(req, res){
 });
 */
 
-
-// logout, destrioyiong any session
+// logout, destroying any session
 app.get('/logout', function(req, res){
     // check user is logged in
     //if(!req.session.passport) return res.redirect(303, '/login');
     //if(!req.session.passport.user) return res.redirect(303, '/login');
 
     req.session.destroy(function (err) {
-	//res.render('withdrawn'); //Inside a callback… bulletproof!                                               return res.redirect(303, '/');
+	//Inside a callback… bulletproof!
+        return res.redirect(303, '/');
     });
 });
 
