@@ -45,10 +45,6 @@
      <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
 </div>
 
-<div id='testOver' style="display: none">
-<h5>Well done. The test is complete!</h5>
-<p> You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span>.</p>
-</div>
 
    </div>
 </div>
@@ -73,7 +69,7 @@
       <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
     </div>
     <div class="col-auto">
-      <input type="text" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="Answer word">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
     </div>
   </div>
 
@@ -85,3 +81,26 @@
 
 </form>
 
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Post Delayed Test Instructions</h5>
+     <p>Well done! Thankyou for completing the 30 minute test stage of our study.</p>
+     <p> You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span>.</p>
+
+     <p>For the final stage we need you to come back after another 30 minutes to be tested one more time.</p>
+     <p>When you come back visit our home page and enter the site as a returning participant.</p>
+     <p>Please do not try to rehearse the word-pairs as that will invalidate the results of the research.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Return to home page</a>
+     </div>
+</div>
+
+</div>

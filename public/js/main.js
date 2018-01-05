@@ -9,11 +9,13 @@
 // [cueword, target_word, correct_count, wrong_count, study_criterion]
 
 // study lists
-var mL1 = [['l1c1','l1a1',0,0,1], ['l1c2','l1a2',0,0,1],['l1c3','l1a3',0,0,3]];
+var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1]];
+//var mL1 = [['l1c1','l1a1',0,0,1], ['l1c2','l1a2',0,0,1],['l1c3','l1a3',0,0,1]];
 var mL2 = [['l2c1','l2a1',0,0,1], ['l2c2','l2a2',0,0,1],['l2c3','l2a3',0,0,3]];
 
 // first delayed test lists
-var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
+var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0],['parcel','guitar',0,0]];
+//var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
 var del1L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
 
 // second delayed test lists
@@ -21,7 +23,8 @@ var del2L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
 var del2L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
 
 // demo lists
-var dL1 = [['dl1c1','dl1a1',0,0,1], ['dl1c2','dl1a2',0,0,3],['dl1c3','dl1a3',0,0,3]];
+var dL1 = [['hamster','freckle',0,0,1], ['wizard','turkey',0,0,1],['pistol','kennel',0,0,1]];
+//var dL1 = [['dl1c1','dl1a1',0,0,1], ['dl1c2','dl1a2',0,0,1],['dl1c3','dl1a3',0,0,1]];
 var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
 
 var studyPresentations = 1;  // number of study presentations
@@ -202,7 +205,8 @@ function test() {
 	    dataType : "json",
 
 	    success: function( json ) {
-		alert('Got json object back with message: ' + json.message);
+		//alert('Got json object back with message: ' + json.message);
+		console.log('Got json object back with message: ' + json.message);
 	    },
 
 	    error: function( xhr, status, errorThrown ) {
@@ -213,7 +217,8 @@ function test() {
 	    },
 
 	    complete: function( xhr, status ) {
-		alert( "The request is complete!" );
+		//alert( "The request is complete!" );
+		console.log( "The request is complete!");
 		if (testType == 'demo'){
 		    window.location.href = "/learn";
 		}
@@ -240,8 +245,10 @@ function test() {
 	document.getElementById("icue").innerHTML = lists[l][i][0];
 	document.getElementById("ianswer").innerHTML = lists[l][i][1];
 	document.getElementById("tCueWord").value = lists[l][i][0];
-	document.getElementById("tAnswerWord").value = lists[l][i][1];
+	//document.getElementById("tAnswerWord").value = lists[l][i][1];
+	document.getElementById("tAnswerWord").value = "";
 	document.getElementById("tAnswerWord").focus();
+
     }
 }
 
@@ -379,7 +386,7 @@ function delayedTest() {
 	var total = correct + incorrect;
 	document.getElementById("correctAnswers").innerHTML= correct;
 	document.getElementById("totalAnswers").innerHTML= total;
-	document.getElementById("testOver").style.display = "block";
+	//document.getElementById("testOver").style.display = "block";
 
 	// Assumes the token was rendered into a meta tag
 	var token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
@@ -408,7 +415,8 @@ function delayedTest() {
 	    dataType : "json",
 
 	    success: function( json ) {
-		alert('Got json object back with message: ' + json.message);
+		//alert('Got json object back with message: ' + json.message);
+		console.log('Got json object back with message: ' + json.message);
 	    },
 
 	    error: function( xhr, status, errorThrown ) {
@@ -419,10 +427,15 @@ function delayedTest() {
 	    },
 
 	    complete: function( xhr, status ) {
-		alert( "The request is complete!" );
+		//alert( "The request is complete!" );
+		console.log( "The request is complete!");
 
 		if (testType == 'delayed'){
-		    window.location.href = "/postDelayedInstructions";
+		    //window.location.href = "/postDelayedInstructions";
+
+		    // display the postDelayedInstructions along with the score
+		    document.getElementById("postDelayedInstructions").style.display = "block";
+
 		}
 	    }
 
@@ -440,7 +453,8 @@ function delayedTest() {
 	document.getElementById("studyForm").style.display = "none";
 	document.getElementById("testForm").style.display = "block";
 	document.getElementById("tCueWord").value = tlists[l][i][0];
-	document.getElementById("tAnswerWord").value = tlists[l][i][1];
+	//document.getElementById("tAnswerWord").value = tlists[l][i][1];
+	document.getElementById("tAnswerWord").value = "";
 	document.getElementById("tAnswerWord").focus();
     }
 }
