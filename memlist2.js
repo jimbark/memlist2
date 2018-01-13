@@ -124,6 +124,10 @@ app.get('/FAQ', function(req, res){
     res.render('faq');
 });
 
+app.get('/privacy', function(req, res){
+    res.render('privacy');
+});
+
 // make use of authentication when start study, with cookie setting exmaple
 app.get('/learn', function(req, res){
 
@@ -671,7 +675,7 @@ app.get('/logout', function(req, res){
 
     req.session.destroy(function (err) {
 	//Inside a callback… bulletproof!
-        return res.redirect(303, '/');
+	return res.redirect(303, '/');
     });
 });
 
