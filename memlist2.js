@@ -178,9 +178,9 @@ app.get('/learn', function(req, res){
 	}
 	else if (user.status == 'delayed1'){
 	    // if demo has been completed display learn page
-	    res.render('delayed');
+	    res.render('delayed2');
 	}
-	else if (user.status == 'delayed2'){
+	else if (user.status == 'complete'){
 	    // if demo has been completed display learn page
 	    res.render('end');
 	}
@@ -451,9 +451,9 @@ app.get('/delayed', function(req, res){
 	}
 	else if (user.status == 'delayed1'){
 	    // if demo has been completed display learn page
-	    res.render('delayed');
+	    res.render('delayed2');
 	}
-	else if (user.status == 'delayed2'){
+	else if (user.status == 'complete'){
 	    // if demo has been completed display learn page
 	    res.render('end');
 	}
@@ -525,6 +525,9 @@ app.post('/studySave', function(req, res){
 		if (reqStatus == "delayed") {
 		    status = "delayed1";
 		    }
+		if (reqStatus == "delayed2") {
+		    status = "complete";
+		    }
 
 		// get the user id
 		var authId = req.session.passport.user;
@@ -547,11 +550,11 @@ app.post('/studySave', function(req, res){
 
 		User.updateById(authId, updates, function (err, data) {
 		    if (err) {
-			console.log('Unable to update status to demoed in database');
+			console.log('Unable to update status in database');
 			return res.redirect(303, '/demo');
 		    }
 		    // if update successful log data to console and move to
-		    console.log('Updated user status to demoed in database');
+		    console.log('Updated user status in database');
 		    res.send({success: true, message: 'Study file successfully saved!'});
 		    //return res.redirect(303, '/instructions');
 		});

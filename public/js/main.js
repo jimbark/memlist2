@@ -314,6 +314,11 @@ function enterRespond(){
 		    checkNoFeedback();
 		}
 
+		// if testing for delayed cued-recall test
+		if (testType == 'delayed2'){
+		    checkNoFeedback();
+		}
+
 		// original had this line, don’t  know why
 		return false;
 	    }
@@ -361,6 +366,27 @@ function startTest() {
     // start testing
     delayedTest();
 }
+
+// function striggered by 'start 2nd delayed recall test' button
+function startTest2() {
+    // initialise counters and variables
+    i = 0;  // item counter
+    l = 0;  // list counter
+    c = 1;  // presentations counter
+    tL1 = del1L1;
+    tL2 = del1L2;
+    tlists = [tL1, tL2];
+    fL1 = [];
+    fL2 = [];
+    flists = [fL1, fL2];
+    testType = "delayed2";
+    startDate.setTime(Date.now());
+    // randomise order
+    shuffleArray(tlists[l]);
+    // start testing
+    delayedTest();
+}
+
 
 function delayedTest() {
 
@@ -432,10 +458,13 @@ function delayedTest() {
 
 		if (testType == 'delayed'){
 		    //window.location.href = "/postDelayedInstructions";
-
 		    // display the postDelayedInstructions along with the score
 		    document.getElementById("postDelayedInstructions").style.display = "block";
-
+		}
+		if (testType == 'delayed2'){
+		    //window.location.href = "/postDelayedInstructions";
+		    // display the postDelayedInstructions along with the score
+		    document.getElementById("postDelayedInstructions").style.display = "block";
 		}
 	    }
 
