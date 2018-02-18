@@ -34,7 +34,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next){
-	res.locals.copyrightYear = '2017';
+	res.locals.copyrightYear = '2018';
 	next();
 });
 
@@ -336,7 +336,7 @@ app.post('/demographics', function(req, res){
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
     console.log('Age(from visible form field): ' + req.body.age);
-    console.log('Email (from visible form field): ' + req.body.email);
+    //console.log('Email (from visible form field): ' + req.body.email);
     console.log('Gender (from visible form field): ' + req.body.gender);
     console.log('Education (from visible form field): ' + req.body.education);
     console.log('English standard (from visible form field): ' + req.body.english);
@@ -355,7 +355,6 @@ app.post('/demographics', function(req, res){
 	    'authId' : {S: authId},
 	},
 	ExpressionAttributeNames: {
-	    "#A": 'userEmail',
 	    "#B": 'gender',
 	    "#C": 'age',
 	    "#D": 'status',
@@ -365,7 +364,6 @@ app.post('/demographics', function(req, res){
 
 	},
 	ExpressionAttributeValues: {
-	    ":a": { S: req.body.email},
 	    ":b": { S: req.body.gender},
 	    ":c": { N: req.body.age},
 	    ":d": { S: 'registered'},
@@ -375,7 +373,7 @@ app.post('/demographics', function(req, res){
 
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b, #C = :c, #D = :d, #E = :e, #F = :f, #G = :g"
+	UpdateExpression: "SET #B = :b, #C = :c, #D = :d, #E = :e, #F = :f, #G = :g"
     };
 
     User.updateById(authId, updates, function (err, data) {
@@ -565,6 +563,40 @@ app.post('/studySave', function(req, res){
 	res.send({success: false, message: 'invalid POST received'});
     }
 });
+
+// route to request the users status
+app.post('/checkStatus', function(req, res){
+    if(req.xhr || req.accepts('json,html')==='json'){
+	console.log('Valid POST request to check users status');
+	console.log(req.body.message);
+	console.log('here are the stringified objects:');
+	console.log(req.body.testType);
+
+	// check user is logged in
+	if(!req.session.passport) return res.redirect(303, '/login');
+	if(!req.session.passport.user) return res.redirect(303, '/login');
+
+	// get the user id
+	var authId = req.session.passport.user;
+
+	// get the users status from the UserDB
+	User.findById(authId, function (err, user) {
+	    if (err) {
+		console.log('Unable to find user record in database');
+		return res.redirect(303, '/login');
+	    }
+	    else {
+		// return the users status
+		res.send({success: true, message: user.status});
+	    }
+	});
+
+    } else {
+	console.log('Invalid POST request to checkStatus');
+	res.send({success: false, message: 'invalid POST received'});
+    }
+});
+
 
 /*
 // version of route that saves study data as local file on server

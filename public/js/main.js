@@ -29,8 +29,8 @@ var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0
 
 var studyPresentations = 1;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
-var studyDuration = 1000;  // ms to display each word pair
-var feedbackDuration = 1000;  // ms to display correct/incorrect feedback
+var studyDuration = 7000;  // ms to display each word pair
+var feedbackDuration = 2000;  // ms to display correct/incorrect feedback
 var testInterval = 50; // interval between delayed test items
 
 // initialise global variables
@@ -84,8 +84,55 @@ function shuffleArray(array) {
     return array;
 }
 
-// function triggered by 'start main study' button
+
+// function triggered by 'start main study' button which checks for multiple attempts
 function startLearn() {
+
+    // Assumes the token was rendered into a meta tag
+    var token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+
+    // Using the core $.ajax() method to check on users status
+    $.ajax({
+	url: "/checkStatus",
+
+	credentials: "same-origin",
+
+	headers: {
+	    "csrf-token": token
+	},
+
+	data: {
+	    message: 'status check request',
+	    testType: testType
+	},
+
+	type: "POST",
+
+	dataType : "json",
+
+	success: function( json ) {
+	    //alert('Got json object back with message: ' + json.message);
+	    console.log('Got json object back with message: ' + json.message);
+	    if (json.message == ('learnt' || 'delayed1' || 'complete')){
+		alert( "Sorry, our records show you have already completed the study phase. Please return to the homepage and enter as a Returning Participant. " );
+	    }
+	    else {
+		validStartLearn();
+	    }
+	},
+
+	error: function( xhr, status, errorThrown ) {
+	    alert( "Sorry, there was a problem!" );
+	    console.log( "Error: " + errorThrown );
+	    console.log( "Status: " + status );
+	    console.dir( xhr );
+	},
+
+    });
+}
+
+// function triggered by valid 'start main study' button
+function validStartLearn() {
     // initialise counters and variables
     sL1 = mL1;
     sL2 = mL2;
