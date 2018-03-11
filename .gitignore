@@ -3,6 +3,7 @@ node_modules
 .DS_Store
 credentials.js
 credentials.*
+ssl/*
 log/*
 data/*
 *.log

@@ -9,21 +9,62 @@
 // [cueword, target_word, correct_count, wrong_count, study_criterion]
 
 // study lists
-var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1]];
+var mL1 = [
+    ['WAIST','SPRAY',0,0,3],
+    ['STOVE','DIRT',0,0,2],
+    ['GRIP','COIL',0,0,5],
+    ['JUICE','PORK',0,0,3],
+    ['SOLE','CROW',0,0,3],
+    ['BLADE','CALF',0,0,2],
+    ['FORK','VEST',0,0,5],
+    ['STEEL','BARK',0,0,3],
+    ['PUMP','LOOP',0,0,3],
+    ['TROOP','LEAK',0,0,2],
+    ['TRIBE','SWEEP',0,0,5],
+    ['RASH','PASTE',0,0,3],
+    ['TUNE','VEAL',0,0,3],
+    ['BIRTH','SUITE',0,0,2],
+    ['GLOBE','LOCK',0,0,5],
+    ['THIEF','VEIN',0,0,3]
+];
+
+//var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
 //var mL1 = [['l1c1','l1a1',0,0,1], ['l1c2','l1a2',0,0,1],['l1c3','l1a3',0,0,1]];
 var mL2 = [['l2c1','l2a1',0,0,1], ['l2c2','l2a2',0,0,1],['l2c3','l2a3',0,0,3]];
 
 // first delayed test lists
-var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0],['parcel','guitar',0,0]];
+var del1L1 = [
+    ['TUNE','VEAL',0,0],
+    ['STOVE','DIRT',0,0],
+    ['SOLE','CROW',0,0],
+    ['BIRTH','SUITE',0,0],
+    ['PUMP','LOOP',0,0],
+    ['BLADE','CALF',0,0],
+    ['WAIST','SPRAY',0,0],
+    ['TROOP','LEAK',0,0]
+];
+
+//var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
 //var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
 var del1L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
 
 // second delayed test lists
-var del2L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
+var del2L1 = [
+    ['TRIBE','SWEEP',0,0],
+    ['JUICE','PORK',0,0],
+    ['GLOBE','LOCK',0,0],
+    ['RASH','PASTE',0,0],
+    ['FORK','VEST',0,0],
+    ['THIEF','VEIN',0,0],
+    ['GRIP','COIL',0,0],
+    ['STEEL','BARK',0,0]
+];
+
+//var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
 var del2L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
 
 // demo lists
-var dL1 = [['hamster','freckle',0,0,1], ['wizard','turkey',0,0,1],['pistol','kennel',0,0,1]];
+var dL1 = [['GIRAFFE','GUITAR',0,0,1], ['WIZARD','TURKEY',0,0,1],['PISTOL','KENNEL',0,0,1]];
 //var dL1 = [['dl1c1','dl1a1',0,0,1], ['dl1c2','dl1a2',0,0,1],['dl1c3','dl1a3',0,0,1]];
 var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
 
@@ -420,8 +461,8 @@ function startTest2() {
     i = 0;  // item counter
     l = 0;  // list counter
     c = 1;  // presentations counter
-    tL1 = del1L1;
-    tL2 = del1L2;
+    tL1 = del2L1;
+    tL2 = del2L2;
     tlists = [tL1, tL2];
     fL1 = [];
     fL2 = [];

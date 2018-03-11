@@ -21,6 +21,38 @@ var auth = require('./lib/auth.js')(app, {
 	failureRedirect: '/login',
 });
 
+// enable use of https
+var https = require('https');  
+var httpsOptions = {
+        key: fs.readFileSync(__dirname + '/ssl/memlist.pem'),
+        cert: fs.readFileSync(__dirname + '/ssl/memlist.crt')
+};
+var HTTP_PORT  = 80;
+var HTTPS_PORT = 443;
+
+// create separate server just to perform http to http redirect
+var http       = require('http');
+var http_app = express();
+http_app.set('port', HTTP_PORT);
+
+http_app.all('/*', function(req, res, next) {
+  if (/^http$/.test(req.protocol)) {
+    var host = req.headers.host.replace(/:[0-9]+$/g, ""); // strip the port # if any
+    if ((HTTPS_PORT != null) && HTTPS_PORT !== 443) {
+      return res.redirect(301, "https://" + host + ":" + HTTPS_PORT + req.url);
+    } else {
+      return res.redirect(301, "https://" + host + req.url);
+    }
+  } else {
+    return next();
+  }
+});
+
+http.createServer(http_app).listen(HTTP_PORT).on('listening', function() {
+  return console.log("HTTP to HTTPS redirect app launched.");
+});
+
+
 // auth.init() links in Passport middleware:
 auth.init();
 
@@ -29,7 +61,7 @@ var exphbs  = require('express-handlebars');
 app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || HTTPS_PORT);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -743,8 +775,16 @@ app.use(function(err, req, res, next){
 	res.render('500');
 });
 
+/* 
 app.listen(app.get('port'), function(){
     console.log( 'Express started in ' + app.get('env') +
 		 ' mode on http://localhost:' + app.get('port') +
 		 '; press Ctrl-C to terminate.' );
+});
+*/
+
+https.createServer(httpsOptions, app).listen(app.get('port'), function(){
+    console.log( 'Express started in ' + app.get('env') +
+                 ' mode on https://localhost:' + app.get('port') +
+                 '; press Ctrl-C to terminate.' );
 });
