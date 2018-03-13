@@ -22,10 +22,10 @@ var auth = require('./lib/auth.js')(app, {
 });
 
 // enable use of https
-var https = require('https');  
+var https = require('https');
 var httpsOptions = {
-        key: fs.readFileSync(__dirname + '/ssl/memlist.pem'),
-        cert: fs.readFileSync(__dirname + '/ssl/memlist.crt')
+	key: fs.readFileSync(__dirname + '/ssl/memlist.pem'),
+	cert: fs.readFileSync(__dirname + '/ssl/memlist.crt')
 };
 var HTTP_PORT  = 80;
 var HTTPS_PORT = 443;
@@ -139,7 +139,13 @@ app.use(function(req, res, next){
     next();
 });
 
-// exmaple of clearing a cookie
+// redirect all www to non-www
+app.get('/*', function(req, res, next) {
+    if (req.headers.host.match(/^www/) !== null ) res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
+    else next();
+});
+
+// example of clearing a cookie
 app.get('/', function(req, res){
     res.clearCookie("signed_monster");
     res.render('home');
@@ -775,7 +781,7 @@ app.use(function(err, req, res, next){
 	res.render('500');
 });
 
-/* 
+/*
 app.listen(app.get('port'), function(){
     console.log( 'Express started in ' + app.get('env') +
 		 ' mode on http://localhost:' + app.get('port') +
@@ -785,6 +791,6 @@ app.listen(app.get('port'), function(){
 
 https.createServer(httpsOptions, app).listen(app.get('port'), function(){
     console.log( 'Express started in ' + app.get('env') +
-                 ' mode on https://localhost:' + app.get('port') +
-                 '; press Ctrl-C to terminate.' );
+		 ' mode on https://localhost:' + app.get('port') +
+		 '; press Ctrl-C to terminate.' );
 });

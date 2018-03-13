@@ -343,7 +343,7 @@ function test() {
 // function triggered by 'Submit' button or <CR> after entering an answer in demo or study phase
 function checkAnswer() {
 
-    if (document.getElementById("tAnswerWord").value.toLowerCase() === lists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toUpperCase() === lists[l][i][1]) {
 	++lists[l][i][2];  // increment correct counter
 	// if criterion reached move to learnt list and remove from study list
 	if (lists[l][i][2] === lists[l][i][4]) {
@@ -418,7 +418,7 @@ window.onload = enterRespond;
 // function trieggered by 'Submit' button or <CR> after entering an answer in delayed test phase
 function checkNoFeedback() {
 
-    if (document.getElementById("tAnswerWord").value === tlists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toUpperCase() === tlists[l][i][1]) {
 	++tlists[l][i][2];  // increment correct counter
 	// move to finished list and remove from test list
 	flists[l].push(tlists[l][i]);
