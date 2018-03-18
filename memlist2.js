@@ -23,10 +23,20 @@ var auth = require('./lib/auth.js')(app, {
 
 // enable use of https
 var https = require('https');
+
+var caChain = credentials.https[env].ca;
+for (var i = caChain.length; i > 0; i--) {
+    var j = fs.readFileSync(__dirname + caChain[i + 1]);
+    caChain[i+1] = j;
+}
+console.log('caChain is: ' + caChain);
+
 var httpsOptions = {
-	key: fs.readFileSync(__dirname + '/ssl/memlist.pem'),
-	cert: fs.readFileSync(__dirname + '/ssl/memlist.crt')
+    key: fs.readFileSync(__dirname + credentials.https[env].key),
+    cert: fs.readFileSync(__dirname + credentials.https[env].cert),
+    ca: caChain
 };
+
 var HTTP_PORT  = 80;
 var HTTPS_PORT = 443;
 

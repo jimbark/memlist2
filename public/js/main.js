@@ -64,7 +64,7 @@ var del2L1 = [
 var del2L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
 
 // demo lists
-var dL1 = [['GIRAFFE','GUITAR',0,0,1], ['WIZARD','TURKEY',0,0,1],['PISTOL','KENNEL',0,0,1]];
+var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
 //var dL1 = [['dl1c1','dl1a1',0,0,1], ['dl1c2','dl1a2',0,0,1],['dl1c3','dl1a3',0,0,1]];
 var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
 
