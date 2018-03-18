@@ -25,10 +25,14 @@ var auth = require('./lib/auth.js')(app, {
 var https = require('https');
 
 var caChain = credentials.https[env].ca;
+console.log('caChain base array is: ' + caChain);
+console.log(caChain);
+
 for (var i = caChain.length; i > 0; i--) {
-    var j = fs.readFileSync(__dirname + caChain[i]);
-    caChain[i] = j;
+    var j = fs.readFileSync(__dirname + caChain[i-1]);
+    caChain[i-1] = j;
 }
+
 console.log('caChain is: ' + caChain);
 
 var httpsOptions = {
