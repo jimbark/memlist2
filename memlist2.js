@@ -26,8 +26,8 @@ var https = require('https');
 
 var caChain = credentials.https[env].ca;
 for (var i = caChain.length; i > 0; i--) {
-    var j = fs.readFileSync(__dirname + caChain[i + 1]);
-    caChain[i+1] = j;
+    var j = fs.readFileSync(__dirname + caChain[i]);
+    caChain[i] = j;
 }
 console.log('caChain is: ' + caChain);
 
