@@ -51,11 +51,15 @@ http_app.set('port', HTTP_PORT);
 
 http_app.all('/*', function(req, res, next) {
   if (/^http$/.test(req.protocol)) {
-    var host = req.headers.host.replace(/:[0-9]+$/g, ""); // strip the port # if any
+    //var host = req.headers.host.replace(/:[0-9]+$/g, ""); // strip the port # if any
+    //if ((HTTPS_PORT != null) && HTTPS_PORT !== 443) {
+    //  return res.redirect(301, "https://" + host + ":" + HTTPS_PORT + req.url);
+    //} else {
+    //return res.redirect(301, "https://" + host + req.url);
     if ((HTTPS_PORT != null) && HTTPS_PORT !== 443) {
-      return res.redirect(301, "https://" + host + ":" + HTTPS_PORT + req.url);
+      return res.redirect(301, "https://" + req.hostname + ":" + HTTPS_PORT + req.url);
     } else {
-      return res.redirect(301, "https://" + host + req.url);
+      return res.redirect(301, "https://" + req.hostname + req.url);
     }
   } else {
     return next();
@@ -540,10 +544,17 @@ app.post('/studySave', function(req, res){
 	var lists = JSON.parse(req.body.lists);
 	var startDate = JSON.parse(req.body.startDate);
 	var endDate = JSON.parse(req.body.endDate);
+	var duration = JSON.parse(req.body.duration);
 	console.log('here are the unstringified objects:');
 	console.log(lists);
 	console.log(startDate);
 	console.log(endDate);
+	console.log(duration);
+
+	var times = [startDate, endDate, duration];
+	lists.push(times);
+	stringifiedLists = JSON.stringify(lists);
+	console.log(stringifiedLists);
 
 	var dataDir = __dirname + '/data';
 
@@ -559,7 +570,7 @@ app.post('/studySave', function(req, res){
 	studyFile = studyFile.replace(/:/g,"-");
 	studyFile = studyFile.replace(/\./g,"-");
 
-	s3Store.s3Upload(bucket, studyFile, req.body.lists, function (err,data) {
+	s3Store.s3Upload(bucket, studyFile, stringifiedLists, function (err,data) {
 	    if (err) {
 		console.log('error saving file to S3');
 		res.send({success: true, message: 'valid POST received but error saving file'});
