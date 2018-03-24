@@ -21,6 +21,46 @@ var auth = require('./lib/auth.js')(app, {
 	failureRedirect: '/login',
 });
 
+// setup logging
+var log4js = require('log4js');
+
+log4js.configure({
+  appenders: {
+    everything: { type: 'file', filename: __dirname + '/log/memlist.log', maxLogSize: 10485760, backups: 3},
+    console: { type: 'console' }
+  },
+  categories: {
+    default: { appenders: [ 'everything' , 'console'], level: 'info'}
+  }
+});
+
+var logger = log4js.getLogger();
+logger.level = 'debug';
+
+logger.debug("Some debug messages to prove working");
+logger.info("Some info messages to prove working");
+logger.error("Some error messages to prove working");
+
+// setup http logging
+var morgan = require('morgan');
+var path = require('path');
+var rfs = require('rotating-file-stream');
+
+// ensure log directory exists
+var logDirectory = path.join(__dirname, 'log');
+if (!fs.existsSync(logDirectory)) fs.mkdirSync(logDirectory);
+
+// create a rotating write stream
+var accessLogStream = rfs('access.log', {
+  interval: '1d', // rotate daily
+  size:     '10M', // rotate every 10 MegaBytes written
+  path: logDirectory
+});
+
+// setup the logger
+app.use(morgan('combined', {stream: accessLogStream}));
+
+
 // enable use of https
 var https = require('https');
 
