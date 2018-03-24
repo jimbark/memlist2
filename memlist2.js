@@ -41,7 +41,7 @@ logger.debug("Some debug messages to prove working");
 logger.info("Some info messages to prove working");
 logger.error("Some error messages to prove working");
 
-// setup http logging
+// Setup http logging
 var morgan = require('morgan');
 var path = require('path');
 var rfs = require('rotating-file-stream');
@@ -211,6 +211,7 @@ app.get('/*', function(req, res, next) {
 
 // example of clearing a cookie
 app.get('/', function(req, res){
+    logger.info("Info level log for home page to prove working");
     res.clearCookie("signed_monster");
     res.render('home');
 });
@@ -860,8 +861,20 @@ app.listen(app.get('port'), function(){
 });
 */
 
-https.createServer(httpsOptions, app).listen(app.get('port'), function(){
-    console.log( 'Express started in ' + app.get('env') +
-		 ' mode on https://localhost:' + app.get('port') +
-		 '; press Ctrl-C to terminate.' );
-});
+
+function startServer() {
+    https.createServer(httpsOptions, app).listen(app.get('port'), function(){
+	console.log( 'Express started in ' + app.get('env') +
+		     ' mode on https://localhost:' + app.get('port') +
+		     '; press Ctrl-C to terminate.' );
+    });
+}
+
+if(require.main === module){
+    // application run directly; start app server
+    startServer();
+} else {
+    // application imported as a module via "require": export function
+    // to create server
+    module.exports = startServer;
+}
