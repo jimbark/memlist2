@@ -41,6 +41,52 @@ logger.debug("Some debug messages to prove working");
 logger.info("Some info messages to prove working");
 logger.error("Some error messages to prove working");
 
+// setup Domains to handle uncaught exceptions
+app.use(function(req, res, next){
+    // create a domain for this request
+    var domain = require('domain').create();
+    // handle errors on this domain
+    domain.on('error', function(err){
+	logger.error('DOMAIN ERROR CAUGHT\n', err.stack);
+	try {
+	    // failsafe shutdown in 5 seconds
+	    setTimeout(function(){
+		logger.error('Failsafe shutdown.');
+		process.exit(1);
+	    }, 5000);
+
+	    // disconnect from the cluster
+	    var worker = require('cluster').worker;
+	    if(worker) worker.disconnect();
+
+	    // stop taking new requests; commented out as cannot access server created in another script?
+	    //server.close();
+
+	    try {
+		// attempt to use Express error route
+		next(err);
+	    } catch(error){
+		// if Express error route failed, try
+		// plain Node response
+		logger.error('Express error mechanism failed.\n', error.stack);
+		res.statusCode = 500;
+		res.setHeader('content-type', 'text/plain');
+		res.end('Server error.');
+	    }
+	} catch(error){
+	    logger.error('Unable to send 500 response.\n', error.stack);
+	}
+    });
+
+    // add the request and response objects to the domain
+    domain.add(req);
+    domain.add(res);
+
+    // execute the rest of the request chain in the domain
+    domain.run(next);
+});
+
+
 // Setup http logging
 var morgan = require('morgan');
 var path = require('path');
@@ -208,6 +254,13 @@ app.get('/*', function(req, res, next) {
     if (req.headers.host.match(/^www/) !== null ) res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
     else next();
 });
+
+// route used to generate unhandled exception to test domain mechanism
+//app.get('/epic-fail', function(req, res){
+//    process.nextTick(function(){
+//	throw new Error('Kaboom!');
+//    });
+//});
 
 // example of clearing a cookie
 app.get('/', function(req, res){
@@ -861,9 +914,11 @@ app.listen(app.get('port'), function(){
 });
 */
 
-
+// function to create out https server; variable declared at top level so can be referenced in the
+// domain section
+var server;
 function startServer() {
-    https.createServer(httpsOptions, app).listen(app.get('port'), function(){
+    var server = https.createServer(httpsOptions, app).listen(app.get('port'), function(){
 	console.log( 'Express started in ' + app.get('env') +
 		     ' mode on https://localhost:' + app.get('port') +
 		     '; press Ctrl-C to terminate.' );

@@ -10,20 +10,20 @@
 
 // study lists
 var mL1 = [
-    ['WAIST','SPRAY',0,0,3],
-    ['STOVE','DIRT',0,0,2],
+    ['WAIST','SPRAY',0,0,2],
+    ['STOVE','DIRT',0,0,1],
     ['GRIP','COIL',0,0,5],
     ['JUICE','PORK',0,0,3],
-    ['SOLE','CROW',0,0,3],
-    ['BLADE','CALF',0,0,2],
+    ['SOLE','CROW',0,0,2],
+    ['BLADE','CALF',0,0,1],
     ['FORK','VEST',0,0,5],
     ['STEEL','BARK',0,0,3],
-    ['PUMP','LOOP',0,0,3],
-    ['TROOP','LEAK',0,0,2],
+    ['PUMP','LOOP',0,0,2],
+    ['TROOP','LEAK',0,0,1],
     ['TRIBE','SWEEP',0,0,5],
     ['RASH','PASTE',0,0,3],
-    ['TUNE','VEAL',0,0,3],
-    ['BIRTH','SUITE',0,0,2],
+    ['TUNE','VEAL',0,0,2],
+    ['BIRTH','SUITE',0,0,1],
     ['GLOBE','LOCK',0,0,5],
     ['THIEF','VEIN',0,0,3]
 ];
