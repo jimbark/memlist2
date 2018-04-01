@@ -156,7 +156,6 @@ http.createServer(http_app).listen(HTTP_PORT).on('listening', function() {
   return console.log("HTTP to HTTPS redirect app launched.");
 });
 
-
 // auth.init() links in Passport middleware:
 auth.init();
 
@@ -168,17 +167,6 @@ app.set('view engine', '.hbs');
 app.set('port', process.env.PORT || HTTPS_PORT);
 
 app.use(express.static(__dirname + '/public'));
-
-app.use(function(req, res, next){
-    res.locals.copyrightYear = '2018';
-    if (env === 'production') {
-	res.locals.secureSeal = ('<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=kHYQLI7RQKLF1a0LwlCl250qpaI4MxJV1FuVnNgSmXzxO0ANBqmy0Gaghqbf"></script></span>');
-    }
-    else {
-	res.locals.secureSeal = '<span>DevSeal</span>';
-    }
-    next();
-});
 
 // enable handling of secure cookies
 app.use(cookieParser(credentials.cookieSecret));
@@ -246,6 +234,25 @@ app.use(function(req, res, next){
 app.use(function(req, res, next){
     res.locals.showTests = app.get('env') !== 'production' &&
 	req.query.test === '1';
+    next();
+});
+
+// setup res.locals content for the main layout to use
+app.use(function(req, res, next){
+    res.locals.copyrightYear = '2018';
+    if (env === 'production') {
+	res.locals.secureSeal = ('<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=kHYQLI7RQKLF1a0LwlCl250qpaI4MxJV1FuVnNgSmXzxO0ANBqmy0Gaghqbf"></script></span>');
+    }
+    else {
+	res.locals.secureSeal = '<span>DevSeal</span>';
+    }
+
+    if(!req.session || !req.session.passport || !req.session.passport.user ) {
+	res.locals.logNav = '<a class="nav-link" href="/login">Login</a>';
+    }
+    else {
+	res.locals.logNav = '<a class="nav-link" href="/logout">Logout</a>';
+    }
     next();
 });
 
