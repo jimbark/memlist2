@@ -430,9 +430,6 @@ app.post('/register', function(req, res){
 
 app.get('/withdraw', function(req, res){
     // check user is logged in
-//    if(!req.session.passport) return res.redirect(303, '/auth/facebook');
-//    if(!req.session.passport.user) return res.redirect(303, '/auth/facebook');
-
     if(!req.session.passport || !req.session.passport.user) {
 	req.session.redirect = "https://" + req.headers.host + '/withdraw';
 	return res.redirect(303, '/auth/facebook');
