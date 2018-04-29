@@ -684,37 +684,6 @@ app.post('/studySave', function(req, res){
 
 	var dataDir = __dirname + '/data';
 
-	// 30mins and 24 hours in milliseconds
-	var min30 = 1000 * 60 * 30;
-	var hour24 = 1000 * 60 * 60 * 24;
-
-	// calculate 30min test target time
-	var endTime = JSON.parse(req.body.endTime);
-	var n = new Date(endTime + min30);
-	//var n = new Date(endDate.getTime() + min30);
-	var hr = n.getHours();
-	//var min = n.getMinutes();
-	var min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
-	var ampm = "am";
-	if( hr > 12 ) {
-	    hr -= 12;
-	    ampm = "pm";
-	}
-	var t30 = hr + ":" + min + ampm;
-
-	// calculate 24hour test target time
-	n = new Date(endTime + hour24);
-	//n = new Date(endDate.getTime() + hour24);
-	hr = n.getHours();
-	//min = n.getMinutes();
-	min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
-	ampm = "am";
-	if( hr > 12 ) {
-	    hr -= 12;
-	    ampm = "pm";
-	}
-	var h24 = hr + ":" + min + ampm;
-
 	// check user is logged in
 	if(!req.session.passport) return res.redirect(303, '/login');
 	if(!req.session.passport.user) return res.redirect(303, '/login');
@@ -772,8 +741,8 @@ app.post('/studySave', function(req, res){
 			},
 			ExpressionAttributeValues: {
 			    ":a": { S: status},
-			    ":b": { S: t30},
-			    ":c": { S: h24},
+			    ":b": { S: req.body.t30},
+			    ":c": { S: req.body.h24},
 			},
 			ReturnValues: "ALL_NEW",
 			UpdateExpression: "SET #A = :a, #B = :b, #C = :c"
