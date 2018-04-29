@@ -29,7 +29,7 @@ var mL1 = [
 ];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
-//var mL1 = [['l1c1','l1a1',0,0,1], ['l1c2','l1a2',0,0,1],['l1c3','l1a3',0,0,1]];
+//var mL1 = [['L1C1','L1A1',0,0,1], ['L1C2','L1A2',0,0,3],['L1C3','L1A3',0,0,3]];
 var mL2 = [['l2c1','l2a1',0,0,1], ['l2c2','l2a2',0,0,1],['l2c3','l2a3',0,0,3]];
 
 // first delayed test lists
@@ -183,7 +183,7 @@ function validStartLearn() {
     llists = [lL1, lL2];
     i = 0;  // item counter
     l = 0;  // list counter
-    c = 1;  // presentations counter
+    c = 0;  // presentations counter
     testType = "study";
     startDate.setTime(Date.now());
     study();
@@ -200,7 +200,7 @@ function startDemo() {
     llists = [lL1, lL2];
     i = 0;  // item counter
     l = 0;  // list counter
-    c = 1;  // presentations counter
+    c = 0;  // presentations counter
     testType = "demo";
     startDate.setTime(Date.now());
     study();
@@ -228,12 +228,14 @@ function study() {
     document.getElementById("sCueWord").value = lists[l][i][0];
     document.getElementById("sAnswerWord").value = lists[l][i][1];
 
-    if (++i < lists[l].length) {
+    i+=1;
+    if (i < lists[l].length) {
 	setTimeout(study, studyDuration);  // move to next element in list after displaying this one
     }
     else {
 	i=0;
-	if (c++ < studyPresentations) {
+	c+=1;
+	if (c < studyPresentations) {
 	    shuffleArray(lists[l]);	    // randomise order for next presentation
 	    setTimeout(study, studyDuration);  // repeat list presentation required number of times
 	}
@@ -284,6 +286,7 @@ function test() {
 		startDate: JSON.stringify(startDate),
 		endDate: JSON.stringify(endDate),
 		duration: JSON.stringify(endDate.getTime() - startDate.getTime()),
+		endTime: JSON.stringify(endDate.getTime()),
 		message: 'post message',
 		testType: testType
 	    },
@@ -349,6 +352,7 @@ function checkAnswer() {
 	if (lists[l][i][2] === lists[l][i][4]) {
 	    llists[l].push(lists[l][i]);
 	    lists[l].splice(i,1);
+	    --i;    // decrement i as lists[l] is now one element shorter
 	}
 	document.getElementById("feedbackCorrect").style.display = "block";
 	document.getElementById("testForm").style.display = "none";
@@ -368,6 +372,7 @@ function checkAnswer() {
 	i=0;
     }
     setTimeout(test, feedbackDuration); // display feedback, then test next pair
+
 
 }
 
@@ -520,6 +525,7 @@ function delayedTest() {
 		startDate: JSON.stringify(startDate),
 		endDate: JSON.stringify(endDate),
 		duration: JSON.stringify(endDate.getTime() - startDate.getTime()),
+		endTime: JSON.stringify(endDate.getTime()),
 		message: 'post message',
 		testType: testType
 	    },

@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser  = require('body-parser');
 var fs = require('fs');
-
+var sh = require('shorthash');
 var env = app.get('env');
 
 var credentials = require('./credentials.js');
@@ -518,6 +518,11 @@ app.post('/demographics', function(req, res){
     // get the user id
     var authId = req.session.passport.user;
 
+    // build the string for mturkID
+    var mturkRaw = authId + '_t0001';
+    var mturkID = sh.unique('mturkRaw');
+
+
     // build params object for the userdb update
     var updates = {
 	TableName: 'userDb',
@@ -531,7 +536,7 @@ app.post('/demographics', function(req, res){
 	    "#E": 'education',
 	    "#F": 'english',
 	    "#G": 'nationality',
-
+	    "#H": 'mturkID',
 	},
 	ExpressionAttributeValues: {
 	    ":b": { S: req.body.gender},
@@ -540,10 +545,10 @@ app.post('/demographics', function(req, res){
 	    ":e": { S: req.body.education},
 	    ":f": { S: req.body.english},
 	    ":g": { S: req.body.nationality},
-
+	    ":h": { S: mturkID},
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b, #C = :c, #D = :d, #E = :e, #F = :f, #G = :g"
+	UpdateExpression: "SET #B = :b, #C = :c, #D = :d, #E = :e, #F = :f, #G = :g, #H = :h"
     };
 
     User.updateById(authId, updates, function (err, data) {
@@ -579,7 +584,20 @@ app.get('/postInstructions', function(req, res){
     // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
-    res.render('postInstructions');
+
+    // get the user ID
+    var authId = req.session.passport.user;
+
+    User.findById(authId, function (err, user) {
+	if (err) {
+	    console.log('Unable to find user record in database');
+	    return res.redirect(303, '/login');
+	}
+	else {
+	    // render post study instructions with 30min test time
+	    res.render('postInstructions', {min30TestTime: user.min30});
+	}
+    });
 });
 
 // display delayed test page
@@ -609,20 +627,20 @@ app.get('/delayed', function(req, res){
 	    // if registered display demo page
 	    res.render('demo');
 	}
-	else if (user.status == 'learnt'){
-	    // if returning participant display learn page
-	    res.render('delayed');
-	}
 	else if (user.status == 'demoed'){
 	    // if demo has been completed display learn page
 	    res.render('learn');
 	}
+	else if (user.status == 'learnt'){
+	    // if returning participant display 30min test page
+	    res.render('delayed', {hr24TestTime: user.hour24});
+	}
 	else if (user.status == 'delayed1'){
-	    // if demo has been completed display learn page
-	    res.render('delayed2');
+	    // if 30min test has been completed display 24 hour test page
+	    res.render('delayed2', {mechTurkID: user.mturkID});
 	}
 	else if (user.status == 'complete'){
-	    // if demo has been completed display learn page
+	    // if all stages have been completed display 'end' page
 	    res.render('end');
 	}
 	else {
@@ -666,6 +684,37 @@ app.post('/studySave', function(req, res){
 
 	var dataDir = __dirname + '/data';
 
+	// 30mins and 24 hours in milliseconds
+	var min30 = 1000 * 60 * 30;
+	var hour24 = 1000 * 60 * 60 * 24;
+
+	// calculate 30min test target time
+	var endTime = JSON.parse(req.body.endTime);
+	var n = new Date(endTime + min30);
+	//var n = new Date(endDate.getTime() + min30);
+	var hr = n.getHours();
+	//var min = n.getMinutes();
+	var min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
+	var ampm = "am";
+	if( hr > 12 ) {
+	    hr -= 12;
+	    ampm = "pm";
+	}
+	var t30 = hr + ":" + min + ampm;
+
+	// calculate 24hour test target time
+	n = new Date(endTime + hour24);
+	//n = new Date(endDate.getTime() + hour24);
+	hr = n.getHours();
+	//min = n.getMinutes();
+	min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
+	ampm = "am";
+	if( hr > 12 ) {
+	    hr -= 12;
+	    ampm = "pm";
+	}
+	var h24 = hr + ":" + min + ampm;
+
 	// check user is logged in
 	if(!req.session.passport) return res.redirect(303, '/login');
 	if(!req.session.passport.user) return res.redirect(303, '/login');
@@ -706,22 +755,48 @@ app.post('/studySave', function(req, res){
 
 		// get the user id
 		var authId = req.session.passport.user;
+		var updates;
 
-		// build params object for the userdb update
-		var updates = {
-		    TableName: 'userDb',
-		    Key: {
-			'authId' : {S: authId},
-		    },
-		    ExpressionAttributeNames: {
-			"#A": 'status',
-		    },
-		    ExpressionAttributeValues: {
-			":a": { S: status},
-		    },
-		    ReturnValues: "ALL_NEW",
-		    UpdateExpression: "SET #A = :a"
-		};
+		if (status == "learnt"){
+
+		    // build params object for the userdb update with 30min and 24hr test times
+		    updates = {
+			TableName: 'userDb',
+			Key: {
+			    'authId' : {S: authId},
+			},
+			ExpressionAttributeNames: {
+			    "#A": 'status',
+			    "#B": 'min30',
+			    "#C": 'hour24',
+			},
+			ExpressionAttributeValues: {
+			    ":a": { S: status},
+			    ":b": { S: t30},
+			    ":c": { S: h24},
+			},
+			ReturnValues: "ALL_NEW",
+			UpdateExpression: "SET #A = :a, #B = :b, #C = :c"
+		    };
+
+		} else {
+
+		    // build params object for the userdb update without 30min and 24hr test times
+		    updates = {
+			TableName: 'userDb',
+			Key: {
+			    'authId' : {S: authId},
+			},
+			ExpressionAttributeNames: {
+			    "#A": 'status',
+			},
+			ExpressionAttributeValues: {
+			    ":a": { S: status},
+			},
+			ReturnValues: "ALL_NEW",
+			UpdateExpression: "SET #A = :a"
+		    };
+		}
 
 		User.updateById(authId, updates, function (err, data) {
 		    if (err) {
@@ -773,111 +848,6 @@ app.post('/checkStatus', function(req, res){
 	res.send({success: false, message: 'invalid POST received'});
     }
 });
-
-
-/*
-// version of route that saves study data as local file on server
-app.post('/studySave', function(req, res){
-    if(req.xhr || req.accepts('json,html')==='json'){
-	console.log('Valid POST request to save study session data ');
-	console.log(req.body.message);
-	console.log('here are the stringified objects:');
-	console.log(req.body);
-	console.log(req.body.lists);
-	console.log(req.body.testType);
-	var lists = JSON.parse(req.body.lists);
-	var startDate = new Date(JSON.parse(req.body.startDate));
-	var endDate = new Date(JSON.parse(req.body.endDate));
-	var duration = endDate.getTime() - startDate.getTime();
-	console.log('duration of test: ', duration);
-	console.log('here are the unstringified objects:');
-	console.log(lists);
-	console.log(startDate);
-	console.log(endDate);
-
-	var dataDir = __dirname + '/data';
-//	fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
-	if (!fs.existsSync(dataDir)) {fs.mkdirSync(dataDir);}
-
-	var studyFile = dataDir + '/' + req.body.testType + req.body.startDate.replace(/\"/g,"");
-
-	fs.writeFile(studyFile, JSON.stringify(req.body), function (err) {
-	//fs.writeFile(studyFile, req.body.lists, function (err) {
-	    if (err) {
-		console.log('error saving file');
-		res.send({success: true, message: 'valid POST received but error saving file to server'});
-		throw err;
-
-	    } else {
-		console.log("File named " + studyFile + " saved!");
-		//res.send({success: true, message: 'Study file successfully saved to server!'});
-
-		// read file back just to test the code to do this
-		fs.readFile(studyFile, function(err, data) {
-		    if (err) {
-			console.log('error reading studysave file');
-			throw err;
-		    } else {
-			console.log('reloaded file as:' + data); // show stringified content
-			var reloadData = JSON.parse(data);
-			console.log('reloaded and unstringified object:' + reloadData);  // not object display
-			console.log(reloadData);  // need to do this to display as object
-		    }
-		});
-
-		// status change to dynamically use testType to set demoed or learnt
-		var reqStatus = req.body.testType;
-		var status = "";
-		if (reqStatus == "demo") {
-		    status = "demoed";
-		    }
-		if (reqStatus == "study") {
-		    status = "learnt";
-		    }
-		if (reqStatus == "delayed") {
-		    status = "delayed1";
-		    }
-
-		// get the user id
-		var authId = req.session.passport.user;
-
-		// build params object for the userdb update
-		var updates = {
-		    TableName: 'userDb',
-		    Key: {
-			'authId' : {S: authId},
-		    },
-		    ExpressionAttributeNames: {
-			"#A": 'status',
-		    },
-		    ExpressionAttributeValues: {
-			":a": { S: status},
-		    },
-		    ReturnValues: "ALL_NEW",
-		    UpdateExpression: "SET #A = :a"
-		};
-
-		User.updateById(authId, updates, function (err, data) {
-		    if (err) {
-			console.log('Unable to update status to demoed in database');
-			return res.redirect(303, '/demo');
-		    }
-		    // if update successful log data to console and move to
-		    console.log('Updated user status to demoed in database');
-		    res.send({success: true, message: 'Study file successfully saved to server!'});
-		    //return res.redirect(303, '/instructions');
-		});
-
-	    }
-	});
-
-    } else {
-	console.log('Invalid POST request to configdisplay.');
-	res.send({success: false, message: 'invalid POST received'});
-    }
-
-});
-*/
 
 // logout, destroying any session
 app.get('/logout', function(req, res){
