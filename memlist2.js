@@ -8,6 +8,7 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var sh = require('shorthash');
 var env = app.get('env');
+var studyID = "mt_pilot_b2";
 
 var credentials = require('./credentials.js');
 
@@ -342,12 +343,16 @@ app.get('/learn', function(req, res){
 	    res.render('learn');
 	}
 	else if (user.status == 'delayed1'){
-	    // if demo has been completed display learn page
-	    res.render('delayed2');
+	    // if 30min test has been completed display 24 hour test page
+	    res.render('delayed2', {mechTurkID: user.mturkID});
 	}
 	else if (user.status == 'complete'){
 	    // if demo has been completed display learn page
 	    res.render('end');
+	}
+	else if (user.status == 'withdrawn'){
+	    // if demo has been completed display learn page
+	    res.render('withdrawn');
 	}
 	else {
 	    // if any other status display 500 error page
@@ -479,23 +484,31 @@ app.post('/withdraw', function(req, res){
 	    // if update successful log data to console
 	    console.log('Consent withdrawn record created in database');
 
-	    // delete the old record
-	    User.deleteById('userDb', authId, function (err,data) {
+	    // update status of old record to withdrawn
+	    // build params object for the userdb update
+	    var updates = {
+		TableName: 'userDb',
+		Key: {
+		    'authId' : {S: authId},
+		},
+		ExpressionAttributeNames: {
+		    "#D": 'status',
+		},
+		ExpressionAttributeValues: {
+		    ":d": { S: 'withdrawn'},
+		},
+		ReturnValues: "ALL_NEW",
+		UpdateExpression: "SET #D = :d"
+	    };
+
+	    User.updateById(authId, updates, function (err, data) {
 		if (err) {
-		    console.log('Unable to delete old user record in database');
-		    return res.redirect(303, '/consent');
+		    console.log('Unable to update user status in database to withdrawn');
+		    return res.render('500');
 		}
-		// if update successful log data to console
-		console.log('Old user record deleted from database');
-		//req.logOut();
-		//res.render('withdrawn');
-
-		req.session.destroy(function (err) {
-		    //res.render('withdrawn'); //Inside a callback… bulletproof!
-		    return res.redirect(303, '/withdrawn');
-		});
-
-		//return res.redirect(303, '/register');
+		// if update successful log data to console and move to withdrawn page
+		console.log('Updated user status to withdrawn in database');
+		return res.redirect(303, '/withdrawn');
 	    });
 	});
     });
@@ -519,9 +532,8 @@ app.post('/demographics', function(req, res){
     var authId = req.session.passport.user;
 
     // build the string for mturkID
-    var mturkRaw = authId + '_t0001';
-    var mturkID = sh.unique('mturkRaw');
-
+    var mturkRaw = authId + studyID;
+    var mturkID = sh.unique(mturkRaw);
 
     // build params object for the userdb update
     var updates = {
@@ -643,6 +655,10 @@ app.get('/delayed', function(req, res){
 	    // if all stages have been completed display 'end' page
 	    res.render('end');
 	}
+	else if (user.status == 'withdrawn'){
+	    // if demo has been completed display learn page
+	    res.render('withdrawn');
+	}
 	else {
 	    // if any other status display 500 error page
 	    res.render('500');
@@ -657,6 +673,12 @@ app.get('/postDelayedInstructions', function(req, res){
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
     res.render('postDelayedInstructions');
+});
+
+// display explanation about only accepting new participants
+app.get('/pastParticipant', function(req, res){
+    // code logs user out before redirecting here, so do not check for logged in status
+    res.render('pastParticipant');
 });
 
 // version of route that saves study data to S3
