@@ -8,7 +8,7 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var sh = require('shorthash');
 var env = app.get('env');
-var studyID = "mt_pilot_b2";
+var studyID = "mtpilot_b2";
 
 var credentials = require('./credentials.js');
 
@@ -335,8 +335,8 @@ app.get('/learn', function(req, res){
 	    res.render('demo');
 	}
 	else if (user.status == 'learnt'){
-	    // if returning participant display delayed test page
-	    res.render('delayed');
+            // if returning participant display 30min test page
+            res.render('delayed', {hr24TestTime: user.hour24});
 	}
 	else if (user.status == 'demoed'){
 	    // if demo has been completed display learn page
