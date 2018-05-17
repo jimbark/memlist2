@@ -15,7 +15,7 @@ var credentials = require('./credentials.js');
 var User = require('./lib/userdb.js');     // module with all dynamodb methods to access userDb
 var s3Store = require('./lib/s3lib.js');    // module with all methods to access S3
 
-// setup authetication
+// setup authetication, providing configuration options
 var auth = require('./lib/auth.js')(app, {
 	providers: credentials.authProviders,
 	successRedirect: '/learn',
