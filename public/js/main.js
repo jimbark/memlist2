@@ -8,7 +8,8 @@
 // list format:
 // [cueword, target_word, correct_count, wrong_count, study_criterion]
 
-// study lists
+/*
+// study lists for pilot with 1/2 and 3/5 criteria
 var mL1 = [
     ['WAIST','SPRAY',0,0,2],
     ['STOVE','DIRT',0,0,1],
@@ -25,6 +26,27 @@ var mL1 = [
     ['TUNE','VEAL',0,0,2],
     ['BIRTH','SUITE',0,0,1],
     ['GLOBE','LOCK',0,0,5],
+    ['THIEF','VEIN',0,0,3]
+];
+*/
+
+// study lists after pilot with 1 recall for 30mins and 3 for 24hrs
+var mL1 = [
+    ['WAIST','SPRAY',0,0,1],
+    ['STOVE','DIRT',0,0,1],
+    ['GRIP','COIL',0,0,3],
+    ['JUICE','PORK',0,0,3],
+    ['SOLE','CROW',0,0,1],
+    ['BLADE','CALF',0,0,1],
+    ['FORK','VEST',0,0,3],
+    ['STEEL','BARK',0,0,3],
+    ['PUMP','LOOP',0,0,1],
+    ['TROOP','LEAK',0,0,1],
+    ['TRIBE','SWEEP',0,0,3],
+    ['RASH','PASTE',0,0,3],
+    ['TUNE','VEAL',0,0,1],
+    ['BIRTH','SUITE',0,0,1],
+    ['GLOBE','LOCK',0,0,3],
     ['THIEF','VEIN',0,0,3]
 ];
 
@@ -287,6 +309,42 @@ function test() {
 	    hr -= 12;
 	    ampm = "pm";
 	}
+	else if( hr == 12 ) {   //12:xxhrs is pm
+	    ampm = "pm";
+	}
+	else if( hr == 0 ) {
+	    hr = 12;   // want 12:15am not 0:15am
+	}
+	var t30 = hr + ":" + min + ampm;
+
+	// calculate 24hour test target time
+	n = new Date(endTime + hour24);
+	hr = n.getHours();
+	min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
+	ampm = "am";
+	if( hr > 12 ) {
+	    hr -= 12;
+	    ampm = "pm";
+	}
+	if( hr == 12 ) {    // as 12:xxhrs is pm
+	    ampm = "pm";
+	}
+	if( hr == 0 ) {
+	    hr = 12;    // 12:15am not 0:15am
+	}
+	var h24 = hr + ":" + min + ampm;
+
+	/*
+	// calculate 30min test target time
+	var endTime = endDate.getTime();
+	var n = new Date(endTime + min30);
+	var hr = n.getHours();
+	var min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
+	var ampm = "am";
+	if( hr > 12 ) {
+	    hr -= 12;
+	    ampm = "pm";
+	}
 	var t30 = hr + ":" + min + ampm;
 
 	// calculate 24hour test target time
@@ -299,6 +357,8 @@ function test() {
 	    ampm = "pm";
 	}
 	var h24 = hr + ":" + min + ampm;
+	*/
+
 
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
@@ -609,4 +669,10 @@ function delayedTest() {
 	document.getElementById("tAnswerWord").value = "";
 	document.getElementById("tAnswerWord").focus();
     }
+}
+
+// copy participation code into username field to display it
+function genCode() {
+    var code = document.getElementById("code").value;
+    document.getElementById("username").value = code;
 }

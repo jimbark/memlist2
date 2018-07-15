@@ -1,0 +1,48 @@
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Login</h5>
+
+<p><b>Existing participants:</b> if you have come back for one of your delayed tests enter your participation code below and press Start.
+
+       	    <p  id='study' style="display: block"><b>New participants:</b> press 'Generate Code' to obtain your unique code. Write this down as you will need it when you come back for your delayed test, and to claim payment. Then press Start.</p>
+
+    	</div>
+    </div>
+
+</div>
+
+
+<form id="login" style="display: block" class="form-horizontal" action="/login?form=login" method="POST">
+
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+
+  <div class="row justify-content-center pt-5">
+
+    <input type="hidden" name="password" value="pass">
+    <input type="hidden" id="code" name="code" value="{{mturkCode}}">
+
+    <div class="col-auto form-group">
+      <input type="text" style="width:100px;" class="form-control text-right pr-3" id="username" 
+      	     name="username" value="">
+      <small id="codeHelp" class="form-text text-muted">MTurk completion code.</small>
+    </div>
+
+    <div class="col-auto form-group">
+      <button type="button" id="generateCode" onclick="genCode()" class="btn btn-primary">Generate Code</button\
+>
+    </div>
+
+    <div class="col-auto form-group">
+      <button type="submit" class="btn btn-primary" id="localLogin">Start</button>
+    </div>
+
+  </div>
+
+
+</form>
+
+
+</div>

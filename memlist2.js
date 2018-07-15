@@ -1,4 +1,4 @@
-var express = require('express');
+var express= require('express');
 
 var app = express();
 
@@ -8,7 +8,7 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var sh = require('shorthash');
 var env = app.get('env');
-var studyID = "mtpilot_b2";
+var studyID = "mtpilot_b3";
 
 var credentials = require('./credentials.js');
 
@@ -216,11 +216,15 @@ app.use(expressSession({
 }));
 */
 
+
 // delete any old flash message
 app.use(function(req, res, next){
     delete res.locals.flash;
     next();
 });
+
+
+
 
 // process url encoded body for POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -249,8 +253,8 @@ app.use(function(req, res, next){
     }
 
     if(!req.session || !req.session.passport || !req.session.passport.user ) {
-	//res.locals.logNav = '<a class="nav-link" href="/login">Login</a>';
-	res.locals.logNav = '<a class="nav-link" href="/auth/facebook">Login</a>';
+	res.locals.logNav = '<a class="nav-link" href="/login">Login</a>';
+	//res.locals.logNav = '<a class="nav-link" href="/auth/facebook">Login</a>';
 
     }
     else {
@@ -275,14 +279,14 @@ app.get('/*', function(req, res, next) {
 // example of clearing a cookie
 app.get('/', function(req, res){
     logger.info("Info level log for home page to prove working");
-    res.clearCookie("signed_monster");
+    //res.clearCookie("signed_monster");
     res.render('home');
 });
 
 // exmaple of reading a cookie from a request
 app.get('/about', function(req, res){
-    var signedMonster = req.signedCookies.signed_monster;
-    console.log(signedMonster);
+    //var signedMonster = req.signedCookies.signed_monster;
+    //console.log(signedMonster);
     res.render('about', {pageTestScript: '/qa/tests-about.js'});
 });
 
@@ -300,7 +304,7 @@ app.get('/learn', function(req, res){
     if(!req.session.passport) return res.redirect(303, '/login');
     if(!req.session.passport.user) return res.redirect(303, '/login');
 
-    res.cookie('signed_monster', 'nom nom', { signed: true });
+    //res.cookie('signed_monster', 'nom nom', { signed: true });
 
     // set a flash message
     /* res.locals.flash = {
@@ -335,8 +339,8 @@ app.get('/learn', function(req, res){
 	    res.render('demo');
 	}
 	else if (user.status == 'learnt'){
-            // if returning participant display 30min test page
-            res.render('delayed', {hr24TestTime: user.hour24});
+	    // if returning participant display 30min test page
+	    res.render('delayed', {hr24TestTime: user.hour24});
 	}
 	else if (user.status == 'demoed'){
 	    // if demo has been completed display learn page
@@ -361,15 +365,65 @@ app.get('/learn', function(req, res){
     });
 });
 
+// display login page
 app.get('/login', function(req, res){
-    res.render('login');
+
+    // generate a unique code by hashing the date
+    var codeDate = new Date();
+    codeDate.setTime(Date.now());
+    textDate = JSON.stringify(codeDate);
+    var mturkCode = sh.unique(textDate);
+
+    res.render('login', {mturkCode: mturkCode});
 });
+
+
+
+/*
+
+// handle login request via submit button
+app.post('/login', function(req, res){
+
+    console.log('Form (from querystring): ' + req.query.form);
+
+    console.log('Participation code (from visible form field): ' + req.body.username);
+
+    // get the users particupation code
+    var authId = req.body.username;
+
+    if (authId !== "") {
+
+	passport.authenticate('local', { successRedirect: '/',
+				   failureRedirect: '/login',
+				   failureFlash: true });
+    }
+
+    else {
+	console.log('No participation code detected');
+	res.render('localLogin');
+    }
+});
+
+*/
 
 
 // specify our auth routes:
 auth.registerRoutes();
 
+/*
+// display MTurk local login page
+app.get('/localLogin', function(req, res){
 
+    // generate a unique code by hashing the date
+    var codeDate = new Date();
+    codeDate.setTime(Date.now());
+    textDate = JSON.stringify(codeDate);
+    var mturkCode = sh.unique(textDate);
+
+    res.render('localLogin', {mturkCode: mturkCode});
+
+});
+*/
 
 app.get('/consent', function(req, res){
     // check user is logged in
@@ -440,7 +494,8 @@ app.get('/withdraw', function(req, res){
 
     if(!req.session.passport || !req.session.passport.user) {
 	req.session.redirect = "https://" + req.headers.host + '/withdraw';
-	return res.redirect(303, '/auth/facebook');
+	//return res.redirect(303, '/auth/facebook');
+	return res.redirect(303, '/login');
     }
     res.render('withdraw');
 });
@@ -508,7 +563,13 @@ app.post('/withdraw', function(req, res){
 		}
 		// if update successful log data to console and move to withdrawn page
 		console.log('Updated user status to withdrawn in database');
-		return res.redirect(303, '/withdrawn');
+		//return res.redirect(303, '/withdrawn');
+
+		req.session.destroy(function (err) {
+		    //Inside a callback… bulletproof!
+		    return res.redirect(303, '/withdrawn');
+		});
+
 	    });
 	});
     });
