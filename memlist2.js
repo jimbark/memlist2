@@ -8,7 +8,7 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var sh = require('shorthash');
 var env = app.get('env');
-var studyID = "mtpilot_b3";
+var studyID = "mtpilot_b4";
 
 var credentials = require('./credentials.js');
 
