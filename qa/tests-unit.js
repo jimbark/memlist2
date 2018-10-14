@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 var assert = require('chai').assert;
 
 //var cheese = 'cheese';
-var cheese = 3;
+var cheese = '3';
 
 suite('Fortune cookie tests', function(){
     //test('getFortune() should return a fortune', function(){

@@ -31,14 +31,14 @@ module.exports = function(grunt){
 	    },
 
 	    jshint: {
-		    app: ['memlist2.js', 'public/js/**/*.js',
+		    app: ['memlist2*.js', 'public/js/**/*.js',
 			  'lib/**/*.js'],
 		    qa: ['Gruntfile.js', 'public/qa/**/*.js', 'qa/**/*.js'],
 	    },
 
 	    exec: {
 		    linkchecker:
-			{ cmd: 'linkchecker http://localhost:3000' }
+			{ cmd: 'linkchecker http://vekori.com' }
 	    },
 	});
 

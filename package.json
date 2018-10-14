@@ -41,6 +41,7 @@
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-exec": "^3.0.0",
     "grunt-mocha-test": "^0.13.2",
+    "loadtest": "^3.0.4",
     "mocha": "^3.5.3",
     "zombie": "^5.0.7"
   }

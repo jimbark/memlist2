@@ -9,6 +9,7 @@ var fs = require('fs');
 var sh = require('shorthash');
 var env = app.get('env');
 var studyID = "mtpilot_b4";
+var cluster = require('cluster');
 
 var credentials = require('./credentials.js');
 
@@ -107,6 +108,14 @@ var accessLogStream = rfs('access.log', {
 // setup the logger
 app.use(morgan('combined', {stream: accessLogStream}));
 
+/*
+// log worker use for clusters to check load-sharing
+app.use(function(req,res,next){
+    //var cluster = require('cluster');
+    if(cluster.isWorker) console.log('Worker ' + cluster.worker.id);
+    next();
+});
+*/
 
 // enable use of https
 var https = require('https');
@@ -191,8 +200,8 @@ var options = {
     //client: new AWS.DynamoDB({ endpoint: new AWS.Endpoint('http://localhost:8000')}),
 
     // Optional ProvisionedThroughput params, defaults to 5
-    readCapacityUnits: 2,
-    writeCapacityUnits: 2
+    //readCapacityUnits: 2,
+    //writeCapacityUnits: 2
 };
 
 var DynamoDBStore = require('connect-dynamodb')({session: expressSession});
@@ -216,15 +225,11 @@ app.use(expressSession({
 }));
 */
 
-
 // delete any old flash message
 app.use(function(req, res, next){
     delete res.locals.flash;
     next();
 });
-
-
-
 
 // process url encoded body for POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -262,6 +267,9 @@ app.use(function(req, res, next){
     }
     next();
 });
+
+
+
 
 // redirect all www to non-www
 app.get('/*', function(req, res, next) {
