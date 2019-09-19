@@ -248,7 +248,7 @@ app.use(function(req, res, next){
 
 // setup res.locals content for the main layout to use
 app.use(function(req, res, next){
-    res.locals.copyrightYear = '2018';
+    res.locals.copyrightYear = '2019';
     if (env === 'production') {
 	res.locals.secureSeal = ('<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=kHYQLI7RQKLF1a0LwlCl250qpaI4MxJV1FuVnNgSmXzxO0ANBqmy0Gaghqbf"></script></span>');
     }
