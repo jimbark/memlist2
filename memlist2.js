@@ -108,14 +108,13 @@ var accessLogStream = rfs('access.log', {
 // setup the logger
 app.use(morgan('combined', {stream: accessLogStream}));
 
-/*
 // log worker use for clusters to check load-sharing
 app.use(function(req,res,next){
     //var cluster = require('cluster');
     if(cluster.isWorker) console.log('Worker ' + cluster.worker.id);
     next();
 });
-*/
+
 
 // enable use of https
 var https = require('https');
@@ -200,8 +199,8 @@ var options = {
     //client: new AWS.DynamoDB({ endpoint: new AWS.Endpoint('http://localhost:8000')}),
 
     // Optional ProvisionedThroughput params, defaults to 5
-    //readCapacityUnits: 2,
-    //writeCapacityUnits: 2
+    readCapacityUnits: 2,
+    writeCapacityUnits: 2
 };
 
 var DynamoDBStore = require('connect-dynamodb')({session: expressSession});
