@@ -6,7 +6,7 @@
 // Constants
 
 // list format:
-// [cueword, target_word, correct_count, wrong_count, study_criterion]
+// [cueword, target_word, correct_count, wrong_count, study_criterion, criterion_reached_time]
 
 /*
 // study lists for pilot with 1/2 and 3/5 criteria
@@ -86,9 +86,10 @@ var del2L1 = [
 var del2L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
 
 // demo lists
-var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
-//var dL1 = [['dl1c1','dl1a1',0,0,1], ['dl1c2','dl1a2',0,0,1],['dl1c3','dl1a3',0,0,1]];
-var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
+//var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
+//var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
+var dL1 = [['GIRAFFE','GUITAR',0,0,2,0], ['WIZARD','TURKEY',0,0,2,0],['PISTOL','KENNEL',0,0,2,0]];
+var dL2 = [['dl2c1','dl2a1',0,0,1,0], ['dl2c2','dl2a2',0,0,3,0],['dl2c3','dl2a3',0,0,3,0]];
 
 var studyPresentations = 1;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
@@ -97,12 +98,12 @@ var feedbackDuration = 2000;  // ms to display correct/incorrect feedback
 var testInterval = 50; // interval between delayed test items
 
 // initialise global variables
-var sL1 = mL1;
-var sL2 = mL2;
-var lists = [sL1, sL2];
-var lL1 = [];
-var lL2 = [];
-var llists = [lL1, lL2];
+var sL1 = mL1; // study list 1
+var sL2 = mL2; // study list 2
+var lists = [sL1, sL2]; // combined lists of unlearnt pairs
+var lL1 = [];  // learnt list 1
+var lL2 = [];  // learnt list 2
+var llists = [lL1, lL2];  // combined lists of learnt pairs
 var i = 0;  // item counter
 var l = 0;  // list counter
 var c = 1;  // presentations counter
@@ -115,6 +116,9 @@ var flists = [lL1, lL2];
 var startDate = new Date();
 var endDate = new Date();
 var testType = "";
+var clists = [];  // combined stats for learnt and unlearnt pairs
+var timedOut = false; // flag indicating whether timed out during study phase
+var studyTime = 1;  // maximum study time in minutes
 
 // respond to consent checkbox by enabling or disabling submit button
 $('#consented').change(function(){
@@ -271,9 +275,13 @@ function study() {
 
 function test() {
 
-    // all pairs learnt to criterion, so end of test
-    if (lists[l].length == 0) {
-	endDate.setTime(Date.now());
+    // check if study time has expired
+    endDate.setTime(Date.now());
+    timedOut = (endDate.getTime() - startDate.getTime()) > (studyTime * 60 * 1000);
+
+    // all pairs learnt to criterion, or study time expired, so end of test
+    if ((lists[l].length == 0) || timedOut) {
+	//endDate.setTime(Date.now());
 
 	document.getElementById("introduction").style.display = "none";
 	document.getElementById("studyText").style.display = "none";
@@ -359,6 +367,8 @@ function test() {
 	var h24 = hr + ":" + min + ampm;
 	*/
 
+	// prepare the complete set of learning data, concatenate learnt and unlearnt pairs
+	clists = [llists, lists];
 
 	// Using the core $.ajax() method to send test run data to server
 	$.ajax({
@@ -378,7 +388,9 @@ function test() {
 		t30: t30,
 		h24: h24,
 		message: 'post message',
-		testType: testType
+		testType: testType,
+		clists: JSON.stringify(clists),
+		timedOut: timedOut
 	    },
 
 	    type: "POST",
@@ -411,8 +423,8 @@ function test() {
 	});
     }
 
-    // still have pairs not learnt to criterion, so test next element
-    if (lists[l].length > 0) {
+    // still have pairs not learnt to criterion, and study time has not expired, so test next element
+    if ((lists[l].length > 0) && (!timedOut)) {
 	document.getElementById("check").onclick= function(){ checkAnswer();};
 	document.getElementById("introduction").style.display = "none";
 	document.getElementById("studyText").style.display = "none";
@@ -438,8 +450,9 @@ function checkAnswer() {
 
     if (document.getElementById("tAnswerWord").value.toUpperCase() === lists[l][i][1]) {
 	++lists[l][i][2];  // increment correct counter
-	// if criterion reached move to learnt list and remove from study list
+	// if criterion reached record time and move to learnt list and remove from study list
 	if (lists[l][i][2] === lists[l][i][4]) {
+	    lists[l][i][5] = new Date();
 	    llists[l].push(lists[l][i]);
 	    lists[l].splice(i,1);
 	    --i;    // decrement i as lists[l] is now one element shorter

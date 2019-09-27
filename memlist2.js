@@ -8,7 +8,7 @@ var bodyParser  = require('body-parser');
 var fs = require('fs');
 var sh = require('shorthash');
 var env = app.get('env');
-var studyID = "mtpilot_b4";
+var studyID = "study4_1";
 var cluster = require('cluster');
 
 var credentials = require('./credentials.js');
@@ -757,19 +757,32 @@ app.post('/studySave', function(req, res){
 	console.log('here are the stringified objects:');
 	console.log(req.body.lists);
 	console.log(req.body.testType);
+	console.log(req.body.clists);
+	console.log(req.body.timedOut);
+
 	var lists = JSON.parse(req.body.lists);
 	var startDate = JSON.parse(req.body.startDate);
 	var endDate = JSON.parse(req.body.endDate);
 	var duration = JSON.parse(req.body.duration);
+	var clists = JSON.parse(req.body.clists);
+	var timedOut = JSON.parse(req.body.timedOut);
+
 	console.log('here are the unstringified objects:');
 	console.log(lists);
 	console.log(startDate);
 	console.log(endDate);
 	console.log(duration);
+	console.log(clists);
+	console.log(timedOut);
+	//console.log(clists[0][0]);
+	console.log(clists[1][0]);
+	//console.log(clists[1][0][0]);
 
 	var times = [startDate, endDate, duration];
-	lists.push(times);
-	stringifiedLists = JSON.stringify(lists);
+	lists.push(times);  // add timing data
+	lists.push(timedOut);  // add study time expiry flag
+	lists.push(clists);  //  add the complete data with unlearned lists too
+	var stringifiedLists = JSON.stringify(lists);  // stringifiedLists = JSON.stringify(lists);
 	console.log(stringifiedLists);
 
 	var dataDir = __dirname + '/data';
