@@ -272,7 +272,7 @@ app.use(function(req, res, next){
 
 // redirect all www to non-www
 app.get('/*', function(req, res, next) {
-    if (req.headers.host.match(/^www/) !== null ) res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
+    if (req.headers.host.match(/^www/) !== null ) return res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
     else next();
 });
 
@@ -754,35 +754,47 @@ app.post('/studySave', function(req, res){
     if(req.xhr || req.accepts('json,html')==='json'){
 	console.log('Valid POST request to save study session data ');
 	console.log(req.body.message);
-	console.log('here are the stringified objects:');
+	console.log('here are the common stringified objects:');
 	console.log(req.body.lists);
 	console.log(req.body.testType);
-	console.log(req.body.clists);
-	console.log(req.body.timedOut);
 
 	var lists = JSON.parse(req.body.lists);
 	var startDate = JSON.parse(req.body.startDate);
 	var endDate = JSON.parse(req.body.endDate);
 	var duration = JSON.parse(req.body.duration);
-	var clists = JSON.parse(req.body.clists);
-	var timedOut = JSON.parse(req.body.timedOut);
 
-	console.log('here are the unstringified objects:');
+	console.log('here are the common unstringified objects:');
 	console.log(lists);
 	console.log(startDate);
 	console.log(endDate);
 	console.log(duration);
-	console.log(clists);
-	console.log(timedOut);
-	//console.log(clists[0][0]);
-	console.log(clists[1][0]);
-	//console.log(clists[1][0][0]);
 
 	var times = [startDate, endDate, duration];
 	lists.push(times);  // add timing data
-	lists.push(timedOut);  // add study time expiry flag
-	lists.push(clists);  //  add the complete data with unlearned lists too
+
+	if ((req.body.testType === 'demo') || (req.body.testType === 'study')) {
+
+	    console.log('here are the study phase additional stringified objects:');
+	    console.log(req.body.clists);
+	    console.log(req.body.timedOut);
+
+	    var clists = JSON.parse(req.body.clists);
+	    var timedOut = JSON.parse(req.body.timedOut);
+
+	    console.log(clists);
+	    console.log(timedOut);
+	    //console.log(clists[0][0]);
+	    console.log(clists[1][0]);
+	    //console.log(clists[1][0][0]);
+
+	    lists.push(timedOut);  // add study time expiry flag
+	    lists.push(clists);  //  add the complete data with unlearned lists too
+
+	    }
+
+
 	var stringifiedLists = JSON.stringify(lists);  // stringifiedLists = JSON.stringify(lists);
+	console.log('here is the full stringified data object:');
 	console.log(stringifiedLists);
 
 	var dataDir = __dirname + '/data';

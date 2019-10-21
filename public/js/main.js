@@ -118,7 +118,7 @@ var endDate = new Date();
 var testType = "";
 var clists = [];  // combined stats for learnt and unlearnt pairs
 var timedOut = false; // flag indicating whether timed out during study phase
-var studyTime = 1;  // maximum study time in minutes
+var studyTime = 22;  // maximum study time in minutes
 
 // respond to consent checkbox by enabling or disabling submit button
 $('#consented').change(function(){
