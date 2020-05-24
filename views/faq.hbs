@@ -1,1 +1,26 @@
+{{! ----------------- Institution 1000   Project 002 ------------------ }}
+
+{{#if project.p1000_002}}
+
 <h5>Frequently Asked Questions</h5>
+
+
+<div>
+     <p>** Project p1000_002 **
+     </p>
+
+     {{#section "projectjs"}}
+     <script src="js/p1000_002.js"></script>
+     {{/section}}
+</div>
+
+
+{{! -- Project not specified - OR - not recognised - use default Institution 1000   Project 001--------------- }}
+
+{{else}}
+
+
+<h5>Frequently Asked Questions</h5>
+
+
+{{/if}}

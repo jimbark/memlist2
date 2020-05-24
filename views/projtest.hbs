@@ -1,0 +1,58 @@
+
+{{! ----------------- Institution 1000   Project 001 ------------------ }}
+
+{{#if project.p1000_001}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+
+<h5 class="pt-3">About this research.</h5>
+
+<p>Project p1000_001 </p>
+
+<p>Details of our privacy, consent and right to withdraw policy can be found <a href="/privacy">here</a>. </p>
+
+
+   </div>
+</div>
+
+
+{{! ----------------- Institution 1000   Project 002 ------------------ }}
+
+{{else if project.p1000_002}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+
+<h5 class="pt-3">About this research.</h5>
+
+<p>Project p1000_002 </p>
+
+<p>Details of our privacy, consent and right to withdraw policy can be found <a href="/privacy">here</a>. </p>
+
+
+   </div>
+</div>
+
+
+{{! -- Project not specified - OR - not frecognised - used default Institution 1000   Project 001--------------- }}
+
+{{else}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+
+<h5 class="pt-3">About this research.</h5>
+
+<p>Project Default </p>
+
+<p>Details of our privacy, consent and right to withdraw policy can be found <a href="/privacy">here</a>. </p>
+
+
+   </div>
+</div>
+
+{{/if}}

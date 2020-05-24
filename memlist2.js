@@ -170,7 +170,15 @@ auth.init();
 
 // set up handlebars view engine
 var exphbs  = require('express-handlebars');
-app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
+app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main',
+    helpers: {
+	section: function(name, options){
+	    if(!this._sections) this._sections = {};
+	    this._sections[name] = options.fn(this);
+	    return null;
+	}
+    }
+}));
 app.set('view engine', '.hbs');
 
 app.set('port', process.env.PORT || HTTPS_PORT);
@@ -230,6 +238,19 @@ app.use(function(req, res, next){
     next();
 });
 
+// prepare multi-lingual/project flash messages
+/*var messages = {
+    p1000_001: {
+	message1: "You must enter a participation code.",
+	message2: "Participation code not recognised. Please check code is correct."
+	},
+    p1000_002: {
+	message1: "You must enter a participation code. p1000_002",
+	message2: "Participation code not recognised. Please check code is correct. p1000_002"
+	},
+    };
+*/
+
 // process url encoded body for POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -246,28 +267,61 @@ app.use(function(req, res, next){
     next();
 });
 
-// setup res.locals content for the main layout to use
+
+// setup res.locals and req.session storage of the project
 app.use(function(req, res, next){
-    res.locals.copyrightYear = '2020';
-    if (env === 'production') {
-	res.locals.secureSeal = ('<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=kHYQLI7RQKLF1a0LwlCl250qpaI4MxJV1FuVnNgSmXzxO0ANBqmy0Gaghqbf"></script></span>');
-    }
-    else {
-	res.locals.secureSeal = '<span>DevSeal</span>';
+
+    if (req.query.project) {
+	req.session.project = { name: req.query.project };
     }
 
-    if(!req.session || !req.session.passport || !req.session.passport.user ) {
-	res.locals.logNav = '<a class="nav-link" href="/login">Login</a>';
-	//res.locals.logNav = '<a class="nav-link" href="/auth/facebook">Login</a>';
-
+    res.locals.project = {};
+    if (req.session.project) {
+	res.locals.project[req.session.project.name] = 'cheese';
     }
     else {
-	res.locals.logNav = '<a class="nav-link" href="/logout">Logout</a>';
+	res.locals.project.p1000_001 = 'cheese';
     }
+
+    if (req.session.project) {
+	console.log('Session project state is: ' + req.session.project.name);
+    }
+    else {
+	console.log('Session project state not set ');
+    }
+
     next();
 });
 
 
+// setup res.locals content for the main layout to use
+app.use(function(req, res, next){
+    res.locals.copyrightYear = '2020';
+
+    if (env === 'production') {
+	res.locals.secureSeal = ('<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=kHYQLI7RQKLF1a0LwlCl250qpaI4MxJV1FuVnNgSmXzxO0ANBqmy0Gaghqbf"></script></span>');
+    }
+    else {
+	var projName = " ";
+	if(req.session.project) {
+	    projName = req.session.project.name;
+	}
+	res.locals.secureSeal = '<span>DevSeal </span>' + '<span>' + projName + '</span>';
+    }
+
+    if(!req.session || !req.session.passport || !req.session.passport.user ) {
+	res.locals.logNav = 'Logged out';
+	//res.locals.logNav = '<a class="nav-link" href="/login">Login</a>';
+	//res.locals.logNav = '<a class="nav-link" href="/auth/facebook">Login</a>';
+    }
+    else {
+	if (res.locals.logNav) {
+	    delete res.locals.logNav;
+	}
+    }
+
+    next();
+});
 
 
 // redirect all www to non-www
@@ -282,6 +336,21 @@ app.get('/*', function(req, res, next) {
 //	throw new Error('Kaboom!');
 //    });
 //});
+
+
+// Test route to check multi-project templating
+app.get('/projtest', function(req, res){
+    res.render('projtest');
+});
+
+// and routes to allow direct access to a specific project
+app.get('/indian', function(req, res){
+    res.locals.project = { p1000_002: 'cheese' };
+    req.session.project = { name: "p1000_002" };
+    res.render('projtest');
+});
+
+
 
 // example of clearing a cookie
 app.get('/', function(req, res){
@@ -333,44 +402,119 @@ app.get('/learn', function(req, res){
 	    console.log('Unable to find user record in database');
 	    return res.redirect(303, '/login');
 	}
-	// if new user get their consent to participate
-	else if (user.status == 'new') {
-	    res.render('consent');
+
+	// if project stored in userdb then set session state to match
+	if (user.project!== 'default') {
+	    req.session.project = { name: user.project };
+	    res.locals.project = {};
+	    res.locals.project[req.session.project.name] = 'cheese';
+	    console.log('Updated session state with value from userdb');
+
+	    // if new user get their consent to participate
+	    if (user.status == 'new') {
+		res.render('consent');
+	    }
+	    else if (user.status == 'consented'){
+		// if consented display demographics regsiter page
+		res.render('register');
+	    }
+	    else if (user.status == 'registered'){
+		// if registered display demo page
+		res.render('demo');
+	    }
+	    else if (user.status == 'learnt'){
+		// if returning participant display 30min test page
+		res.render('delayed', {hr24TestTime: user.hour24});
+	    }
+	    else if (user.status == 'demoed'){
+		// if demo has been completed display learn page
+		res.render('learn');
+	    }
+	    else if (user.status == 'delayed1'){
+		// if 30min test has been completed display 24 hour test page
+		res.render('delayed2', {mechTurkID: user.mturkID});
+	    }
+	    else if (user.status == 'complete'){
+		// if demo has been completed display learn page
+		res.render('end');
+	    }
+	    else if (user.status == 'withdrawn'){
+		// if demo has been completed display learn page
+		res.render('withdrawn');
+	    }
+	    else {
+		// if any other status display 500 error page
+		res.render('500');
+	    }
 	}
-	else if (user.status == 'consented'){
-	    // if consented display demographics regsiter page
-	    res.render('register');
-	}
-	else if (user.status == 'registered'){
-	    // if registered display demo page
-	    res.render('demo');
-	}
-	else if (user.status == 'learnt'){
-	    // if returning participant display 30min test page
-	    res.render('delayed', {hr24TestTime: user.hour24});
-	}
-	else if (user.status == 'demoed'){
-	    // if demo has been completed display learn page
-	    res.render('learn');
-	}
-	else if (user.status == 'delayed1'){
-	    // if 30min test has been completed display 24 hour test page
-	    res.render('delayed2', {mechTurkID: user.mturkID});
-	}
-	else if (user.status == 'complete'){
-	    // if demo has been completed display learn page
-	    res.render('end');
-	}
-	else if (user.status == 'withdrawn'){
-	    // if demo has been completed display learn page
-	    res.render('withdrawn');
-	}
+
+	// else store session project state in userdb
+
 	else {
-	    // if any other status display 500 error page
-	    res.render('500');
+
+	    var updates = {
+		TableName: 'userDb',
+		Key: {'authId' : {S: authId}},
+		ExpressionAttributeNames: {
+		    "#A": 'project'
+		},
+		ExpressionAttributeValues: {
+		    ":a": { S: req.session.project.name }
+		},
+		ReturnValues: "ALL_NEW",
+		UpdateExpression: "SET #A = :a"
+	    };
+
+	    User.updateById(authId, updates, function (err, data) {
+		if (err) {
+		    console.log('Unable to update user project  in database');
+		    return res.redirect(303, '/login');
+		}
+		// if update successful log to console and move to relevant next page
+		console.log('Updated user project in database');
+
+		// if new user get their consent to participate
+		if (user.status == 'new') {
+		    res.render('consent');
+		}
+		else if (user.status == 'consented'){
+		    // if consented display demographics regsiter page
+		    res.render('register');
+		}
+		else if (user.status == 'registered'){
+		    // if registered display demo page
+		    res.render('demo');
+		}
+		else if (user.status == 'learnt'){
+		    // if returning participant display 30min test page
+		    res.render('delayed', {hr24TestTime: user.hour24});
+		}
+		else if (user.status == 'demoed'){
+		    // if demo has been completed display learn page
+		    res.render('learn');
+		}
+		else if (user.status == 'delayed1'){
+		    // if 30min test has been completed display 24 hour test page
+		    res.render('delayed2', {mechTurkID: user.mturkID});
+		}
+		else if (user.status == 'complete'){
+		    // if demo has been completed display learn page
+		    res.render('end');
+		}
+		else if (user.status == 'withdrawn'){
+		    // if demo has been completed display learn page
+		    res.render('withdrawn');
+		}
+		else {
+		    // if any other status display 500 error page
+		    res.render('500');
+		}
+
+	    });
 	}
     });
 });
+
 
 // display login page
 app.get('/login', function(req, res){
@@ -388,7 +532,7 @@ app.get('/login', function(req, res){
 
 /*
 
-// handle login request via submit button
+// handle login request via submit button - no longer needed as in auth.init injected routes
 app.post('/login', function(req, res){
 
     console.log('Form (from querystring): ' + req.query.form);
@@ -571,10 +715,11 @@ app.post('/withdraw', function(req, res){
 		// if update successful log data to console and move to withdrawn page
 		console.log('Updated user status to withdrawn in database');
 		//return res.redirect(303, '/withdrawn');
-
+		var withdrawnUrl = "/withdrawn?project=" + req.session.project.name;
 		req.session.destroy(function (err) {
 		    //Inside a callback… bulletproof!
-		    return res.redirect(303, '/withdrawn');
+		    return res.redirect(303, withdrawnUrl);
+		    //return res.redirect(303, '/withdrawn');
 		});
 
 	    });
@@ -939,9 +1084,11 @@ app.get('/logout', function(req, res){
     //if(!req.session.passport) return res.redirect(303, '/login');
     //if(!req.session.passport.user) return res.redirect(303, '/login');
 
+    var logoutUrl = "/?project=" + req.session.project.name;
     req.session.destroy(function (err) {
 	//Inside a callback… bulletproof!
-	return res.redirect(303, '/');
+	return res.redirect(303, logoutUrl);
+	//return res.redirect(303, '/');
     });
 });
 

@@ -1,3 +1,39 @@
+{{! ----------------- Institution 1000   Project 002 ------------------ }}
+
+{{#if project.p1000_002}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Post Learning Instructions</h5>
+     <p>Thank you for completing the first part of the study. For the next stage we need you to come back in 30 minutes, at <b> {{min30TestTime}} </b>, to be tested again.</p>
+     <p>When you come back visit our home page and enter the site as returning participant.</p>
+     <p>Please do not try to rehearse the word-pairs as that will invalidate the results of the research.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Return to home page</a>
+     </div>
+
+</div>
+
+<div>
+     <p>** Project p1000_002 **
+     </p>
+
+     {{#section "projectjs"}}
+     <script src="js/p1000_002.js"></script>
+     {{/section}}
+</div>
+
+
+{{! -- Project not specified - OR - not recognised - use default Institution 1000   Project 001--------------- }}
+
+{{else}}
+
 
 <div class="row justify-content-center">
    <div class="col-10">
@@ -18,5 +54,5 @@
 </div>
 
 
-
+{{/if}}
 

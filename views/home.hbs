@@ -1,4 +1,8 @@
 
+{{! ----------------- Institution 1000   Project 002 ------------------ }}
+
+{{#if project.p1000_002}}
+
 <div class="row">
 
    <div class="col-3">
@@ -16,15 +20,89 @@
 
      <div class="row">
      <div class="col-auto text-center pt-3">
-     <a href="/learn" class="btn btn-primary" role="button">New participant</a>
+     <a href="/learn?project=p1000_002" class="btn btn-primary" role="button">New participant</a>
      </div>
 
      <div class="col-auto text-center pt-3">
-     <a href="/delayed" class="btn btn-primary" role="button">Returning participant</a>
+     <a href="/delayed?project=p1000_002" class="btn btn-primary" role="button">Returning participant</a>
+     </div>
+
+     </div>
+
+     <div class="row justify-content-center" style="display = inline">
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_001" class="btn btn-secondary" role="button">English</a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_002" class="btn btn-secondary" role="button">Norsk</a>
      </div>
 
      </div>
 
    </div>
 </div>
+
+<div>
+     <p>** Project p1000_002 ** 
+     </p>
+
+     {{#section "projectjs"}}
+     <script src="js/p1000_002.js"></script>
+     {{/section}}
+</div>
+
+
+{{! -- Project not specified - OR - not recognised - use default Institution 1000   Project 001--------------- }}
+
+{{else}}
+
+<div class="row">
+
+   <div class="col-3">
+        <img src="/img/Mr_pipo_Learning_and_forgetting.png" class="img-fluid" alt="Responsive image of forgetting">
+   </div>
+
+   <div class="col-8">
+
+     <h4 class="pt-3">Welcome to The Forgetting Project!</h4>
+
+     <p>We are studying human memory and forgetting, and how this varies within the general population. If you would like to participate you just need to have a good standard of English and be aged 18 or over.
+     </p>
+     <p>First tell us whether you are a new participant, or a returning participant.
+     </p>
+
+     <div class="row">
+     <div class="col-auto text-center pt-3">
+     <a href="/learn?project=p1000_001" class="btn btn-primary" role="button">New participant</a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/delayed?project=p1000_001" class="btn btn-primary" role="button">Returning participant</a>
+     </div>
+
+     </div>
+
+
+     <div class="row justify-content-center" style="display = inline">
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_001" class="btn btn-secondary" role="button">English</a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_002" class="btn btn-secondary" role="button">Norsk</a>
+     </div>
+
+     </div>
+
+   </div>
+
+</div>
+
+{{/if}}
+
+
+
 

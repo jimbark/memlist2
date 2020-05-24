@@ -1,2 +1,29 @@
+
+{{! ----------------- Institution 1000   Project 002 ------------------ }}
+
+{{#if project.p1000_002}}
+
 <h5>500 - Server Error</h5>
 <p>Please try again later. If you still have problems contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
+
+<div>
+     <p>** Project p1000_002 **
+     </p>
+
+     {{#section "projectjs"}}
+     <script src="js/p1000_002.js"></script>
+     {{/section}}
+</div>
+
+
+{{! -- Project not specified - OR - not recognised - use default Institution 1000   Project 001--------------- }}
+
+{{else}}
+
+<h5>500 - Server Error</h5>
+<p>Please try again later. If you still have problems contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
+
+
+{{/if}}
+
+

@@ -1,3 +1,6 @@
+{{! ----------------- Institution 1000   Project 002 ------------------ }}
+
+{{#if project.p1000_002}}
 
 <div class="row justify-content-center">
    <div class="col-10">
@@ -31,4 +34,54 @@
 
 </div>
 
+
+<div>
+     <p>** Project p1000_002 **
+     </p>
+
+     {{#section "projectjs"}}
+     <script src="js/p1000_002.js"></script>
+     {{/section}}
+</div>
+
+
+{{! -- Project not specified - OR - not recognised - use default Institution 1000   Project 001--------------- }}
+
+{{else}}
+
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+
+     <h5 class="pt-3">Instructions</h5>
+     <p>Your task is to memorise pairs of words, and then your memory for those pairs will be tested.</p>
+
+     <p>First you will be shown each pair of words for 7 seconds. Try to memorise the pairs.</p>
+
+     <p>After all word pairs have been shown your memory for each word pair will be tested:
+	 <ul> 
+	   <li>You will be shown the first word in a pair and asked to enter the second word.</li> 
+	   <li>You will be told whether your answer was correct or not, and the correct answer will be displayed.</li> 
+	   <li>If you get the answer wrong please try to remember the correct answer.</li> 
+	   <li>Each word pair will be tested multiple times.</li>
+	 </ul>
+     </p>
+
+     <p>To familiarise you with the process there is a short demonstration. This will use a short list, with only three word pairs. This is only to help you get familiar with the process; the results are not part of the study. You can repeat the demonstration as many times as you like before starting the main part of the study.</p>
+
+     <p>Try to work quickly, but without rushing.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+     	  <a href="/demo" class="btn btn-primary" role="button">Next</a>
+     </div>
+
+</div>
+
+
+{{/if}}
 
