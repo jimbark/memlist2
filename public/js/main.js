@@ -56,34 +56,34 @@ var mL2 = [['l2c1','l2a1',0,0,1], ['l2c2','l2a2',0,0,1],['l2c3','l2a3',0,0,3]];
 
 // first delayed test lists
 var del1L1 = [
-    ['TUNE','VEAL',0,0],
-    ['STOVE','DIRT',0,0],
-    ['SOLE','CROW',0,0],
-    ['BIRTH','SUITE',0,0],
-    ['PUMP','LOOP',0,0],
-    ['BLADE','CALF',0,0],
-    ['WAIST','SPRAY',0,0],
-    ['TROOP','LEAK',0,0]
+    ['TUNE','VEAL',0,0,0],
+    ['STOVE','DIRT',0,0,0],
+    ['SOLE','CROW',0,0,0],
+    ['BIRTH','SUITE',0,0,0],
+    ['PUMP','LOOP',0,0,0],
+    ['BLADE','CALF',0,0,0],
+    ['WAIST','SPRAY',0,0,0],
+    ['TROOP','LEAK',0,0,0]
 ];
 
 //var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
 //var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
-var del1L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
+var del1L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]];
 
 // second delayed test lists
 var del2L1 = [
-    ['TRIBE','SWEEP',0,0],
-    ['JUICE','PORK',0,0],
-    ['GLOBE','LOCK',0,0],
-    ['RASH','PASTE',0,0],
-    ['FORK','VEST',0,0],
-    ['THIEF','VEIN',0,0],
-    ['GRIP','COIL',0,0],
-    ['STEEL','BARK',0,0]
+    ['TRIBE','SWEEP',0,0,0],
+    ['JUICE','PORK',0,0,0],
+    ['GLOBE','LOCK',0,0,0],
+    ['RASH','PASTE',0,0,0],
+    ['FORK','VEST',0,0,0],
+    ['THIEF','VEIN',0,0,0],
+    ['GRIP','COIL',0,0,0],
+    ['STEEL','BARK',0,0,0]
 ];
 
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
-var del2L2 = [['l2c1','l2a1',0,0], ['l2c2','l2a2',0,0],['l2c3','l2a3',0,0]];
+var del2L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]];
 
 // demo lists
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
@@ -100,7 +100,9 @@ var testInterval = 50; // interval between delayed test items
 // initialise global variables
 var sL1 = mL1; // study list 1
 var sL2 = mL2; // study list 2
-var lists = [sL1, sL2]; // combined lists of unlearnt pairs
+var fsL1 = [];  // full answers list for sL1
+var fsL2 = [];  // full answers list for sL2
+var lists = [sL1, sL2, fsL1, fsL2]; // combined lists of unlearnt pairs
 var lL1 = [];  // learnt list 1
 var lL2 = [];  // learnt list 2
 var llists = [lL1, lL2];  // combined lists of learnt pairs
@@ -109,7 +111,9 @@ var l = 0;  // list counter
 var c = 1;  // presentations counter
 var tL1 = mL1;
 var tL2 = mL2;
-var tlists = [tL1, tL2];
+var ftL1 = [];  // full answers list for tL1
+var ftL2 = [];  // full answers list for tL2
+var tlists = [tL1, tL2, ftL1, ftL2];
 var fL1 = [];
 var fL2 = [];
 var flists = [lL1, lL2];
@@ -203,7 +207,9 @@ function validStartLearn() {
     // initialise counters and variables
     sL1 = mL1;
     sL2 = mL2;
-    lists = [sL1, sL2];
+    fsL1 = [];
+    fsL2 = [];
+    lists = [sL1, sL2, fsL1, fsL2];
     lL1 = [];
     lL2 = [];
     llists = [lL1, lL2];
@@ -220,7 +226,9 @@ function startDemo() {
     // initialise counters and variables
     sL1 = dL1;
     sL2 = dL2;
-    lists = [sL1, sL2];
+    fsL1 = [];
+    fsL2 = [];
+    lists = [sL1, sL2, fsL1, fsL2];
     lL1 = [];
     lL2 = [];
     llists = [lL1, lL2];
@@ -448,11 +456,20 @@ function test() {
 // function triggered by 'Submit' button or <CR> after entering an answer in demo or study phase
 function checkAnswer() {
 
+    var dNow = new Date();
+    var firstWord = lists[l][i][0];
+    var secondWord = lists[l][i][1];
+    var answerWord = document.getElementById("tAnswerWord").value;  // don’t uppercase so can check case used
+    var errorFlag = 0;
+    var info = [firstWord, secondWord, answerWord, errorFlag, dNow];
+
     if (document.getElementById("tAnswerWord").value.toUpperCase() === lists[l][i][1]) {
 	++lists[l][i][2];  // increment correct counter
+	lists[l+2].push(info);    // append full answer info to full answers list
+
 	// if criterion reached record time and move to learnt list and remove from study list
 	if (lists[l][i][2] === lists[l][i][4]) {
-	    lists[l][i][5] = new Date();
+	    lists[l][i][5] = dNow;
 	    llists[l].push(lists[l][i]);
 	    lists[l].splice(i,1);
 	    --i;    // decrement i as lists[l] is now one element shorter
@@ -463,6 +480,9 @@ function checkAnswer() {
     }
     else {
 	++lists[l][i][3];  // increment incorrect counter
+	info[3] = 1;
+	lists[l+2].push(info);    // append full answer info to full answers list
+
 	document.getElementById("feedbackIncorrect").style.display = "block";
 	document.getElementById("testForm").style.display = "none";
 	document.getElementById("testText").style.display = "none";
@@ -526,14 +546,26 @@ window.onload = enterRespond;
 // function trieggered by 'Submit' button or <CR> after entering an answer in delayed test phase
 function checkNoFeedback() {
 
+    var dNow = new Date();
+    var firstWord = tlists[l][i][0];
+    var secondWord = tlists[l][i][1];
+    var answerWord = document.getElementById("tAnswerWord").value;  // don’t uppercase so can check case used
+    var errorFlag = 0;
+    var info = [firstWord, secondWord, answerWord, errorFlag, dNow];
+
     if (document.getElementById("tAnswerWord").value.toUpperCase() === tlists[l][i][1]) {
 	++tlists[l][i][2];  // increment correct counter
+	tlists[l][i][5] = dNow;
+	tlists[l+2].push(info);  // append full answer details to full answers list
 	// move to finished list and remove from test list
 	flists[l].push(tlists[l][i]);
 	//tlists[l].splice(i,1);
     }
     else {
 	++tlists[l][i][3];  // increment incorrect counter
+	info[3] = 1;
+	tlists[l][i][5] = dNow;
+	tlists[l+2].push(info);  // append full answer details to full answers list
 	// move to finished list and remove from test list
 	flists[l].push(tlists[l][i]);
 	//tlists[l].splice(i,1);
@@ -551,7 +583,9 @@ function startTest() {
     c = 1;  // presentations counter
     tL1 = del1L1;
     tL2 = del1L2;
-    tlists = [tL1, tL2];
+    ftL1 = [];
+    ftL2 = [];
+    tlists = [tL1, tL2, ftL1, ftL2];
     fL1 = [];
     fL2 = [];
     flists = [fL1, fL2];
@@ -571,7 +605,9 @@ function startTest2() {
     c = 1;  // presentations counter
     tL1 = del2L1;
     tL2 = del2L2;
-    tlists = [tL1, tL2];
+    ftL1 = [];
+    ftL2 = [];
+    tlists = [tL1, tL2, ftL1, ftL2];
     fL1 = [];
     fL2 = [];
     flists = [fL1, fL2];
@@ -629,7 +665,8 @@ function delayedTest() {
 		endDate: JSON.stringify(endDate),
 		duration: JSON.stringify(endDate.getTime() - startDate.getTime()),
 		message: 'post message',
-		testType: testType
+		testType: testType,
+		tlists: JSON.stringify(tlists)
 	    },
 
 	    type: "POST",

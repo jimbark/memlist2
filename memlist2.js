@@ -937,6 +937,19 @@ app.post('/studySave', function(req, res){
 
 	    }
 
+	if ((req.body.testType === 'delayed') || (req.body.testType === 'delayed2')) {
+
+	    console.log('here are the study phase additional stringified objects:');
+	    console.log(req.body.tlists);
+
+	    var tlists = JSON.parse(req.body.tlists);
+
+	    console.log(tlists);
+	    console.log(tlists[2][0]);
+
+	    lists.push(tlists);  //  add the test lists with the full answers data too
+
+	    }
 
 	var stringifiedLists = JSON.stringify(lists);  // stringifiedLists = JSON.stringify(lists);
 	console.log('here is the full stringified data object:');
