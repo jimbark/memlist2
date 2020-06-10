@@ -1,6 +1,32 @@
+{{! ----------------- Institution 1000   Project 010   Norwegian ------------------ }}
+
+{{#if project.p1000_010}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Takk for din interesse i prosjektet!</h5>
+     	    <p>Vi beklager å høre at du ikke ønsker å delta i prosjektet. Din deltakelse har blitt trukket. Du er velkommen tilbake for å delta i andre studier.</p>
+
+            <a href="/" class="btn btn-primary" role="button">Tilbake til startsiden</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_010.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 002 ------------------ }}
 
-{{#if project.p1000_002}}
+{{else if project.p1000_002}}
 
 <div id="introduction" style="display: block">
 
@@ -18,9 +44,6 @@
 
 
 <div>
-     <p>** Project p1000_002 **
-     </p>
-
      {{#section "projectjs"}}
      <script src="js/p1000_002.js"></script>
      {{/section}}

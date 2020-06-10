@@ -1,6 +1,38 @@
+
+{{! ----------------- Institution 1000   Project 010  Norwegian ------------------ }}
+
+{{#if project.p1000_010}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Trekke seg fra prosjektet.</h5>
+     	    <p>Hvis du ønsker å trekke deg fra prosjektet klikker du Trekke seg knappen nedenfor. All informasjon om din deltakelse vil bli slettet fra databasen våres. </p>
+            <p>Hvis du velger å trekke deg, vil du ikke kunne fortsette din deltakelse ved en senere anledning. Men vi ønsker deg alltid velkommen til å delta i våres fremtidige prosjekter. </p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Trekke seg</button>
+  	       </div>
+     	 </form>
+    </div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_010.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 002 ------------------ }}
 
-{{#if project.p1000_002}}
+{{else if project.p1000_002}}
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">

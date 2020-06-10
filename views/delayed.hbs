@@ -1,6 +1,125 @@
+
+{{! ----------------- Institution 1000   Project 010 Norwegian ------------------ }}
+
+{{#if project.p1000_010}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Velkommen tilbake! </h5>
+
+       	    <p  id='study' style="display: block">Takk for at du kommer tilbake til den første forsinkede testen. Du vil bli testet på noen av ordparene du lærte tidligere, på samme måte. Du vil bli vist det første ordet i ett ordpar, og spurt om å skrive inn det andre ordet. Dette burde ikke ta mer enn 3 minutter. </p>
+       	    <p  id='study' style="display: block">Når du er klar, trykk på startknappen under. </p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest()" class="btn btn-primary">Start Test</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Type in the second word in the pair. Press Return or the Submit button to continue:
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Ferdig</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instruksjoner etter den forsinkede testen</h5>
+     <p>Bra jobbet! Takk for at du fullførte 55 minutter testen av vårt prosjekt.</p>
+     <p>Du scoret <span id='correctAnswers'>12</span> av <span id='totalAnswers'>12</span>.</p>
+
+     <p>For den siste delen ønsker vi at du kommer tilbake til samme tidspunkt i morgen, rundt <b> {{hr24TestTime}} </b>, for å bli testet en siste gang.</p>
+     <p>Når du kommer tilbake, besøk startsiden og trykk «returnerende deltaker».</p>
+     <p>Ikke øv på ordparene mellom testene, da dette kan ugyldiggjøre resultatet av prosjektet. </p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Gå tilbake til startsiden </a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_010.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 002 ------------------ }}
 
-{{#if project.p1000_002}}
+{{else if project.p1000_002}}
 
 <div id="introduction" style="display: block">
 

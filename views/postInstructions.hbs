@@ -1,6 +1,37 @@
+
+{{! ----------------- Institution 1000   Project 010 ------------------ }}
+
+{{#if project.p1000_010}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Videre instruksjon etter læringsdelen</h5>
+     <p>Takk for at du fullførte første del av prosjektet. For den neste delen ønsker vi at du kommer tilbake om 55 minutter, <b> {{min30TestTime}} </b>, for å bli testet igjen. </p>
+     <p>Når du kommer tilbake, besøk startsiden og trykk «returnerende deltaker».</p>
+     <p>Ikke øv på ordparene mellom testene, da dette kan ugyldiggjøre resultatet av prosjektet. </p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Gå tilbake til startside</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_010.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 002 ------------------ }}
 
-{{#if project.p1000_002}}
+{{else if project.p1000_002}}
 
 <div class="row justify-content-center">
    <div class="col-10">
