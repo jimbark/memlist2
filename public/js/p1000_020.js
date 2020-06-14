@@ -3,7 +3,7 @@
 // Bootstrap and HTML Boilerplate
 // *********************************************************
 
-// project: p1000_010,  Norwegian
+// project: p1000_020,  Indian English
 
 // Constants
 
@@ -56,18 +56,18 @@ var mL1 = [
 
 // study lists with 3 recalls for all pairs, and only 12 pairs
 var mL1 = [
-    ['grill','gren',0,0,3],
-    ['drøm','stang',0,0,3],
-    ['kryss','stokk',0,0,3],
-    ['flagg','nebb',0,0,3],
-    ['smør','flokk',0,0,3],
-    ['saus','troll',0,0,3],
-    ['trapp','heks',0,0,3],
-    ['melk','skjul',0,0,3],
-    ['lunsj','stav',0,0,3],
-    ['knapp','frukt',0,0,3],
-    ['korn','hjul',0,0,3],
-    ['blekk','gjeng',0,0,3],
+    ['waist','spray',0,0,3],
+    ['hole','crow',0,0,3],
+    ['pump','track',0,0,3],
+    ['tune','silk',0,0,3],
+    ['stove','dirt',0,0,3],
+    ['blade','calf',0,0,3],
+    ['troop','leak',0,0,3],
+    ['birth','suite',0,0,3],
+    ['grip','prize',0,0,3],
+    ['fork','pile',0,0,3],
+    ['lump','sweep',0,0,3],
+    ['globe','lock',0,0,3],
 ];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
@@ -91,18 +91,18 @@ var del1L1 = [
 // first delayed test list, doing all 12 at both time intervals
 // randomise order: 11,4,12,7,3,8,2,5,9,6,1,10
 var del1L1 = [
-    ['korn','hjul',0,0,0],
-    ['flagg','nebb',0,0,0],
-    ['blekk','gjeng',0,0,0],
-    ['trapp','heks',0,0,0],
-    ['kryss','stokk',0,0,0],
-    ['melk','skjul',0,0,0],
-    ['drøm','stang',0,0,0],
-    ['smør','flokk',0,0,0],
-    ['lunsj','stav',0,0,0],
-    ['saus','troll',0,0,0],
-    ['grill','gren',0,0,0],
-    ['knapp','frukt',0,0,0],
+    ['lump','sweep',0,0,0],
+    ['tune','silk',0,0,0],
+    ['globe','lock',0,0,0],
+    ['troop','leak',0,0,0],
+    ['pump','track',0,0,0],
+    ['birth','suite',0,0,0],
+    ['hole','crow',0,0,0],
+    ['stove','dirt',0,0,0],
+    ['grip','prize',0,0,0],
+    ['blade','calf',0,0,0],
+    ['waist','spray',0,0,0],
+    ['fork','pile',0,0,0],
 ];
 
 //var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
@@ -112,18 +112,18 @@ var del1L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 // second delayed test lists
 // randomise order: 7,2,8,6,11,1,4,10,12,5,3,9
 var del2L1 = [
-    ['trapp','heks',0,0,0],
-    ['drøm','stang',0,0,0],
-    ['melk','skjul',0,0,0],
-    ['saus','troll',0,0,0],
-    ['korn','hjul',0,0,0],
-    ['grill','gren',0,0,0],
-    ['flagg','nebb',0,0,0],
-    ['knapp','frukt',0,0,0],
-    ['blekk','gjeng',0,0,0],
-    ['smør','flokk',0,0,0],
-    ['kryss','stokk',0,0,0],
-    ['lunsj','stav',0,0,0],
+    ['troop','leak',0,0,0],
+    ['hole','crow',0,0,0],
+    ['birth','suite',0,0,0],
+    ['blade','calf',0,0,0],
+    ['lump','sweep',0,0,0],
+    ['waist','spray',0,0,0],
+    ['tune','silk',0,0,0],
+    ['fork','pile',0,0,0],
+    ['globe','lock',0,0,0],
+    ['stove','dirt',0,0,0],
+    ['pump','track',0,0,0],
+    ['grip','prize',0,0,0],
 ];
 
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
@@ -133,9 +133,7 @@ var del2L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
 //var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2,0], ['WIZARD','TURKEY',0,0,2,0],['PISTOL','KENNEL',0,0,2,0]];
-var dL1 = [['gress','papp',0,0,2,0], ['kost','park',0,0,2,0],['horn','kjeks',0,0,2,0]];
-//var dL1 = [['gress','drøm',0,0,2,0], ['kost','tårn',0,0,2,0],['horn','kjeks',0,0,2,0]];
-
+var dL1 = [['juice','hook',0,0,2,0], ['steel','bark',0,0,2,0],['rash','paste',0,0,2,0]];
 var dL2 = [['dl2c1','dl2a1',0,0,1,0], ['dl2c2','dl2a2',0,0,3,0],['dl2c3','dl2a3',0,0,3,0]];
 
 var studyPresentations = 1;  // number of study presentations

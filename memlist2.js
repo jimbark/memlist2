@@ -345,9 +345,9 @@ app.get('/projtest', function(req, res){
 
 // and routes to allow direct access to a specific project
 app.get('/indian', function(req, res){
-    res.locals.project = { p1000_002: 'cheese' };
-    req.session.project = { name: "p1000_002" };
-    return res.redirect(303, '/?project=p1000_002');
+    res.locals.project = { p1000_020: 'cheese' };
+    req.session.project = { name: "p1000_020" };
+    return res.redirect(303, '/?project=p1000_020');
 });
 app.get('/norsk', function(req, res){
     res.locals.project = { p1000_010: 'cheese' };
@@ -734,13 +734,89 @@ app.post('/withdraw', function(req, res){
 
 app.post('/demographics', function(req, res){
 
+    // create all demographics variables for storage in userdb
+    // check for presence of fields so that different projects can have different questions
+
+    var inAge = 0;
+    if (req.body.age) {
+	inAge = req.body.age;
+	console.log('Age(from visible form field): ' + req.body.age);
+	}
+
+    var inGender = "null";
+    if (req.body.gender) {
+	inGender = req.body.gender;
+	console.log('Gender(from visible form field): ' + req.body.gender);
+	}
+
+    var inEducation = "null";
+    if (req.body.education) {
+	inEducation = req.body.education;
+	console.log('Education (from visible form field): ' + req.body.education);
+	}
+
+    var inEnglish = "null";
+    if (req.body.english) {
+	inEnglish = req.body.english;
+	console.log('English standard (from visible form field): ' + req.body.english);
+	}
+
+    var inNationality = "null";
+    if (req.body.nationality) {
+	inNationality = req.body.nationality;
+	console.log('Nationality (from visible form field): ' + req.body.nationality);
+	}
+
+    var inSpoken = "null";
+    if (req.body.spoken) {
+	inSpoken = req.body.spoken;
+	console.log('Spoken English standard (from visible form field): ' + req.body.spoken);
+	}
+
+    var inMedical = "null";
+    if (req.body.medical) {
+	inMedical = req.body.medical;
+	console.log('Medical (from visible form field): ' + req.body.medical);
+	}
+
+    var inDyslexia = "null";
+    if (req.body.dyslexia) {
+	inDyslexia = req.body.dyslexia;
+	console.log('Dyslexia (from visible form field): ' + req.body.dyslexia);
+	}
+
+    var inProblems = "null";
+    if (req.body.problems) {
+	inProblems = req.body.problems;
+	console.log('Problems (from visible form field): ' + req.body.problems);
+	}
+
+    var inOthersComparison = "null";
+    if (req.body.othersComparison) {
+	inOthersComparison = req.body.othersComparison;
+	console.log('OthersComparison (from visible form field): ' + req.body.othersComparison);
+	}
+
+    var inSelfComparison = "null";
+    if (req.body.selfComparison) {
+	inSelfComparison = req.body.selfComparison;
+	console.log('SelfComparison (from visible form field): ' + req.body.selfComparison);
+	}
+
+    var inConversation = "null";
+    if (req.body.conversation) {
+	inConversation = req.body.conversation;
+	console.log('Conversation (from visible form field): ' + req.body.conversation);
+	}
+
+    var inRating = "99";
+    if (req.body.rating) {
+	inRating = req.body.rating;
+	console.log('Rating (from visible form field): ' + req.body.rating);
+	}
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
-    console.log('Age(from visible form field): ' + req.body.age);
-    //console.log('Email (from visible form field): ' + req.body.email);
-    console.log('Gender (from visible form field): ' + req.body.gender);
-    console.log('Education (from visible form field): ' + req.body.education);
-    console.log('English standard (from visible form field): ' + req.body.english);
 
     // check user is logged in
     if(!req.session.passport) return res.redirect(303, '/login');
@@ -767,18 +843,38 @@ app.post('/demographics', function(req, res){
 	    "#F": 'english',
 	    "#G": 'nationality',
 	    "#H": 'mturkID',
+
+	    "#I": 'spoken',
+	    "#J": 'medical',
+	    "#K": 'dyslexia',
+	    "#L": 'problems',
+	    "#M": 'othersComparison',
+	    "#N": 'selfComparison',
+	    "#O": 'conversation',
+	    "#P": 'rating',
+
 	},
 	ExpressionAttributeValues: {
-	    ":b": { S: req.body.gender},
-	    ":c": { N: req.body.age},
+	    ":b": { S: inGender},
+	    ":c": { N: inAge},
 	    ":d": { S: 'registered'},
-	    ":e": { S: req.body.education},
-	    ":f": { S: req.body.english},
-	    ":g": { S: req.body.nationality},
+	    ":e": { S: inEducation},
+	    ":f": { S: inEnglish},
+	    ":g": { S: inNationality},
 	    ":h": { S: mturkID},
+
+	    ":i": {S: inSpoken},
+	    ":j": {S: inMedical},
+	    ":k": {S: inDyslexia},
+	    ":l": {S: inProblems},
+	    ":m": {S: inOthersComparison},
+	    ":n": {S: inSelfComparison},
+	    ":o": {S: inConversation},
+	    ":p": {N: inRating},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b, #C = :c, #D = :d, #E = :e, #F = :f, #G = :g, #H = :h"
+	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p"
     };
 
     User.updateById(authId, updates, function (err, data) {
