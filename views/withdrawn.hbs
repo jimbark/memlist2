@@ -1,6 +1,33 @@
+
+{{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
+
+{{#if project.p1000_020}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Thanks for your interest in this research! </h5>
+     	    <p>We are sorry you don't wish to participate in this study. You have been withdrawn. You are welcome to come back and participate in our other studies in future.</p>
+
+            <a href="/" class="btn btn-primary" role="button">Return to home page</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_020.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 010   Norwegian ------------------ }}
 
-{{#if project.p1000_010}}
+{{else if project.p1000_010}}
 
 <div id="introduction" style="display: block">
 

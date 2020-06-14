@@ -1,7 +1,22 @@
 
+{{! ----------------- Institution 1000   Project 020  Indian English  ------------------ }}
+
+{{#if project.p1000_020}}
+
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_020.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 010 Norwegian ------------------ }}
 
-{{#if project.p1000_010}}
+{{else if project.p1000_010}}
 
 <h5>403 error - Form has been tampered with.</h5>
 <p>For mer informasjon kontakt Terry McGibbon på tmcgi001@gold.ac.uk</p>

@@ -1,7 +1,69 @@
 
+{{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
+
+{{#if project.p1000_020}}
+
+
+<div class="row">
+
+   <div class="col-3">
+        <img src="/img/Mr_pipo_Learning_and_forgetting.png" class="img-fluid" alt="Responsive image of forgetting">
+   </div>
+
+   <div class="col-8">
+
+     <h4 class="pt-3">Welcome to The Forgetting Project!</h4>
+
+     <p>We are studying human memory and forgetting, and how this varies within the general population. If you would like to participate you just need to have a good standard of English and be aged 18 or over.
+     </p>
+     <p>First tell us whether you are a new participant, or a returning participant.
+     </p>
+
+     <div class="row">
+     <div class="col-auto text-center pt-3">
+     <a href="/learn?project=p1000_020" class="btn btn-primary" role="button">New participant</a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/delayed?project=p1000_020" class="btn btn-primary" role="button">Returning participant</a>
+     </div>
+
+     </div>
+
+     <div class="row" style="display = inline">
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_001"><img src="/img/GB.png" alt="Select English language"></a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_010"><img src="/img/NO.png" alt="Select Norwegian language"></a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_020"><img src="/img/IN.png" alt="Select Indian English as language"></a>
+     </div>
+
+     </div>
+
+   </div>
+
+</div>
+
+
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_020.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 010  Norwegian ------------------ }}
 
-{{#if project.p1000_010}}
+{{else if project.p1000_010}}
 
 <div class="row">
 
@@ -39,6 +101,10 @@
      <a href="/?project=p1000_010"><img src="/img/NO.png" alt="Select Norwegian language"></a>
      </div>
 
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_020"><img src="/img/IN.png" alt="Select Indian English as language"></a>
+     </div>
+
      </div>
 
    </div>
@@ -72,12 +138,15 @@
      </p>
 
      <div class="row">
+
      <div class="col-auto text-center pt-3">
      <a href="/learn?project=p1000_002" class="btn btn-primary" role="button">New participant</a>
      </div>
 
      <div class="col-auto text-center pt-3">
      <a href="/delayed?project=p1000_002" class="btn btn-primary" role="button">Returning participant</a>
+     </div>
+
      </div>
 
      <div class="row" style="display = inline">
@@ -88,6 +157,10 @@
 
      <div class="col-auto text-center pt-3">
      <a href="/?project=p1000_010"><img src="/img/NO.png" alt="Select Norwegian language"></a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_020"><img src="/img/IN.png" alt="Select Indian English as language"></a>
      </div>
 
      </div>
@@ -140,6 +213,10 @@
 
      <div class="col-auto text-center pt-3">
      <a href="/?project=p1000_010"><img src="/img/NO.png" alt="Select Norwegian language"></a>
+     </div>
+
+     <div class="col-auto text-center pt-3">
+     <a href="/?project=p1000_020"><img src="/img/IN.png" alt="Select Indian English as language"></a>
      </div>
 
      </div>

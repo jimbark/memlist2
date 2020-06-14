@@ -1,8 +1,106 @@
 
+{{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
+
+{{#if project.p1000_020}}
+
+<div id="introduction" style="display: block">
+
+
+    <div class="row justify-content-center">
+        <div class="col text-center">
+	     <h5 class='text-center pt-3'>Word-pair learning practice trial</h5>
+            <p  id='study' style="display: block">When you are ready press the button below to start the practice trial.</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <button type="button" onclick="startDemo()" class="btn btn-primary">Start Practice Trial</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to remember:<b id='wordpair'></b> </p> 
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Type in the second word in the pair. Press Return or the Submit button to continue
+      	  <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p> 
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p> 
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+<p  id='testOver' style="display: none">Test is complete! 
+    Total learning time was: <b id='duration'>0ms</b>
+    Total correct answers:  <b id='correctAnswers'>0</b>
+    Total incorrect answers:  <b id='incorrectAnswers'>0</b>
+</p>
+
+
+   </div>
+</div> 
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+</form>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_020.js"></script>
+     {{/section}}
+</div>
+
+
 
 {{! ----------------- Institution 1000   Project 010  Norwegian ------------------ }}
 
-{{#if project.p1000_010}}
+{{else if project.p1000_010}}
 
 <div id="introduction" style="display: block">
 
