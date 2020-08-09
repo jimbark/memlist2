@@ -1,7 +1,22 @@
 
+{{! ----------------- Institution 1000   Project 030  French  ------------------ }}
+
+{{#if project.p1000_030}}
+
+<h5>Erreur 403 - Le formulaire a été manipulé.</h5>
+<p>Pour plus d'informations, contactez Terry McGibbon à l'adresse suivante : tmcgi001@gold.ac.uk</p>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 020  Indian English  ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
 <h5>403 error - Form has been tampered with.</h5>
 <p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>

@@ -1,7 +1,127 @@
 
+{{! ----------------- Institution 1000   Project 030  French ------------------ }}
+
+{{#if project.p1000_030}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Bienvenue à nouveau!</h5>
+
+       	    <p  id='study' style="display: block">
+Merci d'être revenu pour votre premier test différé. Vous serez testé de la même manière qu'auparavant sur certaines paires de mots que vous avez appris précédemment. On vous montrera le premier mot d'une paire et on vous demandera d'entrer le deuxième mot. Cela ne devrait pas prendre plus de 3 minutes.
+            </p>
+       	    <p  id='study' style="display: block">Quand vous serez prêt, appuyez sur le bouton ci-dessous pour commencer.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest()" class="btn btn-primary">Commencer à tester</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Tapez le deuxième mot de la paire. Appuyez sur la touche Retour ou sur le bouton Envoyer pour continuer:
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Envoyer</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instructions après le test différé</h5>
+     <p>Bravo! Merci d'avoir complété la phase de test de 55 minutes de notre étude.</p>
+     <p> Vous avez obtenu un score de <span id='correctAnswers'>12</span> sur <span id='totalAnswers'>12</span>.</p>
+
+     <p>Pour la phase finale, nous vous demandons de revenir demain à la même heure, donc vers <b> {{hr24TestTime}} </b>, pour être testé une dernière fois.</p>
+     <p>Lorsque vous revenez, visitez notre page d'accueil et entrez sur le site en tant que participant existant.</p>
+     <p>N'essayez pas de répéter les paires de mots parce que cela rendrait les résultats de la recherche invalides.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Retourner à la page d'accueil</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
 <div id="introduction" style="display: block">
 

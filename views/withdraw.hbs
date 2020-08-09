@@ -1,7 +1,38 @@
 
+{{! ----------------- Institution 1000   Project 030 French ------------------ }}
+
+{{#if project.p1000_030}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Se retirer de l'étude.</h5>
+     	    <p>Si vous souhaitez vous retirer de l'étude, cliquez sur le bouton "Se retirer" ci-dessous. Toutes les informations personnelles relatives à votre participation seront supprimées de notre base de données.</p>
+            <p>Si vous vous retirez, vous ne pourrez pas reprendre votre participation ultérieurement. Cependant, vous pourrez toujours participer à nos prochaines études.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Se retirer</button>
+  	       </div>
+     	 </form>
+    </div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 020 Indian English ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">

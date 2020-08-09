@@ -1,7 +1,98 @@
 
+{{! ----------------- Institution 1000   Project 030  French  ------------------ }}
+
+{{#if project.p1000_030}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Consentement à participer à une étude de recherche</h5>
+
+     <p>L'objectif de cette page est de vous fournir les informations dont vous devez tenir compte pour décider de participer ou non à cette étude de recherche.</p>
+
+     <p>Les études du Projet de l'Oubli sont menées par l'université Goldsmiths de Londres. Le chercheur principal est actuellement le doctorant Terry McGibbon, sous la supervision du neuropsychologue Dr Ashok Jansari.
+     </p>
+
+     <h5>Description de l'étude </h5>
+
+     <p>La capacité des gens à apprendre et à se souvenir de nouvelles informations varie avec l'âge et est influencée par des maladies liées au cerveau comme l'épilepsie et la maladie d'Alzheimer. Cette étude vise à déterminer comment la mémoire varie au sein de la population générale. Les participants vont devoir mémoriser des paires de mots, et ensuite les rappeler à deux reprises. Cette étude ne causera aucun dommage physique ou mental, vous ne ressentirez donc aucune détresse en participant à cette étude. 
+     </p>
+
+     <h5>Confidentialité des données </h5>
+
+     <p>
+Les données seront totalement anonymes et confidentielles et seront conservées en toute sécurité par voie électronique. Vos données personnelles, telles que votre âge et votre sexe, ne seront pas identifiables et ne seront visibles que par les chercheurs qui mènent l'étude. Ces informations ne seront pas partagées avec d'autres organisations et ne seront pas incluses dans un rapport ou d'autres publications découlant de l'étude. Seuls les résultats seront conservés une fois l'étude terminée. 
+     </p>
+
+     <h5>Droit de retrait </h5>
+
+     <p>
+Vous n'êtes pas obligé de participer à cette étude et ne devez pas vous sentir contraint. Vous êtes libre de vous retirer à tout moment. Si vous décidez de vous retirer de l'étude, vous pouvez le faire sans que cela ne vous nuise et sans avoir à donner une raison. 
+     </p>
+
+     <h5>Contacts</h5>
+
+     <p>
+Si vous avez des questions ou des remarques sur la manière dont l'étude a été menée, veuillez contacter Terry McGibbon (tmcgi001@gold.ac.uk) ou Dr Ashok Jansari (a.jansari@gold.ac.uk) 
+     </p>
+
+     <h5>Clause de non-responsabilité </h5>
+
+     <p class="font-italic">J’ai 18 ans ou plus. </p>
+
+     <p class="font-italic">J'ai pris connaissance des informations relatives à l'étude de recherche ci-dessus, qui m'ont expliqué la nature et les objectifs de la recherche, ainsi que la procédure dans laquelle je serai impliqué.
+   </p>
+
+     <p class="font-italic">
+Je comprends que ma participation à cette étude, et les données issues de cette recherche, resteront strictement confidentielles. Seuls les chercheurs impliqués dans l'étude auront accès aux données d'identification. On m’a expliqué ce qu'il adviendra des données une fois l'étude terminée.
+    </p>
+
+     <p class="font-italic">
+Par la présente, je consens librement et pleinement à participer à l'étude qui m'a été expliquée en détail. Ayant donné ce consentement, je comprends que j'ai le droit de me retirer de l'étude à tout moment sans que cela ne me nuise et sans être obligé de donner une quelconque raison. Je comprends également que si je me retire, le chercheur se réserve le droit d'utiliser mes données entièrement anonymisées dans la rédaction de l'étude et dans toute analyse ultérieure qu'il pourrait effectuer.
+    </p>
+
+     <p>
+Si vous êtes heureux de continuer, veuillez confirmer que vous acceptez de participer à cette étude en cochant la case ci-dessous et en sélectionnant "Suivant". Si vous ne souhaitez pas participer à l'étude, sélectionnez "Non merci". 
+    </p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      J'accepte de participer.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Suivant</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">Non merci</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 020  Indian English  ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
 <div class="row justify-content-center">
    <div class="col-10">

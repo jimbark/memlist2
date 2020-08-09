@@ -1,7 +1,123 @@
 
+{{! ----------------- Institution 1000   Project 030  French ------------------ }}
+
+{{#if project.p1000_030}}
+
+<div id="introduction" style="display: block" class="pt-3">
+
+    <div class="row justify-content-center">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Bienvenue à la phase principale de l’étude.</h1>
+	     <p>Maintenant que vous avez terminé la démo, vous êtes prêt à commencer la partie principale de l'étude. Cette fois, la liste des paires de mots sera plus longue.</p> 
+
+ 	     <p>La plupart des gens complètent cette étape en 15 minutes. Veuillez la faire dans un environnement où vous ne serez pas perturbés pendant la tâche.</p>
+       	    <p  id='study' style="display: block">Appuyez sur le bouton ci-dessous pour commencer</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <button type="button" onclick="startLearn()" class="btn btn-primary">Démarrer</button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-10 text-center">
+       	    <p  id='redemo' style="display: block">ou appuyez sur le bouton ci-dessous si vous préférez d'abord réessayer la démo.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <a href="/demo" class="btn btn-primary" role="button">Réessayer la démo</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Paire de mots à mémoriser:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Tapez le deuxième mot de la paire. Appuyez sur la touche Retour ou sur le bouton Envoyer pour continuer:
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>La bonne paire est:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>La bonne paire est:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+<p  id='testOver' style="display: none">Test is complete!
+    Total learning time was: <b id='duration'>0ms</b>
+    Total correct answers:  <b id='correctAnswers'>0</b>
+    Total incorrect answers:  <b id='incorrectAnswers'>0</b>
+</p>
+
+
+   </div>
+</div>
+
+
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Envoyer</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
 <div id="introduction" style="display: block" class="pt-3">
 

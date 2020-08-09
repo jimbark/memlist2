@@ -1,7 +1,143 @@
 
+{{! ----------------- Institution 1000   Project 030  French ------------------ }}
+
+{{#if project.p1000_030}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Bienvenue à nouveau!</h5>
+
+       	    <p  id='study' style="display: block">
+Merci d'être revenu pour votre deuxième test différé. Vous serez testé de la même manière qu'auparavant sur certaines paires de mots que vous avez appris précédemment. On vous montrera le premier mot d'une paire et on vous demandera d'entrer le deuxième mot. Cela ne devrait pas prendre plus de 3 minutes.
+          </p>
+       	    <p  id='study' style="display: block">Quand vous serez prêt, appuyez sur le bouton ci-dessous pour commencer.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest2()" class="btn btn-primary">Commencer à tester</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Tapez le deuxième mot de la paire. Appuyez sur la touche Retour ou sur le bouton Envoyer pour continuer:
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Envoyer</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Retour d'information sur le test - 24 heures</h5>
+     <p>Bravo ! Merci d'avoir terminé votre deuxième test différé.</p>
+     <p>Vous avez obtenu un score de <span id='correctAnswers'>12</span> sur <span id='totalAnswers'>12</span>.</p>
+
+     <p>Nos dossiers montrent que vous avez maintenant terminé toutes les étapes de l'étude. Vous n’avez plus rien à faire.</p>
+     <p>Merci pour votre participation! </p>
+
+     <p>Si vous participez via Mechanical Turk, utilisez votre code de participation pour enregistrer l'achèvement de la tâche.</p>
+
+      <p>Vous trouverez ci-dessous, pour ceux qui sont intéressés, des informations supplémentaires sur l'étude.</p>
+
+     <h5>Débriefing de l'étude </h5>
+
+     <p>Cette étude teste la mémorisation des paires de mots avec des délais de 55 minutes et 24 heures.</p> 
+
+     <p>La plupart des recherches sur la mémoire et des tests cliniques examinent la mémoire après 30 minutes. Il est difficile de faire des tests à des délais prolongés, car il faudrait que les participants retournent à une clinique de mémoire pour des tests répétés. Par conséquent, les informations sur le développement de la mémoire sur des périodes prolongées sont limitées.</p>
+
+     <p>En utilisant un test en en ligne, nous espérons surmonter ce problème, en permettant à un grand nombre de personnes de la population générale de participer.</p>
+
+     <p>En effectuant des tests sur un délai plus long, de 24 heures, nous espérons identifier les changements de la mémoire au fil du temps.</p> 
+
+     <p>À l'avenir, nous fournirons aux participants un retour d'information sur la comparaison de leur score avec celui des autres. Cette fonction sera ajoutée lorsque nous aurons suffisamment de données pour établir des comparaisons utiles.</p>
+
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Retourner à la page d'accueil</a>
+     </div>
+</div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
 <div id="introduction" style="display: block">
 
@@ -103,7 +239,7 @@
 
      <h5>Study debrief</h5>
 
-     <p>This study tests memory for word-pairs at delays of 30 minutes and 24 hours.</p> 
+     <p>This study tests memory for word-pairs at delays of 55 minutes and 24 hours.</p> 
 
      <p>Most memory research and clinical testing looks at memory after 30 minutes. It is hard to test at extended delays as this normally requires getting participants to return to a memory clinic for repeated testing. As a result less is known about memory development over extended timeframes.</p>
 

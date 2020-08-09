@@ -1,7 +1,36 @@
 
+{{! ----------------- Institution 1000   Project 030  French ------------------ }}
+
+{{#if project.p1000_030}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instructions après l'apprentissage</h5>
+     <p>Merci d'avoir complété la première partie de l'étude. Pour l'étape suivante, vous devez revenir dans 55 minutes, à <b> {{min30TestTime}} </b>, pour être testé à nouveau.</p>
+     <p>Lorsque vous revenez, visitez notre page d'accueil et entrez sur le site en tant que participant existant.</p>
+     <p>N'essayez pas de répéter les paires de mots parce que cela rendrait les résultats de la recherche invalides.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Retourner à la page d'accueil</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_030.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
 
-{{#if project.p1000_020}}
+{{else if project.p1000_020}}
 
 <div class="row justify-content-center">
    <div class="col-10">
