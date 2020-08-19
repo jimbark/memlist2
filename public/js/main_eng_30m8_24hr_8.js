@@ -3,8 +3,6 @@
 // Bootstrap and HTML Boilerplate
 // *********************************************************
 
-// project: p1000_020,  Indian English
-
 // Constants
 
 // list format:
@@ -16,7 +14,7 @@ var mL1 = [
     ['WAIST','SPRAY',0,0,2],
     ['STOVE','DIRT',0,0,1],
     ['GRIP','COIL',0,0,5],
-    ['JURK',0,0,3],
+    ['JUICE','PORK',0,0,3],
     ['SOLE','CROW',0,0,2],
     ['BLADE','CALF',0,0,1],
     ['FORK','VEST',0,0,5],
@@ -32,7 +30,6 @@ var mL1 = [
 ];
 */
 
-/*
 // study lists after pilot with 1 recall for 30mins and 3 for 24hrs
 var mL1 = [
     ['WAIST','SPRAY',0,0,1],
@@ -52,29 +49,11 @@ var mL1 = [
     ['GLOBE','LOCK',0,0,3],
     ['THIEF','VEIN',0,0,3]
 ];
-*/
-
-// study lists with 3 recalls for all pairs, and only 12 pairs
-var mL1 = [
-    ['waist','spray',0,0,3],
-    ['stove','dirt',0,0,3],
-    ['grip','coil',0,0,3],
-    ['juice','pork',0,0,3],
-    ['sole','crow',0,0,3],
-    ['blade','calf',0,0,3],
-    ['fork','vest',0,0,3],
-    ['steel','bark',0,0,3],
-    ['pump','loop',0,0,3],
-    ['troop','leak',0,0,3],
-    ['tribe','sweep',0,0,3],
-    ['rash','paste',0,0,3]
-];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
 //var mL1 = [['L1C1','L1A1',0,0,1], ['L1C2','L1A2',0,0,3],['L1C3','L1A3',0,0,3]];
 var mL2 = [['l2c1','l2a1',0,0,1], ['l2c2','l2a2',0,0,1],['l2c3','l2a3',0,0,3]];
 
-/*
 // first delayed test lists
 var del1L1 = [
     ['TUNE','VEAL',0,0,0],
@@ -86,44 +65,21 @@ var del1L1 = [
     ['WAIST','SPRAY',0,0,0],
     ['TROOP','LEAK',0,0,0]
 ];
-*/
-
-// first delayed test list, doing all 12 at both time intervals
-// randomise order: 11,4,12,7,3,8,2,5,9,6,1,10
-var del1L1 = [
-    ['tribe','sweep',0,0,0],
-    ['juice','pork',0,0,0],
-    ['rash','paste',0,0,0],
-    ['fork','vest',0,0,0],
-    ['grip','coil',0,0,0],
-    ['steel','bark',0,0,0],
-    ['stove','dirt',0,0,0],
-    ['sole','crow',0,0,0],
-    ['pump','loop',0,0,0],
-    ['blade','calf',0,0,0],
-    ['waist','spray',0,0,0],
-    ['troop','leak',0,0,0]
-];
 
 //var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
 //var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
 var del1L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]];
 
 // second delayed test lists
-// randomise order: 7,2,8,6,11,1,4,10,12,5,3,9
 var del2L1 = [
-    ['fork','vest',0,0,0],
-    ['stove','dirt',0,0,0],
-    ['steel','bark',0,0,0],
-    ['blade','calf',0,0,0],
-    ['tribe','sweep',0,0,0],
-    ['waist','spray',0,0,0],
-    ['juice','pork',0,0,0],
-    ['troop','leak',0,0,0],
-    ['rash','paste',0,0,0],
-    ['sole','crow',0,0,0],
-    ['grip','coil',0,0,0],
-    ['pump','loop',0,0,0]
+    ['TRIBE','SWEEP',0,0,0],
+    ['JUICE','PORK',0,0,0],
+    ['GLOBE','LOCK',0,0,0],
+    ['RASH','PASTE',0,0,0],
+    ['FORK','VEST',0,0,0],
+    ['THIEF','VEIN',0,0,0],
+    ['GRIP','COIL',0,0,0],
+    ['STEEL','BARK',0,0,0]
 ];
 
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
@@ -132,10 +88,8 @@ var del2L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 // demo lists
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
 //var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
-//var dL1 = [['GIRAFFE','GUITAR',0,0,2,0], ['WIZARD','TURKEY',0,0,2,0],['PISTOL','KENNEL',0,0,2,0]];
-var dL1 = [['birth','suite',0,0,2,0], ['globe','lock',0,0,2,0],['thief','vein',0,0,2,0]];
+var dL1 = [['GIRAFFE','GUITAR',0,0,2,0], ['WIZARD','TURKEY',0,0,2,0],['PISTOL','KENNEL',0,0,2,0]];
 var dL2 = [['dl2c1','dl2a1',0,0,1,0], ['dl2c2','dl2a2',0,0,3,0],['dl2c3','dl2a3',0,0,3,0]];
-
 
 var studyPresentations = 1;  // number of study presentations
 var learnCriterion = 3;  // number of time to correctly recall to reach criterion
@@ -168,7 +122,7 @@ var endDate = new Date();
 var testType = "";
 var clists = [];  // combined stats for learnt and unlearnt pairs
 var timedOut = false; // flag indicating whether timed out during study phase
-var studyTime = 20; // maximum study time in minutes; 22 for old groups with 16 pairs and 20 for 12 pairs, 17m for study4 lecture group
+var studyTime = 17; // maximum study time in minutes; 22 for old groups, 17m for study4 lecture group
 
 // respond to consent checkbox by enabling or disabling submit button
 $('#consented').change(function(){
@@ -357,15 +311,13 @@ function test() {
 
 	// calculate the 30min and 24hr test times based on time the study phase ended
 
-	// 1st and 2nd delay intervals milliseconds
+	// 30mins and 24 hours in milliseconds
 	var min30 = 1000 * 60 * 30;
-	var min55 = 1000 * 60 * 55;
-	var min60 = 1000 * 60 * 60;
 	var hour24 = 1000 * 60 * 60 * 24;
 
-	// calculate 1st delayed test target time
+	// calculate 30min test target time
 	var endTime = endDate.getTime();
-	var n = new Date(endTime + min55);
+	var n = new Date(endTime + min30);
 	var hr = n.getHours();
 	var min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
 	var ampm = "am";
@@ -511,7 +463,7 @@ function checkAnswer() {
     var errorFlag = 0;
     var info = [firstWord, secondWord, answerWord, errorFlag, dNow];
 
-    if (document.getElementById("tAnswerWord").value.toLowerCase() === lists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toUpperCase() === lists[l][i][1]) {
 	++lists[l][i][2];  // increment correct counter
 	lists[l+2].push(info);    // append full answer info to full answers list
 
@@ -601,7 +553,7 @@ function checkNoFeedback() {
     var errorFlag = 0;
     var info = [firstWord, secondWord, answerWord, errorFlag, dNow];
 
-    if (document.getElementById("tAnswerWord").value.toLowerCase() === tlists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toUpperCase() === tlists[l][i][1]) {
 	++tlists[l][i][2];  // increment correct counter
 	tlists[l][i][5] = dNow;
 	tlists[l+2].push(info);  // append full answer details to full answers list
