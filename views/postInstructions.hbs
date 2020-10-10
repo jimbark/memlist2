@@ -1,7 +1,39 @@
 
+{{! ----------------- Institution 1000   Project 040  Italian ------------------ }}
+
+{{#if project.p1000_040}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Istruzioni Post fase di acquisizione</h5>
+     <p>Grazie per aver completato la prima parte dello studio. Vi chiediamo di tornare tra
+55 minuti alle <b>{{min30TestTime}}</b>, per la seguente fase del test.</p>
+     <p>Per riprendere il test ritornare alla pagina principale e accedete come partecipanti che hanno già iniziato lo studio.</p>
+     <p>Vi preghiamo di non ripassare le coppie di parole in quanto ciò invaliderà i risultati della ricerca.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Ritornare alla pagina principale</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
+
+
 {{! ----------------- Institution 1000   Project 030  French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <div class="row justify-content-center">
    <div class="col-10">

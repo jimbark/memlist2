@@ -1,7 +1,123 @@
 
+{{! ----------------- Institution 1000   Project 040  Italian ------------------ }}
+
+{{#if project.p1000_040}}
+
+<div id="introduction" style="display: block" class="pt-3">
+
+    <div class="row justify-content-center">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Benvenuti alla fase principale dello studio.</h1>
+	     <p>Ora che avete completato la dimostrazione siete pronti ad iniziare la fase principale dello studio. Questa volta la lista delle coppie di parole da imparare sarà più lunga.</p> 
+
+ 	     <p>In media, questa fase viene completata entro 15 minuti. Vi preghiamo di eseguire la prova in un luogo privo di potenziali elementi di disturbo.</p>
+       	    <p  id='study' style="display: block">Cliccare sul seguente pulsante per iniziare</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <button type="button" onclick="startLearn()" class="btn btn-primary">Inizia</button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-10 text-center">
+       	    <p  id='redemo' style="display: block">se invece si desidera ripetere nuovamente la dimostrazione prima di iniziare cliccare il seguente pulsante.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <a href="/demo" class="btn btn-primary" role="button">Ripeti Demo</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Coppia da memorizzare:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Inserire la seconda parola della coppia nello spazio sottostante. Premere invio per continuare
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Corretto!</span></p>
+     <p>La corretta coppia di parole è la seguente:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Errato!</span></p>
+     <p>La corretta coppia di parole è la seguente:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+<p  id='testOver' style="display: none">Test is complete!
+    Total learning time was: <b id='duration'>0ms</b>
+    Total correct answers:  <b id='correctAnswers'>0</b>
+    Total incorrect answers:  <b id='incorrectAnswers'>0</b>
+</p>
+
+
+   </div>
+</div>
+
+
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Invio</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 030  French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <div id="introduction" style="display: block" class="pt-3">
 
@@ -46,7 +162,7 @@
 </div>
 
 <div id='testText' style="display: none">
-     <p>Tapez le deuxième mot de la paire. Appuyez sur la touche Retour ou sur le bouton Envoyer pour continuer:
+     <p>Tapez le deuxième mot de la paire. Appuyez sur la touche Retour ou sur le bouton Envoyer pour continuer
           <b id='dcue'></b>:<b id='danswer'></b> </p>
      <p> </p>
 </div>
@@ -278,7 +394,7 @@
 </div>
 
 <div id='testText' style="display: none">
-     <p>Skriv inn det andre ordet i ordparet. Trykk ferdig for å fortsette: 
+     <p>Skriv inn det andre ordet i ordparet. Trykk ferdig for å fortsette 
           <b id='dcue'></b>:<b id='danswer'></b> </p>
      <p> </p>
 </div>

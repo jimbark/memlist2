@@ -1,7 +1,21 @@
 
+{{! ----------------- Institution 1000   Project 040  Italian  ------------------ }}
+
+{{#if project.p1000_040}}
+
+<h1>404 – Server non trovato</h1>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 030  French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <h1>404 - Non trouvé</h1>
 

@@ -1,7 +1,33 @@
 
+{{! ----------------- Institution 1000   Project 040  Indian English ------------------ }}
+
+{{#if project.p1000_040}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Vi ringraziamo per il vostro interesse nel nostro studio di ricerca! </h5>
+     	    <p>Siamo spiacenti che non desideriate partecipare allo studio. La vostra partecipazione è stata revocata con successo. Vi invitiamo a partecipare ad altri studi in futuro.</p>
+
+            <a href="/" class="btn btn-primary" role="button">Ritornare alla pagina principale</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 030  French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <div id="introduction" style="display: block">
 

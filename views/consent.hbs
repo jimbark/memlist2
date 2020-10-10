@@ -1,7 +1,101 @@
 
+{{! ----------------- Institution 1000   Project 040  Italian  ------------------ }}
+
+{{#if project.p1000_040}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Consenso informato alla partecipazione allo studio di ricerca</h5>
+
+     <p>La finalità di questa pagina è di fornirvi le informazioni da consultare affinché possiate decidere se partecipare o meno al presente studio.</p>
+
+     <p>
+     Gli studi del progetto “Dimenticanza” sono condotti dall’Università Goldsmiths di Londra. Il responsabile della ricerca è il dottorando Terry McGibbon sotto la supervisione del Neuropsicologo Dottor. Ashok Jansari.
+     </p>
+
+     <h5>Descrizione dello Studio</h5>
+
+     <p>
+     La capacità di consolidare e rievocare nuove informazioni varia a seconda dell’età e può essere affetta da condizioni neurologiche come l’epilessia ed il morbo di Alzheimer. Il presente studio mira ad identificare come la memoria varia nella popolazione generale. Ai partecipanti è richiesto di memorizzare coppie di parole e rievocarle in maniera differita in due momenti distinti. La partecipazione allo studio non presenta alcun pericolo in quanto non può recare nessun tipo di danno fisico o mentale.
+     </p>
+
+     <h5>Confidenzialità dei dati</h5>
+
+     <p>
+     É garantita la totale confidenzialità e l’anonimato dei dati, la cui privacy sarà custodita elettronicamente. I vostri dati personali, quali l’età ed il sesso, saranno non-identificabili e vi avranno accesso esclusivamente i ricercatori responsabili dello studio. Queste informazioni sensibili non verranno condivise con nessuna organizzazione o incluse in alcuna pubblicazione derivante dallo studio, e solamente i risultati della ricerca verranno conservati una volta completato lo studio.
+     </p>
+
+     <h5>Diritto di ritirarsi dallo studio</h5>
+
+     <p>
+La partecipazione allo studio non è obbligatoria e non dovreste sentire alcuna pressione a farlo. Revocare il consenso alla partecipazione non vi recherà alcuno svantaggio e non ha bisogno di essere motivato.
+     </p>
+
+     <h5>Contatti</h5>
+
+     <p>
+     Se avete dubbi o domande riguardo alle modalità di esecuzione dello studio non esitate a contattare Terry McGibbon (tmcgi001@gold.ac.uk) o il Dottor Ashok
+Jansari (a.jansari@gold.ac.uk).
+     </p>
+
+     <h5>Dichiarazione di esclusione di responsabilità</h5>
+
+     <p class="font-italic">Sono maggiorenne (ho 18 o + anni). </p>
+
+     <p class="font-italic">Ho letto le informazioni riguardanti la natura e lo scopo del suddetto studio di ricerca e la procedura in cui sarò coinvolto.</p>
+
+     <p class="font-italic">
+     Sono a conoscenza del fatto che il mio coinvolgimento nel suddetto studio, e i dati che ne deriveranno, rimarranno strettamente confidenziali. Solamente i ricercatori responsabili dello studio avranno accesso ai dati identificativi. Mi è stato spiegato che cosa avverrà ai dati una volta completato lo studio di ricerca.
+     </p>
+
+     <p class="font-italic">
+     Con la presente acconsento espressamente e liberamente di partecipare allo studio le cui caratteristiche mi sono state ampiamente spiegate. Avendo dato il mio consenso riconosco di avere il diritto di ritirarmi dallo studio in qualsiasi momento senza alcuno svantaggio personale e senza bisogno di motivare la mia scelta. Riconosco anche che se dovessi ritirarmi il ricercatore riserva il diritto di utilizzare i miei dati resi anonimi nella pubblicazione dello studio e in qualsiasi ulteriore analisi che possa essere condotta dal ricercatore.
+     </p>
+
+     <p>
+     Se siete felici di continuare vi preghiamo di confermare il vostro consenso alla partecipazione allo studio selezionando la casella seguente e cliccando su “Continua”. Se invece non desiderate partecipare selezionate “No grazie”.
+     </p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+                      Acconsento alla partecipazione allo studio  		      
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Continua</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">No grazie</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
+
+
 {{! ----------------- Institution 1000   Project 030  French  ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <div class="row justify-content-center">
    <div class="col-10">

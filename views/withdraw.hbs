@@ -1,7 +1,37 @@
+{{! ----------------- Institution 1000   Project 040 Italian  ------------------ }}
+
+{{#if project.p1000_040}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Ritirarsi dallo studio.</h5>
+     	    <p>Se desiderate ritirarvi dallo studio cliccate sul pulsante “Abbandono” sottostante. Tutti i dati personali relativi alla vostra partecipazione verranno eliminati dalla nostra banca dati.</p>
+            <p>Una volta abbandonato lo studio non sarà possibile riprendere la partecipazione successivamente. Tuttavia, sarete i benvenuti nel caso in cui vogliate partecipare ad altri nostri studi in futuro.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Abbandono</button>
+  	       </div>
+     	 </form>
+    </div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
 
 {{! ----------------- Institution 1000   Project 030 French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">

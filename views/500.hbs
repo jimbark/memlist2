@@ -1,7 +1,21 @@
 
+{{! ----------------- Institution 1000   Project 040  Italian  ------------------ }}
+
+{{#if project.p1000_040}}
+
+<h5>500 – Si è verificato un errore del server</h5>
+<p>Perfavore riprovare più tardi. Se il problema persiste contattare Terry McGibbon (email: tmcgi001@gold.ac.uk).</p>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 030  French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <h5>500 - Erreur liée au serveur</h5>
 <p>Veuillez réessayer plus tard. Si vous éprouvez toujours des difficultés, contactez Terry McGibbon à l'adresse tmcgi001@gold.ac.uk</p>

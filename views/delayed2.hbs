@@ -1,7 +1,146 @@
 
+{{! ----------------- Institution 1000   Project 040  Italian ------------------ }}
+
+{{#if project.p1000_040}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Bentornati!</h5>
+
+       	    <p  id='study' style="display: block">
+            Grazie per essere tornati a partecipare al vostro secondo test di rievocazione differita. Vi verrà chiesto di rievocare le coppie di parole precedentemente acquisite nella stessa modalità di prima. Vi verrà mostrata la prima parole della coppia e richiesto di inserire la seconda. Ciò non dovrebbe impiegarvi più di 3 minuti.
+            </p>
+       	    <p  id='study' style="display: block">Cliccare sul seguente pulsante per iniziare.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest2()" class="btn btn-primary">Inizia</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Inserire la seconda parola della coppia nello spazio sottostante. Premere invio per continuare:
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Invio</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Rievocazione dopo 24 ore – Risultati</h5>
+     <p>Congratulazioni! Grazie per aver completato il vostro secondo test di rievocazione differita.</p>
+     <p>Il vostro punteggio è di <span id='correctAnswers'>12</span> su <span id='totalAnswers'>12</span>.</p>
+
+     <p>Ci risulta che tutte le fasi dello studio sono state completate. Non occorre nient’altro.</p>
+     <p>Grazie per aver partecipato! </p>
+
+     <p>Se state partecipando tramite Mechanical Turk usate il vostro codice di partecipazione per registrare il completamento della prova.</p>
+
+      <p>Per chi fosse interessato, abbiamo messo a vostra disposizione ulteriori informazioni sullo studio.</p>
+
+     <h5>Rapporto dello studio</h5>
+
+     <p>Il presente studio ha lo scopo di testare la memoria per coppie di parole da rievocare dopo intervalli di 30 minuti e di 24 ore.</p> 
+
+     <p>
+     La maggior parte della ricerca sulla memoria e dell’indagine di essa in ambito clinico si focalizza sulla rievocazione dopo 30 minuti. Risulta difficile estendere gli intervalli di rievocazione in quanto ciò normalmente richiede ai partecipanti di dover tornare più volte presso il centro di ricerca/la clinica per eseguire i test. Di conseguenza, sappiamo meno di cosa accade a livello mnemonico lungo intervalli di tempo più estesi.
+     </p>
+
+     <p>Tramite l’utilizzo di un test online speriamo di superare questo ostacolo, rendendo possibile la partecipazione ad un esteso numero di persone appartenenti alla popolazione generale.</p>
+
+     <p>Testando la rievocazione differita dopo 24 ore speriamo di riuscire ad indagare con successo lo sviluppo della memoria nel tempo.</p> 
+
+     <p>In futuro miriamo a fornire un feedback a ciascun partecipante su dove il proprio punteggio si colloca all’interno di una popolazione più ampia. Questa funzione verrà aggiunta una volta ottenuti dati a sufficienza affinché i confronti fatti siano informativi.</p>
+
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Ritornare alla pagina principale</a>
+     </div>
+</div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_040.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 030  French ------------------ }}
 
-{{#if project.p1000_030}}
+{{else if project.p1000_030}}
 
 <div id="introduction" style="display: block">
 
