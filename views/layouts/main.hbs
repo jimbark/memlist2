@@ -57,8 +57,35 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
+	      {{! ----------------- Institution 1000   Project 050  Turkish ------------------ }}
+	      {{#if project.p1000_050}}
+
+	      <ul class="navbar-nav">
+		<li class="nav-item active">
+		  <a class="nav-link" href="/">Ana sayfa<span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="/about">Hakkında</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="/withdraw">Geri çekilme</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="/privacy">Gizlilik</a>
+		</li>
+		<li class="nav-item">
+		  {{! --- if logged out ---}}
+		  {{#if logNav}}
+		  <a class="nav-link" href="/login">Giriş yap</a>
+		  {{! --- else must be logged in ---}}
+		  {{else}}
+		  <a class="nav-link" href="/logout">Çıkış yap</a>
+		  {{/if}}
+		</li>
+	      </ul>
+
 	      {{! ----------------- Institution 1000   Project 040 Italian  ------------------ }}
-	      {{#if project.p1000_040}}
+	      {{else if project.p1000_040}}
 
 	      <ul class="navbar-nav">
 		<li class="nav-item active">

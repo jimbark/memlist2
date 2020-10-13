@@ -1,7 +1,36 @@
 
+{{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
+
+{{#if project.p1000_050}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Öğrenme Sonrası Yönergeleri</h5>
+     <p>Deneyin ilk aşamasını tamamladığınız için teşekkür ederiz. Bir sonraki adım için 55 dakika sonra, yani <b> {{min30TestTime}} </b>'de, tekrar test edilmek için geri gelmeniz gerekiyor.</p>
+     <p>Geri döndüğünüzde lütfen ana sayfamızı ziyaret edin ve siteye geri dönen katılımcı olarak girin.</p>
+     <p>Çalışma sonuçlarını geçersiz kılacağı için lütfen kelime çiftlerini tekrarlamaya çalışmayın.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Ana sayfaya dön</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_050.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 040  Italian ------------------ }}
 
-{{#if project.p1000_040}}
+{{else if project.p1000_040}}
 
 <div class="row justify-content-center">
    <div class="col-10">

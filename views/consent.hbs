@@ -1,7 +1,90 @@
 
+{{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
+
+{{#if project.p1000_050}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Araştırma çalışmasına katılma onayı</h5>
+
+     <p>Bu sayfanın amacı, bu araştırma çalışmasına katılıp katılmayacağınıza karar verirken göz önünde bulundurmanız gereken bilgileri size sağlamaktır.</p>
+
+     <p>Unutma Projesi çalışmaları, Goldsmiths Londra Üniversitesi tarafından yürütülmektedir. Doktora öğrencisi Terry McGibbon, nöropsikolog Dr. Ashok Jansari süpervizörlüğünde araştırmayı yönetmektedir.</p>
+
+     <h5>Çalışmanın Açıklaması</h5>
+
+     <p>İnsanların öğrenme ve hatırlama becerileri yaşla beraber değişiklikler gösterir. Bu beceriler aynı zamanda epilepsi ve Alzheimer gibi beyinle ilişkili durumlardan da etkilenir. Bu çalışmanın amacı belleğin genel popülasyonda nasıl bir çeşitlilik gösterdiğini belirlemektir. Katılımcılardan kelime çiftlerini ezberlemeleri ve bunları daha sonra iki kez hatırlamaları istenecektir. Bu çalışma herhangi fiziksel ya da zihinsel zarara yol açmayacaktır, bu sebeple çalışmaya katılırken herhangi bir sıkıntı yaşamayacaksınız.
+     </p>
+
+     <h5>Veri Gizliliği</h5>
+
+     <p>
+      Elektronik ortamda güvende tutulacak olan verilerin tam gizliliği ve anonimliği sağlanacaktır. Yaş ve cinsiyet gibi kişisel bilgileriniz kişisel olarak tanımlanamayacak, sadece çalışmayı yürüten araştırmacılar tarafından görülecektir. Verileriniz herhangi başka bir organizasyonla paylaşılmayacak, bu çalışmadan çıkan herhangi bir rapora veya diğer yayınlara dahil edilmeyecek, çalışma tamamlandıktan sonra sadece sonuçlar saklanacaktır. 
+     </p>
+
+     <h5>Geri çekilme hakkı</h5>
+
+     <p>
+     Bu çalışmaya katılmanız zorunlu değildir ve buna mecbur hissetmemelisiniz. Çalışmadan istediğiniz zaman geri çekilme hakkına sahipsiniz. Çalışmadan geri çekilmek istediğinizde herhangi bir kayba uğramadan ve bir sebep belirtmenize gerek olmadan ayrılabilirsiniz.
+     </p>
+
+     <h5>İletişim</h5>
+
+     <p>
+      Çalışmanın nasıl yürütülmekte olduğuna dair herhangi bir sorunuz veya endişeniz varsa lütfen Terry McGibbon (tmcgi001@gold.ac.uk) ya da Dr. Ashok Jansari (a.jansari@gold.ac.uk) ile iletişime geçin.
+     </p>
+
+     <h5>Feragatname</h5>
+
+     <p class="font-italic">18 yaş veya üzeriyim.</p>
+
+     <p class="font-italic">Dahil olacağım çalışmanın doğası, amaçları ve işleyişini açıklayan yukarıdaki bilgilendirme yazısını okudum.</p>
+
+     <p class="font-italic">Bu çalışmadaki katılımımın ve çalışmada elde edilecek verilerin kesinlikle gizli kalacağını anladım. Sadece çalışmada yer alan araştırmacıların kişisel verilere erişimi olacaktır. Çalışma tamamlandıktan sonra verilere ne yapılacağı bana açıklandı.</p>
+
+     <p class="font-italic">Bana etraflıca anlatılmış olan bu çalışmaya katılmayı özgür irademle ve tamamıyla kabul ediyorum. Bu onayı vermekle beraber, kendime hiçbir zararı olmadan ve de herhangi bir açıklama yapma zorunluluğu olmadan dilediğim bir zamanda çalışmadan çekilme hakkına sahip olduğumu anladım. Ayrıca, bu çalışmadan geri çekilmem durumunda, araştırmacının anonim verilerimi bu çalışmanın raporunda ve araştırmacının gerçekleştireceği diğer analizlerde kullanma hakkını saklı tuttuğunu anladım.
+     </p>
+
+     <p>Devam etmeye karar verdiyseniz, lütfen aşağıdaki kutuyu işaretleyip "İleri" tuşuna basarak katılmayı kabul ettiğinizi onaylayın. Katılmak istemiyorsanız, lütfen "Hayır, teşekkürler" butonunu seçin.</p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      Katılmayı kabul ediyorum.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">İleri</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">Hayır, teşekkürler</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_050.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 040  Italian  ------------------ }}
 
-{{#if project.p1000_040}}
+{{else if project.p1000_040}}
 
 <div class="row justify-content-center">
    <div class="col-10">

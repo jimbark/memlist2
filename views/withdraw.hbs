@@ -1,6 +1,38 @@
+
+{{! ----------------- Institution 1000   Project 050 Turkish ------------------ }}
+
+{{#if project.p1000_050}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Çalışmadan geri çekilme.</h5>
+     	    <p>Çalışmadan geri çekilmek istiyorsanız aşağıdaki Geri Çekil butonuna tıklayın. Katılımınıza ilişkin bütün kişisel bilgileriniz veri tabanımızdan silinecektir.</p>
+            <p>Geri çekildiğiniz takdirde daha sonra bu araştırmaya katılmaya devam edemezsiniz. Ancak gelecekteki çalışmalarımıza katılabilirsiniz.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Geri Çekil</button>
+  	       </div>
+     	 </form>
+    </div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_050.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 040 Italian  ------------------ }}
 
-{{#if project.p1000_040}}
+{{else if project.p1000_040}}
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">
