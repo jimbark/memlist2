@@ -369,6 +369,11 @@ app.get('/tr', function(req, res){
     req.session.project = { name: "p1000_050" };
     return res.redirect(303, '/?project=p1000_050');
 });
+app.get('/pl', function(req, res){
+    res.locals.project = { p1000_060: 'cheese' };
+    req.session.project = { name: "p1000_060" };
+    return res.redirect(303, '/?project=p1000_060');
+});
 
 
 // example of clearing a cookie

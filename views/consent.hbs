@@ -1,7 +1,92 @@
 
+
+{{! ----------------- Institution 1000   Project 060  Polish  ------------------ }}
+
+{{#if project.p1000_060}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Zgoda na udział w badaniu.</h5>
+
+     <p>Na tym etapie otrzyma Pan/i informacje, które są potrzebne do podjęcia decyzji o uczestnictwie w badaniu.</p>
+
+     <p>Kierownikiem badania “Projekt - Zapominanie” jest Terry McGibbon, doktorant w College’u Goldsmiths Uniwersytetu w Londynie. Opiekunem projektu jest dr Ashok Jansari.</p>
+
+     <h5>Opis badania</h5>
+
+     <p>
+     Uczenie się i przypominanie nowych informacji zależy od wieku i chorobowych zmian w mózgu takich jak np. padaczka czy demencja. Celem badania jest określenie tego, w jaki sposób procesy te zmieniają się w ogólnej populacji. Zadaniem uczestnika będzie zapamiętanie par słów, a następnie przypomnienie ich w różnych odstępach czasu. Udział w badaniu nie wiąże się z potencjalnie znanym ryzykiem (fizycznym ani psychicznym).
+     </p>
+
+     <h5>Poufność danych</h5>
+
+     <p>
+     Badanie jest anonimowe, a zebrane dane będą zabezpieczone i przechowywane w sposób elektroniczny z zachowaniem poufności. Pana/i dane osobowe, takie jak wiek i płeć, nie będą mogły być zidentyfikowane, a dostęp do nich będą miały wyłącznie osoby prowadzące badanie. Informacje te nie będą udostępniane innym organizacjom czy instytucjom i zostaną wykorzystane jedynie w celach naukowych.
+     </p>
+
+     <h5>Prawo do rezygnacji z udziału w badaniu</h5>
+
+     <p>
+     Udział w badaniu jest całkowicie dobrowolny. Może Pan/i zrezygnować z udziału w badaniu w dowolnej chwili bez ponoszenia żadnych konsekwencji i bez podania przyczyny.
+     </p>
+
+     <h5>Kontakty</h5>
+
+     <p>
+     W przypadku jakichkolwiek pytań lub wątpliwości dotyczących sposobu przeprowadzenia badania należy skontaktować się z Terrym McGibbonem (tmcgi001@gold.ac.uk) lub dr Ashokiem Jansari (a.jansari@gold.ac.uk).
+     </p>
+
+     <h5>Oświadczenie</h5>
+
+     <p class="font-italic">Oświadczam, że mam ukończone 18 lat. </p>
+
+     <p class="font-italic">Zapoznałem/am się z informacją o badaniu i oświadczam, że rozumiem jaki jest jego charakter, cele oraz procedura.</p>
+
+     <p class="font-italic">Rozumiem, że mój udział w badaniu oraz wyniki pozostaną poufne. Dostęp do nich będą miały wyłącznie osoby prowadzące badanie. Zostałem/am poinformowany/a w jaki sposób będą wykorzystane moje dane.</p>
+
+     <p class="font-italic">Wyrażam dobrowolną i świadomą zgodę na udział w badaniu, o którym uzyskałem/am wszelkie potrzebne informacje. Rozumiem, że po wyrażeniu zgody, mam możliwość rezygnacji z udziału w badaniu bez ponoszenia żadnych konsekwencji i bez podania przyczyny w dowolnym momencie. Rozumiem również, że mimo rezygnacji z badania moje dane i uzyskane wyniki mogą zostać wykorzystane przez osoby prowadzące badanie w celach naukowych.</p>
+
+     <p>Jeśli chce Pan/i kontynuować udział w badaniu prosimy zaznaczyć “Wyrażam zgodę na udział w badaniu” i następnie kliknąć “Dalej”. Natomiast jeśli nie wyraża Pan/i zgody na udział w badaniu prosimy kliknąć “Nie, dziękuję”.</p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      Wyrażam zgodę na udział w badaniu.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Dalej</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">Nie, dziękuję</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_060.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
 
-{{#if project.p1000_050}}
+{{else if project.p1000_050}}
 
 <div class="row justify-content-center">
    <div class="col-10">

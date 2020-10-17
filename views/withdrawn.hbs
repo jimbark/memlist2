@@ -1,7 +1,33 @@
 
+{{! ----------------- Institution 1000   Project 060  Polish  ------------------ }}
+
+{{#if project.p1000_060}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Dziękujemy za chęć wzięcia udziału w badaniu! </h5>
+     	    <p>Przykro nam, że Pan/i nie weźmie udziału w badaniu. Pana/i rezygnacja została przyjęta. Zapraszamy do uczestnictwa w innych badaniach prowadzonych przez nas w przyszłości.</p>
+
+            <a href="/" class="btn btn-primary" role="button">Powrót do strony głównej</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_060.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
 
-{{#if project.p1000_050}}
+{{else if project.p1000_050}}
 
 <div id="introduction" style="display: block">
 
