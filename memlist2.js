@@ -834,6 +834,18 @@ app.post('/demographics', function(req, res){
 	console.log('Rating (from visible form field): ' + req.body.rating);
 	}
 
+    var inPreferred = "null";
+    if (req.body.preferred) {
+	inPreferred = req.body.preferred;
+	console.log('Preferred (from visible form field): ' + req.body.preferred);
+	}
+
+    var inResidence = "null";
+    if (req.body.residence) {
+	inResidence = req.body.residence;
+	console.log('Residence (from visible form field): ' + req.body.residence);
+	}
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
 
@@ -871,7 +883,8 @@ app.post('/demographics', function(req, res){
 	    "#N": 'selfComparison',
 	    "#O": 'conversation',
 	    "#P": 'rating',
-
+	    "#Q": 'preferred',
+	    "#R": 'residence',
 	},
 	ExpressionAttributeValues: {
 	    ":b": { S: inGender},
@@ -890,10 +903,11 @@ app.post('/demographics', function(req, res){
 	    ":n": {S: inSelfComparison},
 	    ":o": {S: inConversation},
 	    ":p": {N: inRating},
-
+	    ":q": {S: inPreferred},
+	    ":r": {S: inResidence},
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p"
+	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r"
     };
 
     User.updateById(authId, updates, function (err, data) {
