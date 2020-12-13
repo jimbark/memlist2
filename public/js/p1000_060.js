@@ -56,18 +56,18 @@ var mL1 = [
 
 // study lists with 3 recalls for all pairs, and only 12 pairs
 var mL1 = [
-    ['vita','spray',0,0,3],
-    ['suola','corvo',0,0,3],
-    ['pompa','loop',0,0,3],
-    ['tono','massa',0,0,3],
-    ['buco','terra',0,0,3],
-    ['lama','seta',0,0,3],
-    ['pila','porto',0,0,3],
-    ['calce','suite',0,0,3],
-    ['presa','molla',0,0,3],
-    ['forca','veste',0,0,3],
-    ['tribù','forma',0,0,3],
-    ['globo','sacco',0,0,3],
+    ['włos','szron',0,0,3],
+    ['usta','wiatr',0,0,3],
+    ['ptak','dłoń',0,0,3],
+    ['stół','pierś',0,0,3],
+    ['świat','blat',0,0,3],
+    ['park','mróz',0,0,3],
+    ['miecz','dach',0,0,3],
+    ['mózg','liść',0,0,3],
+    ['cień','kraj',0,0,3],
+    ['most','krew',0,0,3],
+    ['chleb','drzwi',0,0,3],
+    ['list','dwór',0,0,3],
 ];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
@@ -91,18 +91,18 @@ var del1L1 = [
 // first delayed test list, doing all 12 at both time intervals
 // randomise order: 11,4,12,7,3,8,2,5,9,6,1,10
 var del1L1 = [
-    ['tribù','forma',0,0,3],
-    ['tono','massa',0,0,3],
-    ['globo','sacco',0,0,3],
-    ['pila','porto',0,0,3],
-    ['pompa','loop',0,0,3],
-    ['calce','suite',0,0,3],
-    ['suola','corvo',0,0,3],
-    ['buco','terra',0,0,3],
-    ['presa','molla',0,0,3],
-    ['lama','seta',0,0,3],
-    ['vita','spray',0,0,3],
-    ['forca','veste',0,0,3],
+    ['chleb','drzwi',0,0,3],
+    ['stół','pierś',0,0,3],
+    ['list','dwór',0,0,3],
+    ['miecz','dach',0,0,3],
+    ['ptak','dłoń',0,0,3],
+    ['mózg','liść',0,0,3],
+    ['usta','wiatr',0,0,3],
+    ['świat','blat',0,0,3],
+    ['cień','kraj',0,0,3],
+    ['park','mróz',0,0,3],
+    ['włos','szron',0,0,3],
+    ['most','krew',0,0,3],
 ];
 
 //var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
@@ -112,18 +112,18 @@ var del1L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 // second delayed test lists
 // randomise order: 7,2,8,6,11,1,4,10,12,5,3,9
 var del2L1 = [
-    ['pila','porto',0,0,3],
-    ['suola','corvo',0,0,3],
-    ['calce','suite',0,0,3],
-    ['lama','seta',0,0,3],
-    ['tribù','forma',0,0,3],
-    ['vita','spray',0,0,3],
-    ['tono','massa',0,0,3],
-    ['forca','veste',0,0,3],
-    ['globo','sacco',0,0,3],
-    ['buco','terra',0,0,3],
-    ['pompa','loop',0,0,3],
-    ['presa','molla',0,0,3],
+    ['miecz','dach',0,0,3],
+    ['usta','wiatr',0,0,3],
+    ['mózg','liść',0,0,3],
+    ['park','mróz',0,0,3],
+    ['chleb','drzwi',0,0,3],
+    ['włos','szron',0,0,3],
+    ['stół','pierś',0,0,3],
+    ['most','krew',0,0,3],
+    ['list','dwór',0,0,3],
+    ['świat','blat',0,0,3],
+    ['ptak','dłoń',0,0,3],
+    ['cień','kraj',0,0,3],
 ];
 
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
@@ -133,7 +133,7 @@ var del2L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
 //var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2,0], ['WIZARD','TURKEY',0,0,2,0],['PISTOL','KENNEL',0,0,2,0]];
-var dL1 = [['succo','orma',0,0,2,0], ['ferro','curva',0,0,2,0],['sfogo','pasta',0,0,2,0]];
+var dL1 = [['pies','brzeg',0,0,2,0], ['łódź','śnieg',0,0,2,0],['broń','mgła',0,0,2,0]];
 var dL2 = [['dl2c1','dl2a1',0,0,1,0], ['dl2c2','dl2a2',0,0,3,0],['dl2c3','dl2a3',0,0,3,0]];
 
 var studyPresentations = 1;  // number of study presentations

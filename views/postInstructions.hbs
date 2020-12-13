@@ -1,7 +1,36 @@
 
+{{! ----------------- Institution 1000   Project 060  Polish ------------------ }}
+
+{{#if project.p1000_060}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instrukcje odroczonego zadania właściwego uczenia się par słów.</h5>
+     <p>Dziękujemy za ukończenie drugiej części zadania właściwego. W celu przejścia do trzeciej części, prosimy, aby Pan/i wrócił/a za 55 minut, czyli o <b> {{min30TestTime}} </b>.</p>
+     <p>Po powrocie na naszą stronę główną, prosimy aby Pan/i zalogował/a się jako ponowny uczestnik.</p>
+     <p>Prosimy, aby nie powtarzał/a Pan/i par słów, które były w zadaniu właściwym, ponieważ może zakłócić to wynik badania.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Powrót do strony głównej</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_060.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
 
-{{#if project.p1000_050}}
+{{else if project.p1000_050}}
 
 <div class="row justify-content-center">
    <div class="col-10">

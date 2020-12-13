@@ -115,134 +115,120 @@
     	 <select class="form-control" id="inputGender" name="gender" required>
       	 	<option selected>Kobieta</option>
 		<option>Mężczyzna</option>
-		<option>  Other</option>
+		<option>Inna</option>
     		</select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputEducation" class="col-sm-3 col-form-label text-left">Highest education level completed</label>
+    <label for="inputEducation" class="col-sm-3 col-form-label text-left">Wykształcenie</label>
     <div class="col-auto">
     	 <select class="form-control" id="inputEducation" name="education" required>
-                <option>Primary School (Class 1<sup>st</sup>-5<sup>th</sup>)</option>
-                <option>Secondary School (Class 6<sup>th</sup>-10<sup>th</sup>)</option>
-                <option selected>Higher Secondary / Class 12<sup>th</sup></option>
-                <option>Technical/Vocational training</option>
-                <option>Diploma</option>
-                <option>Batchelor’s Degree</option>
-                <option>Master’s Degree</option>
-                <option>Doctorate, PhD</option>
+                <option>Szkoła podstawowa i/lub gimnazjum</option>
+                <option>Szkoła zawodowa</option>
+                <option selected>Liceum</option>
+                <option>Technikum</option>
+                <option>Ukończona matura</option>
+                <option>Licencjat</option>
+                <option>Magister</option>
+                <option>Doktor</option>
                 </select>
-    		</select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputSpoken" class="col-sm-3 col-form-label text-left">Standard of spoken English</label>
-    <div class="col-auto">
-    	 <select class="form-control" id="inputSpoken" name="spoken" required>
-      	 	<option selected>4. Very Fluent</option>
-		<option>3. Fluent</option>
-		<option>2. Somewhat Fluent</option>
-		<option>1. Not fluent</option>
-    		</select>
-    </div>
-  </div>
-
-  <div class="form-group row align-items-center">
-    <label for="inputEnglish" class="col-sm-3 col-form-label text-left">Standard of written English</label>
+    <label for="inputEnglish" class="col-sm-3 col-form-label text-left">Znajomość języka polskiego</label>
     <div class="col-auto">
     	 <select class="form-control" id="inputEnglish" name="english" required>
-      	 	<option selected>4. Very Fluent</option>
-		<option>3. Fluent</option>
-		<option>2. Somewhat Fluent</option>
-		<option>1. Not fluent</option>
+      	 	<option selected>Język ojczysty</option>
+		<option>Płynny</option>
+		<option>Komunikatywny</option>
+		<option>Przeciętny</option>
     		</select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputNationality" class="col-sm-3 col-form-label text-left">Nationality</label>
+    <label for="inputNationality" class="col-sm-3 col-form-label text-left">Narodowość</label>
     <div class="col-auto">
-    	 <select class="form-control bfh-countries" style="width:250px;" data-country="IN" id="inputNationality" name="nationality" required></select>
+    	 <select class="form-control bfh-countries" style="width:250px;" data-country="PL" id="inputNationality" name="nationality" required></select>
     </div>
   </div>
 
-
-
   <div class="form-group row align-items-center">
-    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">Do you have any diagnosed medical condition(s) which might affect your memory?</label>
+    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">Czy u Pana/i zdiagnozowano jakieś zaburzenia lub choroby, które mogą wpływać na pamięć?</label>
     <div class="col-auto">
          <select class="form-control" id="inputMedical" name="medical" required>
-                <option selected>No</option>
-                <option>Yes, dementia</option>
-                <option>Yes, epilepsy</option>
-                <option>Yes, stroke</option>
-                <option>Yes, brain surgery</option>
-                <option>Yes, significant head injury</option>
-                <option>Yes, other</option>
+                <option selected>Nie</option>
+                <option>Tak, demencję</option>
+                <option>Tak, padaczkę</option>
+                <option>Tak, udar mózgu</option>
+                <option>Tak, która zakończyła się operacją mózgu</option>
+                <option>Tak, poważny uraz głowy / Tak, uraz głowy z utratą przytomności</option>
+                <option>Tak, inne</option>
                 </select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Do you have any reading problems e.g. dyslexia?</label>
+    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left"> Czy u Pana/i zdiagnozowano jakieś zaburzenia uczenia się (np. dysleksję)?</label>
     <div class="col-auto">
          <select class="form-control" id="inputDyslexia" name="dyslexia" required>
-                <option selected>No</option>
-                <option>Yes</option>
+                <option selected>Nie</option>
+                <option>Tak</option>
                 </select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputProblems" class="col-sm-4 col-form-label text-left">Do you suffer from any memory problems or ‘forgetfulness’?</label>
+    <label for="inputProblems" class="col-sm-4 col-form-label text-left">Czy u Pana/i występują jakieś problemy z pamięcią lub nadmierne zapominanie?</label>
     <div class="col-auto">
          <select class="form-control" id="inputProblems" name="problems" required>
-                <option selected>No</option>
-                <option>Don't know</option>
-                <option>Yes, but rarely</option>
-                <option>Yes, occasionally</option>
-                <option>Yes, frequently</option>
+                <option selected>Nie</option>
+                <option>Nie wiem</option>
+                <option>Tak, ale rzadko</option>
+                <option>Tak, czasami</option>
+                <option>Tak, często</option>
                 </select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">How do you think your memory compares to other people of your age?</label>
+    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">Jak Pan/i ocenia swoją pamięć w porównaniu do innych osób w podobnym wieku?</label>
     <div class="col-auto">
          <select class="form-control" id="inputOthersComparison" name="othersComparison" required>
-                <option selected>Same or better</option>
-                <option>Somewhat worse</option>
-                <option>Much worse</option>
+                <option selected>Moja pamięć jest taka sama lub lepsza</option>
+                <option>Moja pamięć jest raczej gorsza</option>
+                <option>Moja pamięć jest znacznie gorsza</option>
                 </select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">How do you think your memory compares with when you were younger?</label>
+    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">Jak Pan/i ocenia swoją pamięć w porównaniu do tego jak był Pan/i młodszy/a?
+Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedyś?</label>
     <div class="col-auto">
          <select class="form-control" id="inputSelfComparison" name="selfComparison" required>
-                <option selected>Same or better</option>
-                <option>Somewhat worse</option>
-                <option>Much worse</option>
+                <option selected>Moja pamięć jest taka sama lub lepsza</option>
+                <option>Moja pamięć jest raczej gorsza</option>
+                <option>Moja pamięć jest znacznie gorsza</option>
                 </select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputConversation" class="col-sm-4 col-form-label text-left">Do you forget what you’ve just read or heard in a conversation?</label>
+    <label for="inputConversation" class="col-sm-4 col-form-label text-left">Czy zdarza się Panu/i zapominać to, o czym przed chwilą Pan/i czytał/a lub rozmawiał/a?</label>
     <div class="col-auto">
          <select class="form-control" id="inputConversation" name="conversation" required>
-                <option selected>Rarely/Never</option>
-                <option>Occasionally</option>
-                <option>Frequently</option>
+                <option selected>Rzadko lub nigdy</option>
+                <option>Czasami</option>
+                <option>Często</option>
                 </select>
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="inputRating" class="col-sm-4 col-form-label text-left">Rate your memory on a scale of 1 to 10, with 1 worst and 10 best.</label>
+    <label for="inputRating" class="col-sm-4 col-form-label text-left">Prosimy ocenić swoją pamięć na skali od 1 do 10 (1 = najgorsza, 10 = najlepsza).</label>
     <div class="col-auto">
     <select class="form-control" id="inputRating" name="rating" required>
       <option>1</option>
@@ -262,7 +248,7 @@
 
 
 <div class="text-center">
-  <button type="submit" class="btn btn-primary">Next</button>
+  <button type="submit" class="btn btn-primary">Dalej</button>
 </div>
 
 </form>

@@ -1,8 +1,37 @@
 
+{{! ----------------- Institution 1000   Project 060  Polish  ------------------ }}
+
+{{#if project.p1000_060}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instrukcje po ukończeniu zadań.</h5>
+     <p>Ukończył/a Pan/i wszystkie zadania.</p>
+     <p>Dziękujemy za udział w badaniu! </p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Powrót do strony głównej</a>
+     </div>
+
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_060.js"></script>
+     {{/section}}
+</div>
+
+
 
 {{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
 
-{{#if project.p1000_050}}
+{{else if project.p1000_050}}
 
 <div class="row justify-content-center">
    <div class="col-10">

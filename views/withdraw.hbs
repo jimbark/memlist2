@@ -1,7 +1,37 @@
+{{! ----------------- Institution 1000   Project 060 Polish  ------------------ }}
+
+{{#if project.p1000_060}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'> Rezygnacja z udziału w badaniu</h5>
+     	    <p> Jeśli chce Pan/i zrezygnować z udziału w badaniu prosimy kliknąć przycisk “Rezygnuję”. Wszystkie Pana/i dane osobowe zostaną usunięte z naszej bazy danych.</p>
+            <p>Jeśli Pan/i zrezygnuje, nie będzie można powrócić do udziału w tym badaniu. Niemniej jednak, zachęcamy do udziału w innych organizowanych przez nas badaniach.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Rezygnuję</button>
+  	       </div>
+     	 </form>
+    </div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_060.js"></script>
+     {{/section}}
+</div>
+
+
 
 {{! ----------------- Institution 1000   Project 050 Turkish ------------------ }}
 
-{{#if project.p1000_050}}
+{{else if project.p1000_050}}
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">

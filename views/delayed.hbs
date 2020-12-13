@@ -1,8 +1,125 @@
 
+{{! ----------------- Institution 1000   Project 060  Polish ------------------ }}
+
+{{#if project.p1000_060}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Witamy ponownie! </h5>
+
+       	    <p  id='study' style="display: block">Dziękujemy za powrót do odroczonego zadania właściwego uczenia się par słów. Zostanie Pan/i poproszony/a o przypomnienie sobie niektórych par słów, których uczył/a się Pan/i wcześniej. Zadanie będzie wyglądało tak samo, jak zadanie właściwe wykonywane przez Pana/ią poprzednio. Zobaczy Pan/i pierwsze słowo z pary i zostanie poproszony/a o wpisanie drugiego słowa z tej samej pary. Zadanie to potrwa nie dłużej niż 3 minuty.</p>
+       	    <p  id='study' style="display: block">Gdy będzie Pan/i gotowy/a, prosimy nacisnąć poniższy przycisk, aby rozpocząć zadanie.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest()" class="btn btn-primary">Start</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Prosimy, aby Pan/i wpisał/a drugie słowo z pary, którą trzeba było zapamiętać. Należy nacisnąć przycisk Powrót lub przycisk Zatwierdź, aby kontynuować
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Zatwierdź</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instrukcje do zadania właściwego odroczonego</h5>
+     <p>Dziękujemy za ukończenie zadania właściwego odroczonego o 55 minut.</p>
+     <p>Uzyskał/a Pan/i <span id='correctAnswers'>12</span> na <span id='totalAnswers'>12</span> punktów.</p>
+
+     <p>W celu ukończenia piątej części zadania właściwego, należy wrócić na naszą stronę jutro o tej samej porze, czyli o <b> {{hr24TestTime}} </b>.</p>
+     <p>Po powrocie na naszą stronę główną, prosimy aby Pan/i zalogował/a się jako ponowny uczestnik.</p>
+     <p>Prosimy, aby nie powtarzał/a Pan/i par słów, które były w zadaniu właściwym, ponieważ może zakłócić to wynik badania.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Powrót do strony głównej</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_060.js"></script>
+     {{/section}}
+</div>
+
+
 
 {{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
 
-{{#if project.p1000_050}}
+{{else if project.p1000_050}}
 
 <div id="introduction" style="display: block">
 
