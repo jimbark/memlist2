@@ -376,6 +376,24 @@ app.get('/pl', function(req, res){
 });
 
 
+// test pages for reviewign text options
+app.get('/home_test1', function(req, res){
+    logger.info("Info level log for home page to prove working");
+    //res.clearCookie("signed_monster");
+    res.render('home_test1');
+});
+app.get('/home_test2', function(req, res){
+    logger.info("Info level log for home page to prove working");
+    //res.clearCookie("signed_monster");
+    res.render('home_test2');
+});
+app.get('/instructions_test1', function(req, res){
+    logger.info("Info level log for home page to prove working");
+    //res.clearCookie("signed_monster");
+    res.render('instructions_test1');
+});
+
+
 // example of clearing a cookie
 app.get('/', function(req, res){
     logger.info("Info level log for home page to prove working");
