@@ -870,6 +870,12 @@ app.post('/demographics', function(req, res){
 	console.log('Source (from visible form field): ' + req.body.source);
 	}
 
+    var inNeuro = "null";
+    if (req.body.neuro) {
+	inNeuro = req.body.neuro;
+	console.log('Neuro (from visible form field): ' + req.body.neuro);
+	}
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
 
@@ -910,6 +916,7 @@ app.post('/demographics', function(req, res){
 	    "#Q": 'preferred',
 	    "#R": 'residence',
 	    "#S": 'source',
+	    "#T": 'neuro',
 	},
 	ExpressionAttributeValues: {
 	    ":b": { S: inGender},
@@ -931,9 +938,10 @@ app.post('/demographics', function(req, res){
 	    ":q": {S: inPreferred},
 	    ":r": {S: inResidence},
 	    ":s": {S: inSource},
+	    ":t": {S: inNeuro},
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s"
+	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t"
     };
 
     User.updateById(authId, updates, function (err, data) {
