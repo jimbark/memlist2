@@ -374,6 +374,11 @@ app.get('/pl', function(req, res){
     req.session.project = { name: "p1000_060" };
     return res.redirect(303, '/?project=p1000_060');
 });
+app.get('/cte', function(req, res){
+    res.locals.project = { p1000_070: 'cheese' };
+    req.session.project = { name: "p1000_070" };
+    return res.redirect(303, '/?project=p1000_070');
+});
 
 
 // test pages for reviewign text options
@@ -758,6 +763,7 @@ app.post('/withdraw', function(req, res){
 		console.log('Updated user status to withdrawn in database');
 		//return res.redirect(303, '/withdrawn');
 		var withdrawnUrl = "/withdrawn?project=" + req.session.project.name;
+		console.log('Redirecting to withdrawn url:' + withdrawnUrl);
 		req.session.destroy(function (err) {
 		    //Inside a callback… bulletproof!
 		    return res.redirect(303, withdrawnUrl);
@@ -876,6 +882,36 @@ app.post('/demographics', function(req, res){
 	console.log('Neuro (from visible form field): ' + req.body.neuro);
 	}
 
+    var inSport = "null";
+    if (req.body.sport) {
+	inSport = req.body.sport;
+	console.log('Sport (from visible form field): ' + req.body.sport);
+	}
+
+    var inSportAge = "null";
+    if (req.body.sportage) {
+	inSportAge = req.body.sportage;
+	console.log('SportAge (from visible form field): ' + req.body.sportage);
+	}
+
+    var inSportOften = "null";
+    if (req.body.sportoften) {
+	inSportOften = req.body.sportoften;
+	console.log('SportOften (from visible form field): ' + req.body.sportoften);
+	}
+
+    var inInjury = "null";
+    if (req.body.injury) {
+	inInjury = req.body.injury;
+	console.log('Injury (from visible form field): ' + req.body.injury);
+	}
+
+    var inLoss = "null";
+    if (req.body.loss) {
+	inLoss = req.body.loss;
+	console.log('Loss (from visible form field): ' + req.body.loss);
+	}
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
 
@@ -917,6 +953,13 @@ app.post('/demographics', function(req, res){
 	    "#R": 'residence',
 	    "#S": 'source',
 	    "#T": 'neuro',
+
+	    "#U": 'sport',
+	    "#V": 'sportage',
+	    "#W": 'sportoften',
+	    "#X": 'injury',
+	    "#Y": 'loss',
+
 	},
 	ExpressionAttributeValues: {
 	    ":b": { S: inGender},
@@ -939,9 +982,16 @@ app.post('/demographics', function(req, res){
 	    ":r": {S: inResidence},
 	    ":s": {S: inSource},
 	    ":t": {S: inNeuro},
+
+	    ":u": {S: inSport},
+	    ":v": {S: inSportAge},
+	    ":w": {S: inSportOften},
+	    ":x": {S: inInjury},
+	    ":y": {S: inLoss},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t"
+	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y"
     };
 
     User.updateById(authId, updates, function (err, data) {

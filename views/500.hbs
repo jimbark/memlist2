@@ -1,13 +1,28 @@
+{{! ----------------- Institution 1000   Project 070  Elika CTE English  ------------------ }}
+
+{{#if project.p1000_070}}
+
+<h5>500 - Server Error</h5>
+<p>Please try again later. If you still have problems contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_070.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 060  Polish  ------------------ }}
 
-{{#if project.p1000_060}}
+{{else if project.p1000_060}}
 
 <h5>500 - Błąd serwera</h5>
 <p>Prosimy spróbować ponownie. Jeśli problemy nadal występują, prosimy skontaktować się z Terrym McGibbonem, e-mail: tmcgi001@gold.ac.uk.</p>
 
 <div>
      {{#section "projectjs"}}
-     <script src="js/p1000_020.js"></script>
+     <script src="js/p1000_060.js"></script>
      {{/section}}
 </div>
 
