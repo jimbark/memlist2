@@ -1,6 +1,130 @@
+{{! ----------------- Institution 1000   Project 080  Greek  ------------------ }}
+
+{{#if project.p1000_080}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Καλώς ορίσατε πίσω!</h5>
+
+       	    <p  id='study' style="display: block">Σάς ευχαριστούμε που επιστρέψατε για το πρώτο τεστ καθυστερημένης ανάκλησης. Θα εξεταστείτε σε κάποια από τα ζεύγη λέξεων που μάθατε προηγουμένως και με τον ίδιο τρόπο που το κάνατε πριν. Θα σάς παρουσιαστεί η πρώτη λέξη σε ένα ζεύγος και θα πρέπει να βάλετε τη δεύτερη λέξη. Δε θα σάς πάρει παραπάνω από 3 λεπτά.</p>
+       	    <p  id='study' style="display: block">Όταν είστε έτοιμος/η πατήστε το παρακάτω κουμπί για να ξεκινήσετε.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest()" class="btn btn-primary">Έναρξη Δοκιμασίας</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Συμπληρώστε τη δεύτερη λέξη του ζεύγους λέξεων. Πατήστε Επιστροφή ή Υποβολή για να συνεχίσετε 
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Υποβολή</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Οδηγίες για μετά τη δοκιμασία καθυστερημένης ανάκλησης.</h5>
+     <p>Συγχαρητήρια! Σάς ευχαριστώ που συμπληρώσατε τη δοκιμασία των 55 λεπτών της μελέτης μας.</p>
+     <p>
+     Σκοράρατε <span id='correctAnswers'>4</span> στα <span id='totalAnswers'>8</span>.
+     </p>
+
+     <p>
+     Για το τελευταίο στάδιο χρειάζεται να επιστρέψετε την ίδια ώρα αύριο, συνεπώς περίπου στις <b> {{hr24TestTime}} </b>, ώστε να εξεταστείτε για μια ακόμα φορά. Προτείνουμε να γράψετε την ώρα, να τραβήξετε μια φωτογραφία ή πιθανόν να βάλετε υπενθύμιση/ξυπνητήρι στο κινητό σας για να σας βοηθήσει να θυμηθείτε να επιστρέψετε.
+    </p>
+
+     <p>Δε χρειάζεται να ξεκινήσετε στην ώρα σας ακριβώς: είναι ΟΚ εάν το κάνετε λίγο νωρίτερα ή λίγο αργότερα. </p>
+     <p>Εάν δεν μπορείτε να επιστρέψετε στη σωστή ώρα παρακαλώ να κάνετε το καθυστερημένο τεστ όποτε μπορείτε καθώς τα αποτελέσματά σας θα βοηθήσουν και πάλι στη μελέτη μας.</p>
+     <p>Όταν επιστρέψετε στην αρχική σελίδα, συνδεθείτε ως συμμετέχων που επιστρέφει στη μελέτη.</p>
+     <p>Παρακαλώ μην προσπαθήσετε να επαναλάβετε τα ζεύγη λέξεων, καθώς θα ακυρώσουν τα αποτελέσματα της μελέτης.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Επιστροφή στην αρχική σελίδα</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_080.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 070  Elika CTE English ------------------ }}
 
-{{#if project.p1000_070}}
+{{else if project.p1000_070}}
 
 <div id="introduction" style="display: block">
 
@@ -364,7 +488,7 @@
 	     <h5 class='text-center'>Bentornati! </h5>
 
        	    <p  id='study' style="display: block">
-            Grazie di essere tornati per partecipare al vostro primo test di rievocazione differita. Vi verrà chiesto di rievocare le coppie di parole precedentemente acquisite nella stessa modalità di prima. Vi verrà mostrata la prima parole della coppia e richiesto di inserire la seconda. Ciò non dovrebbe impiegarvi più di 3 minuti.
+	    Grazie di essere tornato a partecipare al tuo primo test di rievocazione differita. Ti verrà chiesto di rievocare le coppie di parole precedentemente acquisite nella stessa modalità di prima. Ti verrà mostrata la prima parole della coppia e richiesto di inserire la seconda. Ciò non dovrebbe durare più di 3 minuti.
             </p>
        	    <p  id='study' style="display: block">Cliccare sul seguente pulsante per iniziare.</p>
     	</div>
@@ -448,11 +572,20 @@
 
      <h5 class="pt-3">Istruzioni Post Test di Rievocazione</h5>
      <p>Congratulazioni! Grazie per aver completato la porzione di 55 minuti del nostro studio.</p>
-     <p>Il vostro punteggio è di <span id='correctAnswers'>12</span> su <span id='totalAnswers'>12</span>.</p>
+     <p>Il tuo punteggio è di <span id='correctAnswers'>12</span> su <span id='totalAnswers'>12</span>.</p>
 
-     <p>Per la fase finale vi chiediamo di ritornare domani alla stessa ora, dunque intorno alle <b> {{hr24TestTime}} </b>, per essere testati un’ultima volta. Vi consigliamo di segnarvi questi orari o mettere un allarme sul vostro telefono in modo da aiutare a ricordarvi di ritornare nelle fasi successive del test.</p>
-     <p>Per riprendere il test ritornare alla pagina principale e accedere come partecipanti che hanno già iniziato lo studio.</p>
-     <p>Vi preghiamo di non ripassare le coppie di parole in quanto ciò invaliderà i risultati della ricerca.</p>
+     <p>
+     Per la fase finale ti chiediamo di ritornare domani alla stessa ora, dunque intorno alle <b> {{hr24TestTime}} </b>, per essere testato un’ultima volta. 
+     Ti consigliamo di prender nota di questo orario, fare una fotografia, o impostare un promemoria sul telefono per aiutarti a ricordare quando tornare. 
+     </p>
+
+     <p>
+     Non serve che l’orario venga rispettato al minuto. Anche ritornare qualche minuto prima o dopo andrà bene. 
+     Se non dovessi riuscire a tornare quando richiesto ti chiediamo di svolgere la fase successiva quando possibile. I tuoi risultati aiuteranno comunque la nostra ricerca. 
+     </p>
+
+     <p>Per riprendere il test ritornare alla pagina principale e accedere come partecipante che ha già iniziato lo studio.</p>
+     <p>Ti preghiamo di non ripassare le coppie di parole in quanto ciò invaliderà i risultati della ricerca.</p>
 
 </div>
 </div>
@@ -570,7 +703,12 @@ Merci d'être revenu pour votre premier test différé. Vous serez testé de la 
      <p>Bravo! Merci d'avoir complété la phase de test de 55 minutes de notre étude.</p>
      <p> Vous avez obtenu un score de <span id='correctAnswers'>12</span> sur <span id='totalAnswers'>12</span>.</p>
 
-     <p>Pour la phase finale, nous vous demandons de revenir demain à la même heure, donc vers <b> {{hr24TestTime}} </b>, pour être testé une dernière fois. Nous vous recommandons de noter cette heure ou peut-être de mettre une alarme sur votre téléphone pour vous aider à vous rappeler de revenir.</p>
+     <p>Pour la phase finale, nous vous demandons de revenir demain à la même heure, donc vers <b> {{hr24TestTime}} </b>, pour être testé une dernière fois. Nous vous recommandons de noter cette heure, de prendre une photo ou de programmer une alarme sur votre téléphone pour vous rappeler de revenir.</p>
+
+     <p>
+     Nous n'avons pas besoin que vous commenciez exactement à l'heure ; il est acceptable d'être un peu en avance ou en retard. Si vous n'êtes pas en mesure de revenir au bon moment, veuillez effectuer le test différé dès que vous le pouvez, car vos données aideront quand même notre recherche.
+     </p>
+
      <p>Lorsque vous revenez, visitez notre page d'accueil et entrez sur le site en tant que participant existant.</p>
      <p>N'essayez pas de répéter les paires de mots parce que cela rendrait les résultats de la recherche invalides.</p>
 
@@ -808,7 +946,12 @@ Merci d'être revenu pour votre premier test différé. Vous serez testé de la 
      <p>Bra jobbet! Takk for at du fullførte 55 minutter testen av vårt prosjekt.</p>
      <p>Du scoret <span id='correctAnswers'>12</span> av <span id='totalAnswers'>12</span>.</p>
 
-     <p>For den siste delen ønsker vi at du kommer tilbake til samme tidspunkt i morgen, rundt <b> {{hr24TestTime}} </b>, for å bli testet en siste gang.</p>
+     <p>For den siste delen ønsker vi at du kommer tilbake til samme tidspunkt i morgen, rundt <b> {{hr24TestTime}} </b>, for å bli testet en siste gang. Vi anbefaler du skriver tiden ned, tar et bilde, eller kanskje setter en alarm på mobilen for å hjelpe deg å huske å komme tilbake i tide. </p>
+
+     <p>
+     Du trenger ikke å starte nøyaktige på det tidspunktet, det er ok om du er litt tidligere eller senere. Hvis du ikke har mulighet til å komme tilbake på det korrekte tidspunktet, håper vi du fortsatt vil ta den forsinkede testen da det likevel vil hjelpe forskningen. 
+     </p>
+
      <p>Når du kommer tilbake, besøk startsiden og trykk «returnerende deltaker».</p>
      <p>Ikke øv på ordparene mellom testene, da dette kan ugyldiggjøre resultatet av prosjektet. </p>
 

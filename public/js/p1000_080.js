@@ -3,7 +3,7 @@
 // Bootstrap and HTML Boilerplate
 // *********************************************************
 
-// project: p1000_001,  UK English
+// project: p1000_080,  Greek
 
 // Constants
 
@@ -56,18 +56,18 @@ var mL1 = [
 
 // study lists with 3 recalls for all pairs, and only 12 pairs
 var mL1 = [
-    ['waist','spray',0,0,3],
-    ['stove','dirt',0,0,3],
-    ['grip','coil',0,0,3],
-    ['juice','pork',0,0,3],
-    ['sole','crow',0,0,3],
-    ['blade','calf',0,0,3],
-    ['fork','vest',0,0,3],
-    ['steel','bark',0,0,3],
-    ['pump','loop',0,0,3],
-    ['troop','leak',0,0,3],
-    ['tribe','sweep',0,0,3],
-    ['rash','paste',0,0,3]
+    ['μέση','φωνή',0,0,3],
+    ['ψυχή','πουλί',0,0,3],
+    ['λάμπα','κουτί',0,0,3],
+    ['γάντι','πέτρα',0,0,3],
+    ['πόρτα','ρόδα',0,0,3],
+    ['σκάλα','χωριό',0,0,3],
+    ['τρένο','θέση',0,0,3],
+    ['δόντι','κάρτα',0,0,3],
+    ['λόγος','ναός',0,0,3],
+    ['φωτιά','μέρα',0,0,3],
+    ['νότα','δάκρυ',0,0,3],
+    ['σφυρί','χάρτης',0,0,3]
 ];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
@@ -91,18 +91,18 @@ var del1L1 = [
 // first delayed test list, doing all 12 at both time intervals
 // randomise order: 11,4,12,7,3,8,2,5,9,6,1,10
 var del1L1 = [
-    ['tribe','sweep',0,0,0],
-    ['juice','pork',0,0,0],
-    ['rash','paste',0,0,0],
-    ['fork','vest',0,0,0],
-    ['grip','coil',0,0,0],
-    ['steel','bark',0,0,0],
-    ['stove','dirt',0,0,0],
-    ['sole','crow',0,0,0],
-    ['pump','loop',0,0,0],
-    ['blade','calf',0,0,0],
-    ['waist','spray',0,0,0],
-    ['troop','leak',0,0,0]
+    ['νότα','δάκρυ',0,0,3],
+    ['γάντι','πέτρα',0,0,3],
+    ['σφυρί','χάρτης',0,0,3],
+    ['τρένο','θέση',0,0,3],
+    ['λάμπα','κουτί',0,0,3],
+    ['δόντι','κάρτα',0,0,3],
+    ['ψυχή','πουλί',0,0,3],
+    ['πόρτα','ρόδα',0,0,3],
+    ['λόγος','ναός',0,0,3],
+    ['σκάλα','χωριό',0,0,3],
+    ['μέση','φωνή',0,0,3],
+    ['φωτιά','μέρα',0,0,3],
 ];
 
 //var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
@@ -112,18 +112,18 @@ var del1L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 // second delayed test lists
 // randomise order: 7,2,8,6,11,1,4,10,12,5,3,9
 var del2L1 = [
-    ['fork','vest',0,0,0],
-    ['stove','dirt',0,0,0],
-    ['steel','bark',0,0,0],
-    ['blade','calf',0,0,0],
-    ['tribe','sweep',0,0,0],
-    ['waist','spray',0,0,0],
-    ['juice','pork',0,0,0],
-    ['troop','leak',0,0,0],
-    ['rash','paste',0,0,0],
-    ['sole','crow',0,0,0],
-    ['grip','coil',0,0,0],
-    ['pump','loop',0,0,0]
+    ['τρένο','θέση',0,0,3],
+    ['ψυχή','πουλί',0,0,3],
+    ['δόντι','κάρτα',0,0,3],
+    ['σκάλα','χωριό',0,0,3],
+    ['νότα','δάκρυ',0,0,3],
+    ['μέση','φωνή',0,0,3],
+    ['γάντι','πέτρα',0,0,3],
+    ['φωτιά','μέρα',0,0,3],
+    ['σφυρί','χάρτης',0,0,3],
+    ['πόρτα','ρόδα',0,0,3],
+    ['λάμπα','κουτί',0,0,3],
+    ['λόγος','ναός',0,0,3],
 ];
 
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
@@ -133,7 +133,7 @@ var del2L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2], ['WIZARD','TURKEY',0,0,2],['PISTOL','KENNEL',0,0,2]];
 //var dL2 = [['dl2c1','dl2a1',0,0,1], ['dl2c2','dl2a2',0,0,3],['dl2c3','dl2a3',0,0,3]];
 //var dL1 = [['GIRAFFE','GUITAR',0,0,2,0], ['WIZARD','TURKEY',0,0,2,0],['PISTOL','KENNEL',0,0,2,0]];
-var dL1 = [['birth','suite',0,0,2,0], ['globe','lock',0,0,2,0],['thief','vein',0,0,2,0]];
+var dL1 = [['γέννα','τόξο',0,0,2,0], ['νίκη','σκέψη',0,0,2,0],['βήμα','τέλος',0,0,2,0]];
 var dL2 = [['dl2c1','dl2a1',0,0,1,0], ['dl2c2','dl2a2',0,0,3,0],['dl2c3','dl2a3',0,0,3,0]];
 
 
@@ -368,13 +368,13 @@ function test() {
 	var n = new Date(endTime + min55);
 	var hr = n.getHours();
 	var min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
-	var ampm = "am";
+	var ampm = "πμ";
 	if( hr > 12 ) {
 	    hr -= 12;
-	    ampm = "pm";
+	    ampm = "μμ";
 	}
 	else if( hr == 12 ) {   //12:xxhrs is pm
-	    ampm = "pm";
+	    ampm = "μμ";
 	}
 	else if( hr == 0 ) {
 	    hr = 12;   // want 12:15am not 0:15am
@@ -385,13 +385,13 @@ function test() {
 	n = new Date(endTime + hour24);
 	hr = n.getHours();
 	min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
-	ampm = "am";
+	ampm = "πμ";
 	if( hr > 12 ) {
 	    hr -= 12;
-	    ampm = "pm";
+	    ampm = "μμ";
 	}
 	if( hr == 12 ) {    // as 12:xxhrs is pm
-	    ampm = "pm";
+	    ampm = "μμ";
 	}
 	if( hr == 0 ) {
 	    hr = 12;    // 12:15am not 0:15am

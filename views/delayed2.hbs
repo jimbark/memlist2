@@ -1,6 +1,147 @@
+{{! ----------------- Institution 1000   Project 080  Greek  ------------------ }}
+
+{{#if project.p1000_080}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Καλώς ορίσατε πίσω!</h5>
+
+       	    <p  id='study' style="display: block">
+	    Σάς ευχαριστώ που επιστρέψατε για το δεύτερο τεστ καθυστερημένης ανάκλησης. Θα εξεταστείτε σε μερικά από τα ζεύγη λέξεων που μάθατε προηγουμένως και με τον ίδιο τρόπο με πριν. Θα δείτε την πρώτη λέξη στο ζεύγος και θα σάς ζητηθεί να συμπληρώσετε τη δεύτερη λέξη. Δε θα πάρει περισσότερο από 3 λεπτά.
+	    </p>
+       	    <p  id='study' style="display: block">Όταν είστε έτοιμος/η πατήστε το παρακάτω κουμπί για να ξεκινήσετε.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest2()" class="btn btn-primary">Έναρξη δοκιμασίας</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Συμπληρώστε τη δεύτερη λέξη του ζεύγους λέξεων. Πατήστε Επιστροφή ή Υποβολή για να συνεχίσετε
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Υποβολή</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Ανατροφοδότηση 24ωρης Δοκιμασίας</h5>
+     <p>Συγχαρητήρια! Ευχαριστώ για τη συμπλήρωση της δεύτερης δοκιμασίας καθυστερημένης ανάκλησης.</p>
+     <p>
+     Σκοράρατε <span id='correctAnswers'>6</span> στα <span id='totalAnswers'>8</span>.
+     </p>
+
+     <p>Τα δεδομένα μας δείχνουν ότι έχετε συμπληρώσει όλα τα επίπεδα της μελέτης μας. Δεν υπάρχει κάτι παραπάνω να κάνετε.</p>
+     <p>Ευχαριστούμε για τη συμμετοχή σας! </p>
+
+     <p>Εάν παίρνετε μέρος μέσω του «Mechanical Turk» χρησιμοποιήστε τον κωδικό συμμετοχή σας για να εγγραφείτε στη συμπλήρωση της δοκιμασίας.</p>
+
+      <p>Για όσους ενδιαφέρονται, παρέχουμε περισσότερες πληροφορίες της μελέτης μας παρακάτω.</p>
+
+     <h5>Συζήτηση για τη μελέτη</h5>
+
+     <p>Η εν λόγω μελέτη εξετάζει τη μνήμη για ζεύγη λέξεων σε καθυστερημένα χρονικά επίπεδα 30 λεπτών και 24 ωρών.</p> 
+
+     <p>
+     Οι περισσότερες μελέτες και κλινικές αξιολογήσεις για τη μνήμη εξετάζουν τη μνήμη μετά από 30 λεπτά. Είναι δύσκολο να εξετάζεις σε παρατεταμένες καθυστερήσεις, καθώς αυτό απαιτεί την επιστροφή των συμμετεχόντων σε μια κλινική μνήμης για επαναλαμβανόμενες εξετάσεις. Αυτό φέρει ως αποτέλεσμα λιγότερη γνώση μας σχετικά με την ανάπτυξη της μνήμης σε εκτεταμένα χρονικά πλαίσια.
+     </p>
+
+     <p>
+     Χρησιμοποιώντας μια δοκιμασία online ελπίζουμε να ξεπεράσουμε αυτό το πρόβλημα επιτρέποντας σε ένα μεγάλο μέρος των ανθρώπων από το γενικό πληθυσμό να λάβουν μέρος.
+   </p>
+
+     <p>Εξετάζοντας σε μεγαλύτερο διάστημα, σε καθυστέρηση 24 ωρών, ελπίζουμε να εξακριβώσουμε το πώς αλλάζει η μνήμη στην πάροδο του χρόνου.</p> 
+
+     <p>Στο μέλλον θα παρέχουμε ανατροφοδότηση στους συμμετέχοντες στο πώς το σκορ τους συγκρίνεται με εκείνο άλλων συμμετεχόντων. Αυτό το χαρακτηριστικό θα προστεθεί όταν θα έχουμε αρκετά δεδομένα για να παρέχουμε χρήσιμες συγκρίσεις.</p>
+
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Επιστροφή στην αρχική σελίδα</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_080.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 070  Elike CTE English ------------------ }}
 
-{{#if project.p1000_070}}
+{{else if project.p1000_070}}
 
 <div id="introduction" style="display: block">
 
@@ -422,10 +563,10 @@
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">
-	     <h5 class='text-center'>Bentornati!</h5>
+	     <h5 class='text-center'>Bentornato!</h5>
 
        	    <p  id='study' style="display: block">
-            Grazie per essere tornati a partecipare al vostro secondo test di rievocazione differita. Vi verrà chiesto di rievocare le coppie di parole precedentemente acquisite nella stessa modalità di prima. Vi verrà mostrata la prima parole della coppia e richiesto di inserire la seconda. Ciò non dovrebbe impiegarvi più di 3 minuti.
+	    Grazie di essere tornato a partecipare al tuo secondo test di rievocazione differita. Ti verrà chiesto di rievocare le coppie di parole precedentemente acquisite nella stessa modalità di prima. Ti verrà mostrata la prima parole della coppia e richiesto di inserire la seconda. Ciò non dovrebbe durare più di 3 minuti.
             </p>
        	    <p  id='study' style="display: block">Cliccare sul seguente pulsante per iniziare.</p>
     	</div>
@@ -508,15 +649,15 @@
    <div class="col-10">
 
      <h5 class="pt-3">Rievocazione dopo 24 ore – Risultati</h5>
-     <p>Congratulazioni! Grazie per aver completato il vostro secondo test di rievocazione differita.</p>
-     <p>Il vostro punteggio è di <span id='correctAnswers'>12</span> su <span id='totalAnswers'>12</span>.</p>
+     <p>Congratulazioni! Grazie per aver completato il secondo test di rievocazione differita.</p>
+     <p>Il tuo punteggio è di <span id='correctAnswers'>12</span> su <span id='totalAnswers'>12</span>.</p>
 
      <p>Ci risulta che tutte le fasi dello studio sono state completate. Non occorre nient’altro.</p>
      <p>Grazie per aver partecipato! </p>
 
-     <p>Se state partecipando tramite Mechanical Turk usate il vostro codice di partecipazione per registrare il completamento della prova.</p>
+     <p>Se stai partecipando tramite Mechanical Turk usa il tuo codice di partecipazione per registrare il completamento della prova.</p>
 
-      <p>Per chi fosse interessato, abbiamo messo a vostra disposizione ulteriori informazioni sullo studio.</p>
+     <p>Se sei interessato, abbiamo messo a tua disposizione alcune informazioni sullo studio.</p>
 
      <h5>Rapporto dello studio</h5>
 

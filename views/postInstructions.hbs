@@ -1,6 +1,40 @@
+{{! ----------------- Institution 1000   Project 080  Greek ------------------ }}
+
+{{#if project.p1000_080}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Οδηγίες για μετά τη Μάθηση</h5>
+     <p>
+     Σάς ευχαριστούμε που ολοκληρώσατε το πρώτο τμήμα της μελέτης. Για το επόμενο στάδιο χρειάζετε να επιστρέψετε σε 55 λεπτά, στις <b> {{min30TestTime}} </b>, για να εξεταστείτε ξανά. Προτείνουμε να γράψετε την ώρα, να τραβήξετε μια φωτογραφία ή ακόμα και να βάλετε υπενθύμιση/ξυπνητήρι στο τηλέφωνό σας για να σας βοηθήσει να θυμηθείτε να επιστρέψετε. 
+     </p>
+
+     <p>Δε χρειάζεται να ξεκινήσετε ακριβώς στην ώρα σας: είναι ΟΚ να ξεκινήσετε λίγο αργότερα ή λίγο νωρίτερα. </p>
+     <p>Εάν δεν μπορείτε να επιστρέψετε στη σωστή ώρα παρακαλώ κάντε το καθυστερημένο τεστ όποτε μπορείτε καθώς τα δεδομένα σας και πάλι θα βοηθήσουν στη μελέτη μας.</p>
+     <p>Όταν επιστρέψετε, επισκεφτείτε την αρχική μας σελίδα και συνδεθείτε ως συμμετέχων που επιστρέφει στη μελέτη.</p>
+     <p>Παρακαλώ μην προσπαθήσετε να επαναλάβετε τα ζεύγη λέξεων καθώς θα ακυρώσουν τα αποτελέσματα της μελέτης.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Επιστροφή στην αρχική σελίδα</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_080.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 070  Elika CTE English ------------------ }}
 
-{{#if project.p1000_070}}
+{{else if project.p1000_070}}
 
 <div class="row justify-content-center">
    <div class="col-10">
@@ -95,9 +129,17 @@
    <div class="col-10">
 
      <h5 class="pt-3">Istruzioni Post fase di acquisizione</h5>
-     <p>Grazie per aver completato la prima parte dello studio. Vi chiediamo di tornare tra 55 minuti alle <b>{{min30TestTime}}</b>, per la seguente fase del test. Vi consigliamo di segnarvi questi orari o mettere un allarme sul vostro telefono in modo da aiutare a ricordarvi di ritornare nelle fasi successive del test.</p>
+     <p>
+     Grazie per aver completato la prima parte dello studio. Ti chiediamo di tornare tra 55 minuti (alle <b>{{min30TestTime}}</b>) per la seguente fase del test. Ti consigliamo di prender nota di questo orario, fare una fotografia, o impostare un promemoria sul telefono per aiutarti a ricordare quando tornare.
+     </p>
+
+     <p> 
+     Non serve che l’orario venga rispettato al minuto. Anche ritornare qualche minuto prima o dopo andrà bene. 
+     Se non dovessi riuscire a tornare quando richiesto ti chiediamo di svolgere la fase successiva quando possibile. I tuoi risultati aiuteranno comunque la nostra ricerca. 
+     </p>
+
      <p>Per riprendere il test ritornare alla pagina principale e accedete come partecipanti che hanno già iniziato lo studio.</p>
-     <p>Vi preghiamo di non ripassare le coppie di parole in quanto ciò invaliderà i risultati della ricerca.</p>
+     <p>Ti preghiamo di non ripassare le coppie di parole in quanto ciò invaliderà i risultati della ricerca.</p>
 
 </div>
 </div>
@@ -126,7 +168,13 @@
    <div class="col-10">
 
      <h5 class="pt-3">Instructions après l'apprentissage</h5>
-     <p>Merci d'avoir complété la première partie de l'étude. Pour l'étape suivante, vous devez revenir dans 55 minutes, à <b> {{min30TestTime}} </b>, pour être testé à nouveau. Nous vous recommandons de noter cette heure ou peut-être de mettre une alarme sur votre téléphone pour vous aider à vous rappeler de revenir.</p>
+     <p>Merci d'avoir complété la première partie de l'étude. Pour l'étape suivante, vous devez revenir dans 55 minutes, à <b> {{min30TestTime}} </b>, pour être testé à nouveau. Nous vous recommandons de noter cette heure, de prendre une photo ou de programmer une alarme sur votre téléphone pour vous rappeler de revenir.
+     </p>
+
+     <p>
+     Nous n'avons pas besoin que vous commenciez exactement à l'heure ; il est acceptable d'être un peu en avance ou en retard. Si vous n'êtes pas en mesure de revenir au bon moment, veuillez effectuer le test différé dès que vous le pouvez, car vos données aideront quand même notre recherche.
+     </p>
+
      <p>Lorsque vous revenez, visitez notre page d'accueil et entrez sur le site en tant que participant existant.</p>
      <p>N'essayez pas de répéter les paires de mots parce que cela rendrait les résultats de la recherche invalides.</p>
 
@@ -187,7 +235,12 @@
    <div class="col-10">
 
      <h5 class="pt-3">Videre instruksjon etter læringsdelen</h5>
-     <p>Takk for at du fullførte første del av prosjektet. For den neste delen ønsker vi at du kommer tilbake om 55 minutter, <b> {{min30TestTime}} </b>, for å bli testet igjen. </p>
+     <p>Takk for at du fullførte første del av prosjektet. For den neste delen ønsker vi at du kommer tilbake om 55 minutter, <b> {{min30TestTime}} </b>, for å bli testet igjen. Vi anbefaler du skriver tiden ned, tar et bilde, eller kanskje setter en alarm på mobilen for å hjelpe deg å huske å komme tilbake i tide. </p>
+
+     <p>
+     Du trenger ikke å starte nøyaktige på det tidspunktet, det er ok om du er litt tidligere eller senere. Hvis du ikke har mulighet til å komme tilbake på det korrekte tidspunktet, håper vi du fortsatt vil ta den forsinkede testen da det uansett vil hjelpe forskning vår. 
+     </p>
+
      <p>Når du kommer tilbake, besøk startsiden og trykk «returnerende deltaker».</p>
      <p>Ikke øv på ordparene mellom testene, da dette kan ugyldiggjøre resultatet av prosjektet. </p>
 

@@ -1,7 +1,309 @@
+{{! ----------------- Institution 1000   Project 080  Greek  ------------------ }}
+
+{{#if project.p1000_080}}
+
+<div class="row justify-content-center">
+<div class="col-10 ">
+
+
+<div>
+
+     <h5 class="pt-3">Δημογραφικά στοιχεία</h5>
+     <p>Οι παρακάτω πληροφορίες θα χρησιμοποιηθούν για να διερευνηθεί το πώς η μνήμη ποικίλει σε διαφορετικές ομάδες του γενικού πληθυσμού.</p>
+
+</div>
+
+<form action="/demographics?form=demographics" method="POST">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+
+  <div class="form-group row">
+    <label for="inputAge" class="col-sm-2 col-form-label text-left">Ηλικία</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputAge" name="age" required>
+      <option>16</option>
+      <option>17</option>
+      <option>18</option>
+      <option>19</option>
+      <option selected>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+      <option>25</option>
+      <option>26</option>
+      <option>27</option>
+      <option>28</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>35</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
+      <option>42</option>
+      <option>43</option>
+      <option>44</option>
+      <option>45</option>
+      <option>46</option>
+      <option>47</option>
+      <option>48</option>
+      <option>49</option>
+      <option>50</option>
+      <option>51</option>
+      <option>52</option>
+      <option>53</option>
+      <option>54</option>
+      <option>55</option>
+      <option>56</option>
+      <option>57</option>
+      <option>58</option>
+      <option>59</option>
+      <option>60</option>
+      <option>61</option>
+      <option>62</option>
+      <option>63</option>
+      <option>64</option>
+      <option>65</option>
+      <option>66</option>
+      <option>67</option>
+      <option>68</option>
+      <option>69</option>
+      <option>70</option>
+      <option>71</option>
+      <option>72</option>
+      <option>73</option>
+      <option>74</option>
+      <option>75</option>
+      <option>76</option>
+      <option>77</option>
+      <option>78</option>
+      <option>79</option>
+      <option>80</option>
+      <option>81</option>
+      <option>82</option>
+      <option>83</option>
+      <option>84</option>
+      <option>85</option>
+      <option>86</option>
+      <option>87</option>
+      <option>88</option>
+      <option>89</option>
+      <option>90</option>
+      <option>91</option>
+      <option>92</option>
+      <option>93</option>
+      <option>94</option>
+      <option>95</option>
+      <option>96</option>
+      <option>97</option>
+      <option>99</option>
+      <option>100</option>
+      <option>άνω των 100</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputGender" class="col-sm-2 col-form-label text-left">Φύλο</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputGender" name="gender" required>
+      	 	<option selected>Γυναίκα</option>
+		<option>Άνδρας</option>
+		<option>Άλλο</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputEducation" class="col-sm-2 col-form-label text-left">Υψηλότερο επίπεδο εκπαίδευσης που έχει ολοκληρωθεί</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputEducation" name="education" required>
+                <option>Δημοτικό Σχολείο</option>
+                <option>Γυμνάσιο</option>
+                <option selected>Απόφοιτος Λυκείου</option>
+                <option>Πιστοποιητικό από Επαγγελματικό Λύκειο (ΕΠΑΛ)</option>
+                <option>Δίπλωμα</option>
+                <option>Προπτυχιακές Πανεπιστημιακές Σπουδές</option>
+                <option>Μεταπτυχιακές Σπουδές</option>
+                <option>Διδακτορικές Σπουδές, PhD</option>
+                </select>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputEnglish" class="col-sm-2 col-form-label text-left">Επίπεδο Ελληνικών</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputEnglish" name="english" required>
+      	 	<option selected>Μητρική γλώσσα</option>
+		<option>Άριστη γνώση</option>
+		<option>Πολύ καλή χρήση στην επικοινωνία</option>
+		<option>Ελλιπής χρήση στην επικοινωνία</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputNationality" class="col-sm-2 col-form-label text-left">Εθνικότητα</label>
+    <div class="col-auto">
+    	 <select class="form-control bfh-countries" style="width:250px;" data-country="GR" id="inputNationality" name="nationality" required></select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">Έχετε διαγνωστεί με κάποια ιατρική πάθηση που πιθανόν επιδράσει στη μνήμη σας;</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputMedical" name="medical" required>
+                <option selected>Όχι</option>
+                <option>Ναι, άνοια</option>
+                <option>Ναι, επιληψία</option>
+                <option>Ναι, εγκεφαλικό</option>
+                <option>Ναι, χειρουργική επέμβαση στον εγκέφαλο</option>
+                <option>Ναι, σημαντικός εγκεφαλικός τραυματισμός</option>
+                <option>Ναι, άλλο</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputNeuro" class="col-sm-4 col-form-label text-left">Αντιμετωπίζετε κάποιο νευρολογικό πρόβλημα (νευροποικιλότητα);</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputNeuro" name="neuro" required>
+                <option selected>Όχι</option>
+                <option>Ναι, προσωπαγνωσία</option>
+                <option>Ναι, αφαντασία</option>
+                <option>Ναι, υπερφαντασία</option>
+                <option>Ναι, συναισθησία</option>
+                <option>Ναι, σοβαρό έλλειμμα αυτοβιογραφικής μνήμης</option>
+                <option>Ναι, αφαντασία & σοβαρό έλλειμμα αυτοβιογραφικής μνήμης</option>
+                <option>Ναι, αφαντασία & σοβαρό έλλειμμα αυτοβιογραφικής μνήμης & προσωπαγνωσία</option>
+                <option>Ναι, κάποιον άλλο συνδυασμό από τα παραπάνω</option>
+                <option>Ναι, άλλο</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Έχετε προβλήματα ανάγνωσης, όπως δυσλεξία;</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputDyslexia" name="dyslexia" required>
+                <option selected>Όχι</option>
+                <option>Ναι</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputProblems" class="col-sm-4 col-form-label text-left">Αντιμετωπίζετε προβλήματα μνήμης ή «λήθης»;</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputProblems" name="problems" required>
+                <option selected>Όχι</option>
+                <option>Δεν ξέρω</option>
+                <option>Ναι, αλλά σπάνια</option>
+                <option>Ναι, μερικές φορές</option>
+                <option>Ναι, συχνά</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">Πώς θεωρείτε ότι η μνήμη σας συγκρίνεται με άλλους ανθρώπους της ηλικίας σας</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputOthersComparison" name="othersComparison" required>
+                <option selected>Ίδια ή καλύτερη</option>
+                <option>Σχετικά χειρότερη</option>
+                <option>Πολύ χειρότερη</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">Πώς θεωρείτε ότι η μνήμη σας συγκρίνεται με τη μνήμη σας όταν ήσασταν νεότερος/η;</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputSelfComparison" name="selfComparison" required>
+                <option selected>Ίδια ή καλύτερη</option>
+                <option>Σχετικά χειρότερη</option>
+                <option>Πολύ χειρότερη</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputConversation" class="col-sm-4 col-form-label text-left">Ξεχνάτε ό,τι έχετε μόλις διαβάσει ή ακούσει σε μια συζήτηση;</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputConversation" name="conversation" required>
+                <option selected>Σπάνια/Ποτέ</option>
+                <option>Μερικές φορές</option>
+                <option>Συχνά</option>
+                </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="inputRating" class="col-sm-4 col-form-label text-left">Αξιολογήστε τη μνήμη σας σε μια κλίμακα από το 1 έως το 10, όπου το 1 είναι το χειρότερο και το 10 το καλύτερο.</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputRating" name="rating" required>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option selected>10</option>
+    </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="inputSource" class="col-sm-4 col-form-label text-left">Πώς ακούσατε για τη μελέτη μας;</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSource" name="source" required>
+      <option>Αναζητώντας στο διαδίκτυο για μελέτες της μνήμης</option>
+      <option>Γνωρίζω τον κύριο ερευνητή (T. McGibbon, A. Jansari)</option>
+      <option>Γνωρίζω κάποιον άλλον που δουλεύει στο εν λόγω έργο</option>
+      <option>Απόφοιτος του Goldsmiths University</option>
+      <option>Από τη σελίδα του Dr Ashok Jansari στο Facebook</option>
+      <option>Από την προσωπική σελίδα του Ashok στο Facebook</option>
+      <option>Ένας φίλος μου μού είπε σχετικά με αυτό</option>
+      <option>Από το σχολείο, κολλέγιο ή πανεπιστήμιο</option>
+      <option>Άλλο</option>
+    </select>
+    </div>
+  </div>
+
+
+<div class="text-center">
+  <button type="submit" class="btn btn-primary">Επόμενο</button>
+</div>
+
+</form>
+
+
+</div>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_080.js"></script>
+     {{/section}}
+</div>
+
 
 {{! ----------------- Institution 1000   Project 070  Elika CTE English ------------------ }}
 
-{{#if project.p1000_070}}
+{{else if project.p1000_070}}
 
 
 <div class="row justify-content-center">
@@ -115,6 +417,7 @@
     	 <select class="form-control" id="inputGender" name="gender" required>
       	 	<option selected>Female</option>
 		<option>Male</option>
+		<option>Other</option>
     		</select>
     </div>
   </div>
@@ -988,15 +1291,15 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
     <label for="inputGender" class="col-sm-3 col-form-label text-left">Sesso</label>
     <div class="col-auto">
     	 <select class="form-control" id="inputGender" name="gender" required>
-      	 	<option selected>Femmina</option>
-		<option>Maschio</option>
+      	 	<option selected>Donna</option>
+		<option>Uomo</option>
 		<option>Altro</option>
     		</select>
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputEducation" class="col-sm-3 col-form-label text-left">Livello di istruzione (maggiore) completato</label>
+    <label for="inputEducation" class="col-sm-3 col-form-label text-left">Maggiore livello di istruzione completato</label>
     <div class="col-auto">
     	 <select class="form-control" id="inputEducation" name="education" required>
                 <option>Scuola Primaria</option>
@@ -1034,7 +1337,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
 
 
   <div class="form-group row align-items-center">
-    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">Indicare se vi è stata diagnosticata una condizione che possa influire sulla vostra memoria</label>
+    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">Indicare se ti è stata diagnosticata una condizione che possa influire sulla tua memoria</label>
     <div class="col-auto">
          <select class="form-control" id="inputMedical" name="medical" required>
                 <option selected>No</option>
@@ -1049,7 +1352,25 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Avete un disturbo specifico del linguaggio, come la dislessia?</label>
+    <label for="inputNeuro" class="col-sm-4 col-form-label text-left">Hai una condizione di ‘neurodiversità’?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputNeuro" name="neuro" required>
+                <option selected>No</option>
+                <option>Si, prosopagnosia</option>
+                <option>Si, afantasia</option>
+                <option>Si, iper fantasia</option>
+                <option>Si, sinestesia</option>
+                <option>Si, ho un deficit di memoria autobiografica</option>
+                <option>Si, afantasia & deficit di memoria autobiografica</option>
+                <option>Si, afantasia & deficit di memoria autobiografica & prosopagnosia</option>
+                <option>Si, altre combinazioni di queste condizioni</option>
+                <option>Si, altro</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Hai un disturbo specifico del linguaggio, come la dislessia?</label>
     <div class="col-auto">
          <select class="form-control" id="inputDyslexia" name="dyslexia" required>
                 <option selected>No</option>
@@ -1059,7 +1380,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputProblems" class="col-sm-4 col-form-label text-left">Soffrite di difficoltà mnemoniche o di smemoratezza?</label>
+    <label for="inputProblems" class="col-sm-4 col-form-label text-left">Soffri di difficoltà mnemoniche o di smemoratezza?</label>
     <div class="col-auto">
          <select class="form-control" id="inputProblems" name="problems" required>
                 <option selected>No</option>
@@ -1072,7 +1393,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">Come considerate la vostra memoria rispetto a quella dei vostri coetanei?</label>
+    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">Come consideri la tua memoria rispetto a quella dei tuoi coetanei?</label>
     <div class="col-auto">
          <select class="form-control" id="inputOthersComparison" name="othersComparison" required>
                 <option selected>Uguale o migliore</option>
@@ -1083,7 +1404,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">Come considerate la vostra memoria rispetto a quando eravate più giovani?</label>
+    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">Come consideri la tua memoria rispetto a quando eri più giovane?</label>
     <div class="col-auto">
          <select class="form-control" id="inputSelfComparison" name="selfComparison" required>
                 <option selected>Uguale o migliore</option>
@@ -1094,7 +1415,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="inputConversation" class="col-sm-4 col-form-label text-left">Vi capita di dimenticare ciò che avete appena letto o sentito in una conversazione?</label>
+    <label for="inputConversation" class="col-sm-4 col-form-label text-left">Ti capita di dimenticare ciò che hai appena letto o sentito in una conversazione?</label>
     <div class="col-auto">
          <select class="form-control" id="inputConversation" name="conversation" required>
                 <option selected>Raramente/Mai</option>
@@ -1105,7 +1426,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row">
-    <label for="inputRating" class="col-sm-4 col-form-label text-left">Valutate la vostra memoria su una scala da 1 a 10 (da 1= pessima a 10 = ottima).</label>
+    <label for="inputRating" class="col-sm-4 col-form-label text-left">Valuta la tua memoria su una scala da 1 a 10 (da 1= pessima a 10 = ottima).</label>
     <div class="col-auto">
     <select class="form-control" id="inputRating" name="rating" required>
       <option>1</option>
@@ -1122,7 +1443,22 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
     </div>
   </div>
 
-
+  <div class="form-group row">
+    <label for="inputSource" class="col-sm-4 col-form-label text-left">Come sei venuto/a a conoscenza del nostro studio?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSource" name="source" required>
+      <option>Stavo ricercando online studi di memoria</option>
+      <option>Conosco i responsabili della ricerca (T.McGibbon, A.Jansari)</option>
+      <option>Conosco altri collaboratori della ricerca</option>
+      <option>Tramite studenti della Goldsmiths</option>
+      <option>La pagina Facebook di Dr Ashok Jansari</option>
+      <option>Tramite la pagina Facebook privata di Ashok</option>
+      <option>Passaparola da amici</option>
+      <option>Dalla mia scuola, college, o università</option>
+      <option>Altro</option>
+    </select>
+    </div>
+  </div>
 
 <div class="text-center">
   <button type="submit" class="btn btn-primary">Pagina successiva</button>
@@ -1317,6 +1653,26 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
     </div>
   </div>
 
+
+  <div class="form-group row align-items-center">
+    <label for="inputNeuro" class="col-sm-4 col-form-label text-left">Êtes-vous atteint d'une condition neurologique?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputNeuro" name="neuro" required>
+                <option selected>Non</option>
+                <option>Oui, la prosopagnosie</option>
+                <option>Oui, l'aphantasie</option>
+                <option>Oui, l'hyperphantasie</option>
+                <option>Oui, la synesthésie</option>
+                <option>Oui, mémoire autobiographique gravement déficiente</option>
+                <option>Oui, aphantasie et mémoire autobiographique gravement déficiente</option>
+                <option>Oui, aphantasie et mémoire autobiographique gravement déficiente et prosopagnosie</option>
+                <option>Oui, une autre combinaison de ce qui précède</option>
+                <option>Oui, autre</option>
+                </select>
+    </div>
+  </div>
+
+
   <div class="form-group row align-items-center">
     <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Avez-vous des problèmes de lecture, par exemple de dyslexie?</label>
     <div class="col-auto">
@@ -1391,6 +1747,22 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
     </div>
   </div>
 
+  <div class="form-group row">
+    <label for="inputSource" class="col-sm-4 col-form-label text-left">Comment avez-vous entendu parler de notre étude?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSource" name="source" required>
+      <option>Recherche d'études de mémoire en ligne</option>
+      <option>Vous connaissez le chercheur principal (T. McGibbon, A. Jansari)</option>
+      <option>Vous connaissez quelqu’un d’autre qui travaille sur le projet</option>
+      <option>Vous êtes ancien élève de Goldsmiths</option>
+      <option>Page Facebook de Dr Ashok Jansari</option>
+      <option>Page Facebook personnelle d'Ashok</option>
+      <option>Un ami vous en a parlé</option>
+      <option>De votre école, collège ou université</option>
+      <option>Autre</option>
+    </select>
+    </div>
+  </div>
 
 
 <div class="text-center">
@@ -1928,6 +2300,25 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
   </div>
 
   <div class="form-group row align-items-center">
+    <label for="inputNeuro" class="col-sm-4 col-form-label text-left">Har du en nevrodivers tilstand? </label>
+    <div class="col-auto">
+         <select class="form-control" id="inputNeuro" name="neuro" required>
+                <option selected>Nei</option>
+                <option>Ja, prosopagnosia</option>
+                <option>Ja, afantasi</option>
+                <option>Ja, hyperfantasi</option>
+                <option>Ja, synestesi</option>
+                <option>Ja, SDAM</option>
+                <option>Ja, afantasi & SDAM</option>
+                <option>Ja, afantasi & SDAM & prosopagnosia </option>
+                <option>Ja, en annen kombinasjon</option>
+                <option>Ja, andre</option>
+                </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
     <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Har du lesevansker, for eksempel dysleksi?</label>
     <div class="col-auto">
          <select class="form-control" id="inputDyslexia" name="dyslexia" required>
@@ -1997,6 +2388,23 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
       <option>8</option>
       <option>9</option>
       <option selected>10</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputSource" class="col-sm-4 col-form-label text-left">Hvordan fikk du høre om studiet? </label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSource" name="source" required>
+      <option>Så etter hukommelsestudier online</option>
+      <option>Kjenner ledende forsker (T.McGibbon, A.Jansari)</option>
+      <option>Kjenner noen andre som jobber med prosjektet</option>
+      <option>Goldsmiths Alumni</option>
+      <option>Dr Ashok Jansaris Facebook side</option>
+      <option>Ashoks personlige Facebook side</option>
+      <option>En venn fortalte meg om det</option>
+      <option>Fra min skole, høgskole eller universitet</option>
+      <option>Annet</option>
     </select>
     </div>
   </div>
@@ -2315,6 +2723,7 @@ Jak Pani/i ocenia swoją pamięć dzisiaj w porównaniu do tego jak było kiedy�
     	 <select class="form-control" id="inputGender" name="gender" required>
       	 	<option selected>Female</option>
 		<option>Male</option>
+		<option>Other</option>
     		</select>
     </div>
   </div>

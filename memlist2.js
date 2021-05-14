@@ -374,10 +374,15 @@ app.get('/pl', function(req, res){
     req.session.project = { name: "p1000_060" };
     return res.redirect(303, '/?project=p1000_060');
 });
-app.get('/cte', function(req, res){
+app.get('/uk_sports', function(req, res){
     res.locals.project = { p1000_070: 'cheese' };
     req.session.project = { name: "p1000_070" };
     return res.redirect(303, '/?project=p1000_070');
+});
+app.get('/gr', function(req, res){
+    res.locals.project = { p1000_080: 'cheese' };
+    req.session.project = { name: "p1000_080" };
+    return res.redirect(303, '/?project=p1000_080');
 });
 
 

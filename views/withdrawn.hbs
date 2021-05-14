@@ -1,7 +1,31 @@
+{{! ----------------- Institution 1000   Project 080  Greek  ------------------ }}
+
+{{#if project.p1000_080}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Σας ευχαριστούμε για το ενδιαφέρον σας για τη συγκεκριμένη μελέτη! </h5>
+     	    <p>Απολογούμαστε που δεν επιθυμείτε να συμμετάσχετε στη μελέτη. Έχετε αποσυρθεί. Είστε ευπρόσδεκτος/η να επιστρέψετε και να συμμετάσχετε σε άλλες μελλοντικές μας μελέτες.</p>
+
+            <a href="/" class="btn btn-primary" role="button">Επιστροφή στην αρχική σελίδα</a>
+
+        </div>
+    </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_080.js"></script>
+     {{/section}}
+</div>
+
 
 {{! ----------------- Institution 1000   Project 070  Elika CTE English  ------------------ }}
 
-{{#if project.p1000_070}}
+{{else if project.p1000_070}}
 
 <div id="introduction" style="display: block">
 
@@ -85,8 +109,10 @@
 
     <div class="row justify-content-center pt-3">
         <div class="col-10 text-center">
-            <h5 class='text-center'>Vi ringraziamo per il vostro interesse nel nostro studio di ricerca! </h5>
-     	    <p>Siamo spiacenti che non desideriate partecipare allo studio. La vostra partecipazione è stata revocata con successo. Vi invitiamo a partecipare ad altri studi in futuro.</p>
+            <h5 class='text-center'>Ti ringraziamo per il tuo interesse nel nostro studio di ricerca!</h5>
+     	    <p>
+	    Siamo spiacenti che non desideri partecipare allo studio. La tua partecipazione è stata revocata con successo. Ti invitiamo a partecipare ad altri studi in futuro. 
+ 	    </p>
 
             <a href="/" class="btn btn-primary" role="button">Ritornare alla pagina principale</a>
 
