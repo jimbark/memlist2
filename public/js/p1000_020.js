@@ -510,7 +510,7 @@ function checkAnswer() {
     var errorFlag = 0;
     var info = [firstWord, secondWord, answerWord, errorFlag, dNow];
 
-    if (document.getElementById("tAnswerWord").value.toLowerCase() === lists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toLowerCase().trim() === lists[l][i][1]) {
 	++lists[l][i][2];  // increment correct counter
 	lists[l+2].push(info);    // append full answer info to full answers list
 
@@ -600,7 +600,7 @@ function checkNoFeedback() {
     var errorFlag = 0;
     var info = [firstWord, secondWord, answerWord, errorFlag, dNow];
 
-    if (document.getElementById("tAnswerWord").value.toLowerCase() === tlists[l][i][1]) {
+    if (document.getElementById("tAnswerWord").value.toLowerCase().trim() === tlists[l][i][1]) {
 	++tlists[l][i][2];  // increment correct counter
 	tlists[l][i][5] = dNow;
 	tlists[l+2].push(info);  // append full answer details to full answers list
