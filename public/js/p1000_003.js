@@ -3,7 +3,7 @@
 // Bootstrap and HTML Boilerplate
 // *********************************************************
 
-// project: p1000_001,  UK English
+// project: p1000_003,  UK Schools
 
 // Constants
 

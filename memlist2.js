@@ -384,6 +384,11 @@ app.get('/gr', function(req, res){
     req.session.project = { name: "p1000_080" };
     return res.redirect(303, '/?project=p1000_080');
 });
+app.get('/ukschools', function(req, res){
+    res.locals.project = { p1000_030: 'cheese' };
+    req.session.project = { name: "p1000_003" };
+    return res.redirect(303, '/?project=p1000_003');
+});
 
 
 // test pages for reviewign text options
