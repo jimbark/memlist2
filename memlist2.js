@@ -344,15 +344,25 @@ app.get('/projtest', function(req, res){
 });
 
 // and routes to allow direct access to a specific project
-app.get('/indian', function(req, res){
-    res.locals.project = { p1000_020: 'cheese' };
-    req.session.project = { name: "p1000_020" };
-    return res.redirect(303, '/?project=p1000_020');
+app.get('/ukschools', function(req, res){
+    res.locals.project = { p1000_003: 'cheese' };
+    req.session.project = { name: "p1000_003" };
+    return res.redirect(303, '/?project=p1000_003');
+});
+app.get('/eps', function(req, res){
+    res.locals.project = { p1000_004: 'cheese' };
+    req.session.project = { name: "p1000_004" };
+    return res.redirect(303, '/?project=p1000_004');
 });
 app.get('/norsk', function(req, res){
     res.locals.project = { p1000_010: 'cheese' };
     req.session.project = { name: "p1000_010" };
     return res.redirect(303, '/?project=p1000_010');
+});
+app.get('/indian', function(req, res){
+    res.locals.project = { p1000_020: 'cheese' };
+    req.session.project = { name: "p1000_020" };
+    return res.redirect(303, '/?project=p1000_020');
 });
 app.get('/fr', function(req, res){
     res.locals.project = { p1000_030: 'cheese' };
@@ -383,11 +393,6 @@ app.get('/gr', function(req, res){
     res.locals.project = { p1000_080: 'cheese' };
     req.session.project = { name: "p1000_080" };
     return res.redirect(303, '/?project=p1000_080');
-});
-app.get('/ukschools', function(req, res){
-    res.locals.project = { p1000_030: 'cheese' };
-    req.session.project = { name: "p1000_003" };
-    return res.redirect(303, '/?project=p1000_003');
 });
 
 

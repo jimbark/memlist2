@@ -1098,6 +1098,138 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
 </div>
 
 
+{{! ----------------- Institution 1000   Project 004 UK EPS CVLT ------------------ }}
+
+{{else if project.p1000_004}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Welcome back! </h5>
+
+       	    <p  id='study' style="display: block">Thank you for coming back for your second delayed test. You will be tested on some of the word pairs you learnt previously, and in the same way as before. You will be shown the first word in a pair, and asked to enter the second word. This should take no more than 3 minutes.</p>
+       	    <p  id='study' style="display: block">When you are ready press the button below to start.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest2()" class="btn btn-primary">Start Testing</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Type in the second word in the pair. Press Return or the Submit button to continue
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">24 hour Test Feedback</h5>
+     <p>Well done! Thank you for completing your second delayed test.</p>
+     <p>You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span>.</p>
+
+     <p>Our records show you have now completed all stages of the study. There is nothing more to do.</p>
+     <p>Thanks for your participation! </p>
+
+     <p>If you are taking part via Mechanical Turk use your participation code to register completion of the task.</p>
+
+      <p>For those who are interested, we have provided some more information about the study below.</p>
+
+     <h5>Study debrief</h5>
+
+     <p>This study tests memory for word-pairs at delays of 55 minutes and 24 hours.</p> 
+
+     <p>Most memory research and clinical testing looks at memory after 30 minutes. It is hard to test at extended delays as this normally requires getting participants to return to a memory clinic for repeated testing. As a result less is known about memory development over extended timeframes.</p>
+
+     <p>By using an online test we hope to overcome this problem, allowing a large number of people from the general population to take part.</p>
+
+     <p>By testing at the longer, 24 hour delay we hope to identify how memory changes over time.</p> 
+
+     <p>In future we will provide feedback to participants on how their score compares to others. This feature will be added once we have enough data to provide useful comparisons.</p>
+
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Return to home page</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_004.js"></script>
+     {{/section}}
+</div>
+
 
 {{! ----------------- Institution 1000   Project 003 UK Schools ------------------ }}
 

@@ -651,6 +651,86 @@
 </div>
 
 
+{{! ----------------- Institution 1000   Project 004  UK EPS CVLT  ------------------ }}
+
+{{else if project.p1000_004}}
+
+<div class="row justify-content-center" style="display: none">
+   <div class="col-10">
+
+<h5 class="text-center pt-3">Please login to continue.</h5>
+
+
+<div id="facebook" style="display: block" class="text-center">
+
+     <a href="/auth/facebook">
+     	<img border="0" alt="facebook login" src="/img/facebook_login.png" width="250" height="100">
+     </a>
+
+     <p> We use Facebook to identify participants without you needing to create an account on our system or remember another password. We do not see your Facebook username or password, and we do not view or store anything from your Facebook profile.</p>
+
+
+</div>
+
+   </div>
+</div>
+
+
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+             <h5 class='text-center'>Let's get started.</h5>
+
+	     <p>First we need your participation code.</p>
+
+	     <p><b>Existing participants:</b> if you have come back for one of your delayed tests enter your participation code below and press Start.</p>
+
+            <p  id='study' style="display: block"><b>New participants:</b> press Generate Code to obtain your unique code. You will need this when you come back for your delayed test, so please write it down or take a photo or screenshot. Be careful, this code is case sensitive. Then press Start.</p>
+
+        </div>
+    </div>
+
+</div>
+
+
+<form id="login" style="display: block" class="form-horizontal" action="/login?form=login" method="POST">
+
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+
+  <div class="row justify-content-center pt-5">
+
+    <input type="hidden" name="password" value="pass">
+    <input type="hidden" id="code" name="code" value="{{mturkCode}}">
+
+    <div class="col-auto form-group">
+      <input type="text" style="width:110px;" class="form-control text-right pr-3" id="username"
+             name="username" value="">
+      <small id="codeHelp" class="form-text text-muted">Participation code.</small>
+    </div>
+
+    <div class="col-auto form-group">
+      <button type="button" id="generateCode" onclick="genCode()" class="btn btn-primary">Generate Code</button\
+>
+    </div>
+
+    <div class="col-auto form-group">
+      <button type="submit" class="btn btn-primary" id="localLogin">Start</button>
+    </div>
+
+  </div>
+
+
+</form>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_004.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 003  UK Schools ------------------ }}
 
 {{else if project.p1000_003}}
