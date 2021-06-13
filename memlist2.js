@@ -354,7 +354,7 @@ app.get('/eps', function(req, res){
     req.session.project = { name: "p1000_004" };
     return res.redirect(303, '/?project=p1000_004');
 });
-app.get('/greenwicheps', function(req, res){
+app.get('/greenwich', function(req, res){
     res.locals.project = { p1000_005: 'cheese' };
     req.session.project = { name: "p1000_005" };
     return res.redirect(303, '/?project=p1000_005');
