@@ -384,7 +384,7 @@ function test() {
 
 	// calculate 1st delayed test target time
 	var endTime = endDate.getTime();
-	var n = new Date(endTime + min55);
+	var n = new Date(endTime + min30);
 	var hr = n.getHours();
 	var min = (n.getMinutes() < 10 ? '0' : '') + n.getMinutes();
 	var ampm = "am";

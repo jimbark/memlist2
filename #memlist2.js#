@@ -69,8 +69,7 @@ app.use(function(req, res, next){
 		next(err);
 	    } catch(error){
 		// if Express error route failed, try
-		// plain Node response
-		logger.error('Express error mechanism failed.\n', error.stack);
+		// plain Node respologger.error('Express error mechanism failed.\n', error.stack);
 		res.statusCode = 500;
 		res.setHeader('content-type', 'text/plain');
 		res.end('Server error.');
@@ -349,7 +348,7 @@ app.get('/ukschools', function(req, res){
     req.session.project = { name: "p1000_003" };
     return res.redirect(303, '/?project=p1000_003');
 });
-app.get('/memory', function(req, res){
+app.get('/eps', function(req, res){
     res.locals.project = { p1000_004: 'cheese' };
     req.session.project = { name: "p1000_004" };
     return res.redirect(303, '/?project=p1000_004');
