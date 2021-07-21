@@ -54,7 +54,9 @@ var mL1 = [
 ];
 */
 
+/*
 // study lists with 3 recalls for all pairs, and only 12 pairs
+// retain here so can revert to 3 recalls for all pairs as used in earlier testing
 var mL1 = [
     ['waist','spray',0,0,3],
     ['stove','dirt',0,0,3],
@@ -69,8 +71,8 @@ var mL1 = [
     ['tribe','sweep',0,0,3],
     ['rash','paste',0,0,3]
 ];
+*/
 
-/*
 // study lists with 1 & 2 recalls for 6 pairs each, and only 12 pairs total
 // keep order the same so that can compare with previous results (avoid changing primacy/recency)
 var mL1 = [
@@ -87,7 +89,6 @@ var mL1 = [
     ['tribe','sweep',0,0,2],
     ['rash','paste',0,0,2]
 ];
-*/
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
 //var mL1 = [['L1C1','L1A1',0,0,1], ['L1C2','L1A2',0,0,3],['L1C3','L1A3',0,0,3]];
