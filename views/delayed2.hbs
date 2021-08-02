@@ -1,6 +1,152 @@
+{{! ----------------- Institution 1001   Project 001  AUS CTE ------------------ }}
+
+{{#if project.p1001_001}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>Welcome back! </h5>
+
+       	    <p  id='study' style="display: block">Thank you for coming back for your second delayed test. You will be tested on some of the word pairs you learnt previously, and in the same way as before. You will be shown the first word in a pair, and asked to enter the second word. This should take no more than 3 minutes.</p>
+       	    <p  id='study' style="display: block">When you are ready press the button below to start.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest2()" class="btn btn-primary">Start Testing</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Type in the second word in the pair. Press Return or the Submit button to continue
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">Correct!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">24 hour Test Feedback</h5>
+     <p>Well done! Thank you for completing your second delayed test.</p>
+     <p>You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span>.</p>
+
+     <p>Our records show you have now completed all stages of the study. There is nothing more to do.</p>
+     <p>Thanks for your participation! </p>
+
+      <p>For those who are interested, we have provided some more information about the study below.</p>
+
+     <h5>Study debrief</h5>
+
+     <p>
+     <b>Study information:</b>
+     </p>
+
+     <p>
+     This study test memory for word pairs at time delays of 55 minutes and 24 hours. Most memory research and clinical testing looks at memory after 30 minutes only. It is hard to test at extended delays as this normally requires getting participants to return to a memory clinic for testing. As a result, less is known about memory development over extended timeframes. By using an online test we hope to overcome this problem allowing a large number of people from the general population to take part. By testing at the longer, 24 hour delay we hope to identify how memory changes over time. In future we will provide feedback to participants on how their school compares to others. This feature will be added once we have enough data to provide useful comparisons. 
+     </p>
+
+     <p>
+     <b>Thank you for participating in this research. The next steps are:</b>
+     </p>
+
+     <p>
+     This data will be used and analysed as part of Isabella Kidd’s thesis as part of completion of the Master of Psychology (Clinical). The results of this research will not only form the basis of the thesis, which is submitted as part of the Master of Psychology (Clinical), also be presented at a professional meeting, and submitted to academic journals for publishing. The results of this study will be available after the 31st of October, 2021. If you would like to receive them, please email either Isabella Kidd (246527@my.acap.edu.au) or Dr Michael Gascoigne (michael.gascoigne@acap.edu.au)
+     </p>
+
+     <p>
+     If you experience any distress after participating in this research, you are able to contact any of the services on the list provided on the front page of this study.  
+     </p>
+
+     <p>
+     Note that some scholarly journals require making the data from research available to them for the purposes of checking the reliability and accuracy of the findings reported in the journal article. As no identifying information is retained in the course of this research, you will not be able to be identified in this data file. 
+     </p>
+
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Return to home page</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1001_001.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 080  Greek  ------------------ }}
 
-{{#if project.p1000_080}}
+{{else if project.p1000_080}}
 
 <div id="introduction" style="display: block">
 

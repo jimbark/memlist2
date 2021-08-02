@@ -399,6 +399,11 @@ app.get('/gr', function(req, res){
     req.session.project = { name: "p1000_080" };
     return res.redirect(303, '/?project=p1000_080');
 });
+app.get('/cte', function(req, res){
+    res.locals.project = { p1001_001: 'cheese' };
+    req.session.project = { name: "p1001_001" };
+    return res.redirect(303, '/?project=p1001_001');
+});
 
 
 // test pages for reviewign text options
@@ -932,6 +937,78 @@ app.post('/demographics', function(req, res){
 	console.log('Loss (from visible form field): ' + req.body.loss);
 	}
 
+
+
+
+    var inVision = "null";
+    if (req.body.vision) {
+	inVision = req.body.vision;
+	console.log('Vision (from visible form field): ' + req.body.vision);
+	}
+    var inContact = "null";
+    if (req.body.contact) {
+	inContact = req.body.contact;
+	console.log('Contact (from visible form field): ' + req.body.contact);
+	}
+    var inActive = "null";
+    if (req.body.active) {
+	inActive = req.body.active;
+	console.log('Active (from visible form field): ' + req.body.active);
+	}
+    var inSportLevel = "null";
+    if (req.body.sportlevel) {
+	inSportLevel = req.body.sportlevel;
+	console.log('SportLevel (from visible form field): ' + req.body.sportlevel);
+	}
+    var inSportLength = "null";
+    if (req.body.sportlength) {
+	inSportLength = req.body.sportlength;
+	console.log('SportLength (from visible form field): ' + req.body.sportlength);
+	}
+    var inSportMatches = "null";
+    if (req.body.sportmatches) {
+	inSportMatches = req.body.sportmatches;
+	console.log('SportMatches (from visible form field): ' + req.body.sportmatches);
+	}
+    var inSportNumber = "null";
+    if (req.body.sportnumber) {
+	inSportNumber = req.body.sportnumber;
+	console.log('SportNumber (from visible form field): ' + req.body.sportnumber);
+	}
+    var inSessionKnocks = "null";
+    if (req.body.sessionknocks) {
+	inSessionKnocks = req.body.sessionknocks;
+	console.log('SessionKnocks (from visible form field): ' + req.body.sessionknocks);
+	}
+    var inFirstInjury = "null";
+    if (req.body.firstinjury) {
+	inFirstInjury = req.body.firstinjury;
+	console.log('FirstInjury (from visible form field): ' + req.body.firstinjury);
+	}
+    var inLastInjury = "null";
+    if (req.body.lastinjury) {
+	inLastInjury = req.body.lastinjury;
+	console.log('LastInjury (from visible form field): ' + req.body.lastinjury);
+	}
+    var inSteroids = "null";
+    if (req.body.steroids) {
+	inSteroids = req.body.steroids;
+	console.log('Steroids (from visible form field): ' + req.body.steroids);
+	}
+    var inDrugFrequency = "null";
+    if (req.body.drugfrequency) {
+	inDrugFrequency = req.body.drugfrequency;
+	console.log('DrugFrequency (from visible form field): ' + req.body.drugfrequency);
+	}
+    var inCogChanges = "null";
+    if (req.body.cogchanges) {
+	inCogChanges = req.body.cogchanges;
+	console.log('CogChanges (from visible form field): ' + req.body.cogchanges);
+	}
+
+
+
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
 
@@ -980,6 +1057,20 @@ app.post('/demographics', function(req, res){
 	    "#X": 'injury',
 	    "#Y": 'loss',
 
+	    "#AA": 'vision',
+	    "#AB": 'contact',
+	    "#AC": 'active',
+	    "#AD": 'sportlevel',
+	    "#AE": 'sportlength',
+	    "#AF": 'sportmatches',
+	    "#AG": 'sportnumber',
+	    "#AH": 'sessionknocks',
+	    "#AI": 'firstinjury',
+	    "#AJ": 'lastinjury',
+	    "#AK": 'steroids',
+	    "#AL": 'drugfrequency',
+	    "#AM": 'cogchanges',
+
 	},
 	ExpressionAttributeValues: {
 	    ":b": { S: inGender},
@@ -1009,9 +1100,23 @@ app.post('/demographics', function(req, res){
 	    ":x": {S: inInjury},
 	    ":y": {S: inLoss},
 
+	    ":aa": {S: inVision},
+	    ":ab": {S: inContact},
+	    ":ac": {S: inActive},
+	    ":ad": {S: inSportLevel},
+	    ":ae": {S: inSportLength},
+	    ":af": {S: inSportMatches},
+	    ":ag": {S: inSportNumber},
+	    ":ah": {S: inSessionKnocks},
+	    ":ai": {S: inFirstInjury},
+	    ":aj": {S: inLastInjury},
+	    ":ak": {S: inSteroids},
+	    ":al": {S: inDrugFrequency},
+	    ":am": {S: inCogChanges},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y"
+	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am"
     };
 
     User.updateById(authId, updates, function (err, data) {
