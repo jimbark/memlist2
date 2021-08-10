@@ -937,9 +937,6 @@ app.post('/demographics', function(req, res){
 	console.log('Loss (from visible form field): ' + req.body.loss);
 	}
 
-
-
-
     var inVision = "null";
     if (req.body.vision) {
 	inVision = req.body.vision;
@@ -1005,8 +1002,16 @@ app.post('/demographics', function(req, res){
 	inCogChanges = req.body.cogchanges;
 	console.log('CogChanges (from visible form field): ' + req.body.cogchanges);
 	}
-
-
+    var inEmail = "null";
+    if (req.body.email) {
+	inEmail = req.body.email;
+	console.log('Email (from visible form field): ' + req.body.email);
+	}
+    var inCountry = "null";
+    if (req.body.country) {
+	inCountry = req.body.country;
+	console.log('Country (from visible form field): ' + req.body.country);
+	}
 
 
     console.log('Form (from querystring): ' + req.query.form);
@@ -1030,6 +1035,7 @@ app.post('/demographics', function(req, res){
 	    'authId' : {S: authId},
 	},
 	ExpressionAttributeNames: {
+	    "#A": 'email',
 	    "#B": 'gender',
 	    "#C": 'age',
 	    "#D": 'status',
@@ -1070,9 +1076,12 @@ app.post('/demographics', function(req, res){
 	    "#AK": 'steroids',
 	    "#AL": 'drugfrequency',
 	    "#AM": 'cogchanges',
+	    "#AN": 'country',
+
 
 	},
 	ExpressionAttributeValues: {
+	    ":a": { S: inEmail},
 	    ":b": { S: inGender},
 	    ":c": { N: inAge},
 	    ":d": { S: 'registered'},
@@ -1113,10 +1122,11 @@ app.post('/demographics', function(req, res){
 	    ":ak": {S: inSteroids},
 	    ":al": {S: inDrugFrequency},
 	    ":am": {S: inCogChanges},
+	    ":an": {S: inCountry},
 
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am"
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an"
     };
 
     User.updateById(authId, updates, function (err, data) {
