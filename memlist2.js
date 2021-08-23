@@ -359,6 +359,11 @@ app.get('/greenwich', function(req, res){
     req.session.project = { name: "p1000_005" };
     return res.redirect(303, '/?project=p1000_005');
 });
+app.get('/sports', function(req, res){
+    res.locals.project = { p1000_006: 'cheese' };
+    req.session.project = { name: "p1000_006" };
+    return res.redirect(303, '/?project=p1000_006');
+});
 app.get('/norsk', function(req, res){
     res.locals.project = { p1000_010: 'cheese' };
     req.session.project = { name: "p1000_010" };
@@ -1012,6 +1017,11 @@ app.post('/demographics', function(req, res){
 	inCountry = req.body.country;
 	console.log('Country (from visible form field): ' + req.body.country);
 	}
+    var inContactSummary = "null";
+    if (req.body.contactsummary) {
+	inContactSummary = req.body.contactsummary;
+	console.log('Contact Summary (from visible form field): ' + req.body.contactsummary);
+	}
 
 
     console.log('Form (from querystring): ' + req.query.form);
@@ -1077,7 +1087,7 @@ app.post('/demographics', function(req, res){
 	    "#AL": 'drugfrequency',
 	    "#AM": 'cogchanges',
 	    "#AN": 'country',
-
+	    "#AO": 'contactsummary',
 
 	},
 	ExpressionAttributeValues: {
@@ -1123,10 +1133,11 @@ app.post('/demographics', function(req, res){
 	    ":al": {S: inDrugFrequency},
 	    ":am": {S: inCogChanges},
 	    ":an": {S: inCountry},
+	    ":ao": {S: inContactSummary},
 
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an"
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao"
     };
 
     User.updateById(authId, updates, function (err, data) {
