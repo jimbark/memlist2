@@ -343,6 +343,13 @@ app.get('/projtest', function(req, res){
     res.render('projtest');
 });
 
+// Test route to allow to skip straight to delayed2 test
+//app.get('/testdelayed2', function(req, res){
+//    res.render('delayed2', {mechTurkID: 'dummy'});
+//});
+
+
+
 // and routes to allow direct access to a specific project
 app.get('/ukschools', function(req, res){
     res.locals.project = { p1000_003: 'cheese' };
@@ -359,10 +366,18 @@ app.get('/greenwich', function(req, res){
     req.session.project = { name: "p1000_005" };
     return res.redirect(303, '/?project=p1000_005');
 });
-app.get('/sports', function(req, res){
-    res.locals.project = { p1000_006: 'cheese' };
-    req.session.project = { name: "p1000_006" };
-    return res.redirect(303, '/?project=p1000_006');
+
+
+//app.get('/sports', function(req, res){
+//    res.locals.project = { p1000_006: 'cheese' };
+//    req.session.project = { name: "p1000_006" };
+//    return res.redirect(303, '/?project=p1000_006');
+//});
+
+app.get('/recognition', function(req, res){
+    res.locals.project = { p1000_007: 'cheese' };
+    req.session.project = { name: "p1000_007" };
+    return res.redirect(303, '/?project=p1000_007');
 });
 app.get('/norsk', function(req, res){
     res.locals.project = { p1000_010: 'cheese' };

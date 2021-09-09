@@ -102,10 +102,23 @@
 <div class="row justify-content-center">
    <div class="col-10">
 
-     <h5 class="pt-3">Instrukcje odroczonego zadania właściwego uczenia się par słów.</h5>
-     <p>Dziękujemy za ukończenie drugiej części zadania właściwego. W celu przejścia do trzeciej części, prosimy, aby Pan/i wrócił/a za 55 minut, czyli o <b> {{min30TestTime}} </b>.</p>
-     <p>Po powrocie na naszą stronę główną, prosimy aby Pan/i zalogował/a się jako ponowny uczestnik.</p>
-     <p>Prosimy, aby nie powtarzał/a Pan/i par słów, które były w zadaniu właściwym, ponieważ może zakłócić to wynik badania.</p>
+     <h5 class="pt-3">Instrukcja do zadania głównego - części 1</h5>
+     <p>Dziękujemy za ukończenie części 1. W celu przejścia do części 3, prosimy, aby Pan/i wrócił/a za 55 minut, czyli o <b> {{min30TestTime}} </b>.</p>
+
+     <p>
+     Zalecamy, aby zanotować, zrobić zdjęcie lub ustawić przypomnienie w telefonie o godzinie powrotu na badanie.
+     </p>
+
+     <p>
+     Nie musi Pan/i być dokładnie na czas; można zacząć trochę wcześniej lub później.
+     </p>
+
+     <p>
+     Jeśli nie uda się Panu/i zacząć na czas zadania głównego, prosimy wykonać ten test, kiedy będzie miał/a Pan/i taką możliwość. Pana/i wyniki będą nadal pomocne w naszym badaniu.
+     </p>
+
+     <p>Po powrocie na naszą stronę główną, prosimy, aby Pan/i zalogował/a się jako ponowny uczestnik.</p>
+     <p>Prosimy, aby nie powtarzał/a Pan/i par słów, które były w zadaniu głównym, ponieważ może to zakłócić wynik badania.</p>
 
 </div>
 </div>
@@ -289,6 +302,36 @@
 <div>
      {{#section "projectjs"}}
      <script src="js/p1000_010.js"></script>
+     {{/section}}
+</div>
+
+{{! ----------------- Institution 1000   Project 007 UK Recognition ------------------ }}
+
+{{else if project.p1000_007}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Post Learning Instructions</h5>
+     <p>Thank you for completing the first part of the study. For the next stage we need you to come back in 55 minutes, at <b> {{min30TestTime}} </b>, to be tested again. We recommend you write this time down, take a photo, or perhaps set an alarm on your phone to help you remember to come back.</p>
+     <p>We don't need you to start exactly on time; it is OK to be a few minutes early or late. </p>
+     <p>If you are unable to come back at the correct time please do the delayed test whenever you can as your data will still help our research.</p>
+     <p>When you come back visit our home page and enter the site as returning participant.</p>
+     <p>Please do not try to rehearse the word-pairs as that will invalidate the results of the research.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Return to home page</a>
+     </div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_007.js"></script>
      {{/section}}
 </div>
 
