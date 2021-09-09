@@ -366,19 +366,18 @@ app.get('/greenwich', function(req, res){
     req.session.project = { name: "p1000_005" };
     return res.redirect(303, '/?project=p1000_005');
 });
+app.get('/sports', function(req, res){
+    res.locals.project = { p1000_006: 'cheese' };
+    req.session.project = { name: "p1000_006" };
+    return res.redirect(303, '/?project=p1000_006');
+});
 
-
-//app.get('/sports', function(req, res){
-//    res.locals.project = { p1000_006: 'cheese' };
-//    req.session.project = { name: "p1000_006" };
-//    return res.redirect(303, '/?project=p1000_006');
+//app.get('/recognition', function(req, res){
+//    res.locals.project = { p1000_007: 'cheese' };
+//    req.session.project = { name: "p1000_007" };
+//    return res.redirect(303, '/?project=p1000_007');
 //});
 
-app.get('/recognition', function(req, res){
-    res.locals.project = { p1000_007: 'cheese' };
-    req.session.project = { name: "p1000_007" };
-    return res.redirect(303, '/?project=p1000_007');
-});
 app.get('/norsk', function(req, res){
     res.locals.project = { p1000_010: 'cheese' };
     req.session.project = { name: "p1000_010" };
