@@ -1293,7 +1293,17 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
         <div class="col-10 text-center">
 	     <h5 class='text-center'>Welcome back! </h5>
 
-       	    <p  id='study' style="display: block">RECOGNITION: Thank you for coming back for your second delayed test. You will be tested on some of the word pairs you learnt previously, and in the same way as before. You will be shown the first word in a pair, and asked to enter the second word. This should take no more than 3 minutes.</p>
+       	    <p  id='study' style="display: block">Thank you for coming back for your second delayed test. This time the test will be in two parts. </p>
+
+	    <ul>
+		<li>Recall: you will be tested on some of the word pairs you learnt previously, in the same way as before. You will be shown the first word in a pair, and asked to recall and enter the second word. This should take no more than 3 minutes.
+		</li>
+
+		<li>Recognition: You will be shown the first word in a pair, along with 4 choices for the second word in that pair and asked to select the correct answer. This should take no more than 2 minutes. 
+		</li>
+
+	    </ul>
+
        	    <p  id='study' style="display: block">When you are ready press the button below to start.</p>
     	</div>
     </div>
@@ -1370,19 +1380,18 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
 </form>
 
 
-
-
 <div id="recog" style="display: none">
 
 <div id='testText' style="display: block">
      <div class="row justify-content-center pt-5">
+     <div class="col-10 text-center">
 
-     <p>Select the correct second word , then press Return or the Submit button to continue
-     <p> </p>
+     <p>Select the correct second word, then press the Submit button to continue. You must select an answer. If you are not sure then please guess.
+     </p>
 
+     </div> 
      </div>
 </div>
-
 
 <form id="testRecognitionForm" style="display: block">
   <input type="hidden" name="_csrf" value={{_csrfToken}}>
@@ -1412,8 +1421,6 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
 
     </div>
 
-  </div>
-
   <div class="row justify-content-center pt-5">
     <div class="col-auto">
       <button type="button" id="checkRecognition" onclick="checkRecognitionAnswer()" class="btn btn-primary">Submit</button>
@@ -1422,9 +1429,7 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
 
 </form>
 
-
-
-
+</div>
 
 
 <div id="postDelayedInstructions" style="display: none">
@@ -1433,31 +1438,17 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
 
      <h5 class="pt-3">24 hour Test Feedback</h5>
      <p>Well done! Thank you for completing your second delayed test.</p>
-     <p>You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span>.</p>
+     <p>You scored <span id='correctAnswers'>12</span> out of <span id='totalAnswers'>12</span> in the recall test and <span id='correctRecogAnswers'>12</span> out of <span id='totalRecogAnswers'>12</span> in the recognition test.</p>
+
+     <p>If you want to retain a record of your scores please make a note of them now as they will not be displayed again.
+     </p>
 
      <p>Our records show you have now completed all stages of the study. There is nothing more to do.</p>
      <p>Thanks for your participation! </p>
 
-     <p>If you are taking part via Mechanical Turk use your participation code to register completion of the task.</p>
-
       <p>For those who are interested, we have provided some more information about the study below.</p>
 
      <h5>Study debrief</h5>
-
-     <p><b>Contact sport and dementia</b></p>
-
-     <p>
-     In recent years, it has become clear that there is a link between long-term involvement in contact sports and the subsequent diagnosis of what is known as ‘chronic traumatic encephalopathy’ (CTE). CTE is associated with the development of dementia and is believed to be caused by the impact of repeated head impacts each of which causes very small amounts of brain damage but which over time add up. A study in 2019 found that professional footballers were three and a half times more likely to die from dementia than people of the same age range in the general population. As a result of such findings, the sports authorities in the UK are now limiting the amount of heading allowed during training.
-     </p>
-
-     <p><b>Contact sport and memory deficits</b></p>
-
-     <p>
-     Memory deficits are commonly reported in people who are diagnosed with CTE. It is important to note that these memory deficits can take a long time to appear (years or decades) following repeated head impact. Several studies have suggested that particular memory deficits may be an early indicator of the onset of dementia. The current study will investigate whether players exhibit such deficits. 
-     </p>
-
-
-     <p><b>Study information:</b></p>
 
      <p>This study tests memory for word-pairs at delays of 55 minutes and 24 hours.</p> 
 
@@ -1468,7 +1459,6 @@ Merci d'être revenu pour votre deuxième test différé. Vous serez testé de l
      <p>By testing at the longer, 24 hour delay we hope to identify how memory changes over time.</p> 
 
      <p>In future we will provide feedback to participants on how their score compares to others. This feature will be added once we have enough data to provide useful comparisons.</p>
-
 
 </div>
 </div>

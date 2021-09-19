@@ -101,7 +101,7 @@ if (!fs.existsSync(logDirectory)) fs.mkdirSync(logDirectory);
 // create a rotating write stream
 var accessLogStream = rfs('access.log', {
   interval: '1d', // rotate daily
-  size:     '10M', // rotate every 10 MegaBytes written
+  size:     '10M', // rotate every 10 MegaBytesritten
   path: logDirectory
 });
 
@@ -339,16 +339,14 @@ app.get('/*', function(req, res, next) {
 
 
 // Test route to check multi-project templating
-app.get('/projtest', function(req, res){
-    res.render('projtest');
-});
+//app.get('/projtest', function(req, res){
+//    res.render('projtest');
+//});
 
 // Test route to allow to skip straight to delayed2 test
 //app.get('/testdelayed2', function(req, res){
 //    res.render('delayed2', {mechTurkID: 'dummy'});
 //});
-
-
 
 // and routes to allow direct access to a specific project
 app.get('/ukschools', function(req, res){
@@ -371,13 +369,11 @@ app.get('/sports', function(req, res){
     req.session.project = { name: "p1000_006" };
     return res.redirect(303, '/?project=p1000_006');
 });
-
-//app.get('/recognition', function(req, res){
-//    res.locals.project = { p1000_007: 'cheese' };
-//    req.session.project = { name: "p1000_007" };
-//    return res.redirect(303, '/?project=p1000_007');
-//});
-
+app.get('/recognition', function(req, res){
+    res.locals.project = { p1000_007: 'cheese' };
+    req.session.project = { name: "p1000_007" };
+    return res.redirect(303, '/?project=p1000_007');
+});
 app.get('/norsk', function(req, res){
     res.locals.project = { p1000_010: 'cheese' };
     req.session.project = { name: "p1000_010" };
@@ -425,7 +421,7 @@ app.get('/cte', function(req, res){
 });
 
 
-// test pages for reviewign text options
+// test pages for reviewing text options
 app.get('/home_test1', function(req, res){
     logger.info("Info level log for home page to prove working");
     //res.clearCookie("signed_monster");

@@ -148,8 +148,11 @@ var del2L1 = [
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
 var del2L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]];
 
-// recognition test
-// cue word, 4 FCR answers, position of correct answer, selected answer position, selected answer, correct/incorrect
+// recognition test array
+// cue word, 4 FCR answers, position of correct answer, selected answer position, selected answer,
+// correct/incorrect, time of answer
+
+/*
 var del3L1 = [
     ['cue1','ans1_1','ans1_2','ans1_3','ans1_4','option1','option','resp1',0, null],
     ['cue2','ans2_1','ans2_2','ans2_3','ans2_4','option1','option','resp1',0, null],
@@ -163,6 +166,22 @@ var del3L1 = [
     ['cue10','ans10_1','ans10_2','ans10_3','ans10_4','option1','option','resp1',0, null],
     ['cue11','ans11_1','ans11_2','ans11_3','ans11_4','option1','option','resp1',0, null],
     ['cue12','ans12_1','ans12_2','ans12_3','ans12_4','option1','option','resp1',0, null],
+];
+*/
+
+var del3L1 = [
+    ['waist','dirt', 'crumb', 'spray', 'crook','option3','option','resp1',0, null],
+    ['stove','bark', 'flare', 'cast', 'dirt','option4','option','resp1',0, null],
+    ['grip','speck', 'coil', 'calf', 'heap','option2','option','resp1',0, null],
+    ['juice','pork', 'scale', 'lane', 'sweep','option1','option','resp1',0, null],
+    ['sole','spray', 'guide', 'crow', 'beam','option3','option','resp1',0, null],
+    ['blade','pint', 'chart', 'pork', 'calf','option4','option','resp1',0, null],
+    ['fork','flash', 'vest', 'leak', 'nerve','option2','option','resp1',0, null],
+    ['steel','bark', 'lace', 'pile', 'paste','option1','option','resp1',0, null],
+    ['pump','loop', 'crow', 'link', 'lump','option1','option','resp1',0, null],
+    ['troop','coil', 'wink', 'prize', 'leak','option4','option','resp1',0, null],
+    ['tribe','loop', 'brake', 'sweep', 'track','option3','option','resp1',0, null],
+    ['rash','paste', 'bump', 'port', 'vest','option1','option','resp1',0, null]
 ];
 
 // demo lists
@@ -206,6 +225,7 @@ var rcorrect = 0;   // total correct recognition answers
 var startDate = new Date();
 var endDate = new Date();
 var testType = "";
+var subtest = "";
 var clists = [];  // combined stats for learnt and unlearnt pairs
 var timedOut = false; // flag indicating whether timed out during study phase
 var studyTime = 20; // maximum study time in minutes; 22 for old groups with 16 pairs and 20 for 12 pairs, 17m for study4 lecture group
@@ -594,6 +614,10 @@ function enterRespond(){
 
     if($('#tAnswerWord').length != 0) {
 
+	//console.log("key pressed and tAnswerWord non-zero");
+
+	// could not get this to work for recognition screen as tAnswerWord cannot have focus as not displayed
+	// if want to add this later need to assign to a different element
 	document.getElementById("tAnswerWord").onkeypress = function(e){
 	    console.log('key press detected');
 	    if (!e) e = window.event;
@@ -613,14 +637,24 @@ function enterRespond(){
 		    checkAnswer();
 		}
 
-		// if testing for delayed cued-recall test
+		// if testing for delayed cued-recall test during first delayed test
 		if (testType == 'delayed'){
 		    checkNoFeedback();
 		}
 
-		// if testing for delayed cued-recall test
+		// if testing for delayed cued-recall or recogntion during second delayed test
 		if (testType == 'delayed2'){
-		    checkNoFeedback();
+
+		    // if during recall test
+		    if (subtest == 'recall'){
+			checkNoFeedback();
+		    }
+
+		    // if during recognition testing; will never run this in current version
+		    else if (subtest == 'recog'){
+			checkRecognitionAnswer();
+		    }
+
 		}
 
 		// original had this line, don’t  know why
@@ -628,6 +662,10 @@ function enterRespond(){
 	    }
 	};
     }
+    else {
+	console.log("Key pressed but tAnswerWord not non-zero or not present ");
+    }
+
 }
 window.onload = enterRespond;
 
@@ -810,7 +848,9 @@ function startTest2() {
     c = 1;  // presentations counter
     r = 0;  // recognition item counter
     rcorrect = 0;   // total correct recognition answers
+    rincorrect = 0;   // total incorrect recognition answers
     correct = 0;   // total correct cued recall answers
+    incorrect = 0;   // incorrect recall answers
     tL1 = del2L1;
     tL2 = del2L2;
     tL3 = del3L1;
@@ -822,19 +862,19 @@ function startTest2() {
     fL3 = [];
     flists = [fL1, fL2, fL3];
     testType = "delayed2";
+    subtest = "recall";
     startDate.setTime(Date.now());
     // randomise order
     shuffleArray(tlists[l]);
     // start testing
     //delayedRecogTest();
     delayed2Test();
-
 }
 
-
 function delayedRecogTest() {
-    alert( "Got to start of 2nd delayed test recognition section!" );
+    //alert( "Got to start of 2nd delayed test recognition section!" );
     console.log( "Got to start of recogntion section!" );
+    subtest = "recog";
 
     // clear screen, turn everything off
     document.getElementById("introduction").style.display = "none";
@@ -844,6 +884,7 @@ function delayedRecogTest() {
     document.getElementById("feedbackIncorrect").style.display = "none";
     document.getElementById("studyForm").style.display = "none";
     document.getElementById("testForm").style.display = "none";
+    document.getElementById("recog").style.display = "none";
 
     // if there are more elements to recogntion test then test next one
     if (flists[2].length < tL3.length) {
@@ -887,84 +928,155 @@ function delayedRecogTest() {
 
 	// display the basic FCR test screen
 	document.getElementById("recog").style.display = "block";
-
     }
 
-
-    // if all pairs have been recogntion tested
+    // if all pairs have been recognition tested
     if (flists[2].length == tL3.length) {
     //if (r>=12){
 	console.log('got to end of recog list');
 	console.log('Total correct FCR answers: ' + rcorrect);
 	console.log('Total correct recall: ' + correct);
 
-    }
+	endDate.setTime(Date.now());
+	var rtotal = rcorrect + rincorrect;
+	document.getElementById("correctRecogAnswers").innerHTML= rcorrect;
+	document.getElementById("totalRecogAnswers").innerHTML= rtotal;
+	//document.getElementById("testOver").style.display = "block";
 
+	// store the records in S3
+
+	// Assumes the token was rendered into a meta tag
+	var token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+
+	// Using the core $.ajax() method to send test run data to server
+	$.ajax({
+	    url: "/studySave",
+
+	    credentials: "same-origin",
+
+	    headers: {
+		"csrf-token": token
+	    },
+
+	    data: {
+		lists: JSON.stringify(flists),
+		startDate: JSON.stringify(startDate),
+		endDate: JSON.stringify(endDate),
+		duration: JSON.stringify(endDate.getTime() - startDate.getTime()),
+		message: 'post message',
+		testType: testType,
+		tlists: JSON.stringify(tlists)
+	    },
+
+	    type: "POST",
+
+	    dataType : "json",
+
+	    success: function( json ) {
+		//alert('Got json object back with message: ' + json.message);
+		console.log('Got json object back with message: ' + json.message);
+	    },
+
+	    error: function( xhr, status, errorThrown ) {
+		alert( "Sorry, there was a problem!" );
+		console.log( "Error: " + errorThrown );
+		console.log( "Status: " + status );
+		console.dir( xhr );
+	    },
+
+	    complete: function( xhr, status ) {
+		//alert( "The request is complete!" );
+		console.log( "The request is complete!");
+
+		if (testType == 'delayed2'){
+		    // display the postDelayedInstructions along with the score
+		    document.getElementById("postDelayedInstructions").style.display = "block";
+
+		}
+	    }
+
+	});
+
+	//document.getElementById("postDelayedInstructions").style.display = "block";
+
+    }
 }
 
 
-// function triggered by 'Submit' button after selecting an answer in delayed recogntion test
+// function triggered by 'Submit' or Enter buttons after selecting an answer in delayed recogntion test
 function checkRecognitionAnswer() {
 
-    //var state = $("#option1").prop('checked');
-    //console.log( "radio button state is:" + state);
-    alert( "Got to check recog answer fucntion" );
+    //alert( "Got to check recog answer fucntion" );
 
-    var rNow = new Date();
-
-    // get the value of the cue word and 4 FCR answers
-    var answerWord = $("#option1").parent('label').text();
-    console.log( "value of the first option button is:" + answerWord );
-
-    // check for correct answer selected
-    var state = $("#" + tL3[r][5]).prop('checked');
-    console.log( "checked value of correct answer is:" + state );
-    if (state){ ++rcorrect; }
-
-   // check which answer has been selected
+    // check which answer, if any, has been selected
     var select_pos = "";
     var select_ans = "";
     if ($("#option1").prop('checked')){
 	select_pos = "option1";
 	select_ans = document.getElementById("opt1").textContent;
-	}
+    }
     else if ($("#option2").prop('checked')){
 	select_pos = "option2";
 	select_ans = document.getElementById("opt2").textContent;
-	}
+    }
     else if ($("#option3").prop('checked')){
 	select_pos = "option3";
 	select_ans = document.getElementById("opt3").textContent;
-	}
+    }
     else if ($("#option4").prop('checked')){
 	select_pos = "option4";
 	select_ans = document.getElementById("opt4").textContent;
-	}
+    }
     else {
 	select_pos = "none";
 	select_ans = "none";
+    }
+
+    // if no option selected force a choice
+    if (select_pos == "none") {
+	alert( "You must select an answer. If you are not sure please guess." );
+    }
+
+    else {
+
+	var rNow = new Date();
+
+	// get the value of the cue word and 4 FCR answers
+	var answerWord = $("#option1").parent('label').text();
+	console.log( "value of the first option button is:" + answerWord );
+
+	// check for correct answer selected
+	var state = $("#" + tL3[r][5]).prop('checked');
+	console.log( "checked value of correct answer is:" + state );
+	if (state){
+	    ++rcorrect;
+	}
+	else {
+	    ++rincorrect;
 	}
 
-    console.log( "checked answer position is: " + select_pos);
-    console.log( "checked answer is: " + select_ans);
-    tL3[r][6] = select_pos;
-    tL3[r][7] = select_ans;
-    tL3[r][8] = state;
-    tL3[r][9] = rNow;   // store the time answer was submitted
+	console.log( "checked answer position is: " + select_pos);
+	console.log( "checked answer is: " + select_ans);
+	tL3[r][6] = select_pos;
+	tL3[r][7] = select_ans;
+	tL3[r][8] = state;
+	tL3[r][9] = rNow;   // store the time answer was submitted
 
-    console.log(tL3[r]);
+	console.log(tL3[r]);
 
-    flists[2].push(tL3[r]);   // push to finished list as counter
-    ++r;                      // increment recogntion test item counter
-    setTimeout(delayedRecogTest, testInterval); // display feedback, then test next pair
+	flists[2].push(tL3[r]);   // push to finished list as counter
+	++r;                      // increment recogntion test item counter
+	setTimeout(delayedRecogTest, testInterval); // test next pair
 
+    }
 }
 
 function delayed2Test() {
 
     // all pairs tested, so end of test
     if (flists[l].length == tlists[l].length) {
-	endDate.setTime(Date.now());
+	//set endDate at the end of the recognition test
+	//endDate.setTime(Date.now());
 	document.getElementById("introduction").style.display = "none";
 	document.getElementById("studyText").style.display = "none";
 	document.getElementById("testText").style.display = "none";
