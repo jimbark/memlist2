@@ -369,7 +369,7 @@ app.get('/sports', function(req, res){
     req.session.project = { name: "p1000_006" };
     return res.redirect(303, '/?project=p1000_006');
 });
-app.get('/recognition', function(req, res){
+app.get('/valmt2', function(req, res){
     res.locals.project = { p1000_007: 'cheese' };
     req.session.project = { name: "p1000_007" };
     return res.redirect(303, '/?project=p1000_007');
