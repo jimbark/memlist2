@@ -424,6 +424,11 @@ app.get('/gr', function(req, res){
     req.session.project = { name: "p1000_080" };
     return res.redirect(303, '/?project=p1000_080');
 });
+app.get('/trial', function(req, res){
+    res.locals.project = { p1000_100: 'cheese' };
+    req.session.project = { name: "p1000_100" };
+    return res.redirect(303, '/?project=p1000_100');
+});
 app.get('/cte', function(req, res){
     res.locals.project = { p1001_001: 'cheese' };
     req.session.project = { name: "p1001_001" };
