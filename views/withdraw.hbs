@@ -27,6 +27,37 @@
 </div>
 
 
+{{! ----------------- Institution 1000   Project 101  UK Menopause version  ------------------ }}
+
+{{else if project.p1000_101}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Withdrawing from the study.</h5>
+     	    <p>If you wish to withdraw from the study click on the Withdraw button below. All personal information relating to your participation will be deleted from our database.</p>
+            <p>If you do withdraw you will not be able to resume participation in this study at a later date. However you will still be welcome to participate in our future studies.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Withdraw</button>
+  	       </div>
+     	 </form>
+    </div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_101.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 100  UK Reference/Trial version  ------------------ }}
 
 {{else if project.p1000_100}}

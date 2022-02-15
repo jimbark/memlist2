@@ -55,6 +55,135 @@
 </div>
 
 
+{{! ----------------- Institution 1000   Project 101  UK Menopause version  ------------------ }}
+
+{{else if project.p1000_101}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Consent to Participate in a Research Study</h5>
+
+     <p>The purpose of this page is to provide you with the information that you need to consider in deciding whether to participate in this research study.</p>
+
+     <p>
+     You are being invited to take part in an online research study. Before you decide to take part, it is important that you understand why the research is being carried out and what it will involve.
+     </p>
+
+     <p>
+     Please take time to read the following information carefully and decide whether you wish to participate. If anything is unclear, please contact the researcher, <b>Yasmeena Fontaine</b> <b>(yfont001@gold.ac.uk)</b> or, supervisor, <b>Dr Ashok Jansari (a.jansari@gold.ac.uk)</b> for clarification. 
+     </p>
+
+     <p>
+     Thank you in advance.
+     </p>
+
+
+     <h5>Study Description</h5>
+
+     <p>
+     This study is a BSc Psychology, 3rd-year undergraduate student research project which aims to investigate menopause and the impact it has on reported memory issues. 
+     </p>
+
+     <p>
+     People's ability to learn and recall new information varies with age and is influenced by brain related conditions. However, little research has been conducted into menopause and the contribution to memory, despite this potentially affecting half the population. Other research has demonstrated how forms of hormonal replacement therapy (HRT) could possibly alleviate or reverse memory issues. 
+     </p>
+
+     <p>
+     Participants will be required to memorise pairs of words and recall them at two later times. This study will <b>not</b> cause any physical or mental harm, so you will <b>not</b> experience any distress whilst participating in this study.
+     </p>
+
+
+     <h5>Data Confidentiality</h5>
+
+     <p>
+There is complete anonymity and confidentiality of the data, which will be kept safe electronically. Your personal details such as age and gender will be personally unidentifiable and only seen by the researchers conducting the study. This information will not be shared with any other organisation, and will not be included in any report or other publications arising from the study, and only the results will be kept after the study is completed.
+
+     </p>
+
+
+     <h5>Who has reviewed the study?</h5>
+
+     <p>
+      The study has been reviewed by the Research Ethics Committee at Goldsmiths, University of London. Any complaints can be directed to the Chair of the Research Ethics Committee, <b>y.kovas@gold.ac.uk</b>.
+     </p>	  
+
+
+     <h5>Right to withdraw</h5>
+
+     <p>
+     Participation is entirely voluntary, and you may <b>withdraw</b> your results after completion by using the “<b>Withdraw</b>” option from the main menu, or by contacting the researchers. Details of which can be found below.
+     </p>
+
+     <p>
+You are not obliged to take part in this study and should not feel coerced. You are free to withdraw at any time. Should you choose to withdraw from the study you may do so without disadvantage to yourself and without any obligation to give a reason.
+     </p>
+
+     <h5>Contacts</h5>
+
+     <p>
+     If you have any questions or concerns about how the study has been conducted, please contact <b>Yasmeena Fontaine (yfont001@gold.ac.uk)</b>, <b>Dr Ashok Jansari (a.jansari@gold.ac.uk)</b> or <b>Terry McGibbon (tmcgi001@gold.ac.uk)</b>. 
+     </p>
+
+
+
+     <h5>The General Data Protection Regulation [GDPR]</h5>
+
+     <p>
+     Goldsmiths full <b>GDPR policy</b> for research can be downloaded here: <a href="https://goldpsych.eu.qualtrics.com/CP/File.php?F=F_8o8V71NvMc158kC" target="_blank" rel="noopener noreferrer" >GDPR</a>
+     </p>
+
+     <p>
+     To comply with GDPR we will <b>not</b> collect any information that can personally identify you such as your name or IP address. All data is collected <b>anonymously</b>. However, we also want you to be able to withdraw your data if you change your mind about the study. Therefore, a <b>unique code</b> will be generated for you which you will be required to <b>record</b> and <b>use</b>. If you wish to withdraw your results, you can do so, in the main menu with the withdraw option.
+     </p>
+
+     <h5>Disclaimer</h5>
+
+     <p class="font-italic">I am aged 18 or over. </p>
+
+     <p class="font-italic">I have the read the information relating to the above research study, which has explained the nature and purposes of the research, and the procedure I will be involved in.</p>
+
+     <p class="font-italic">I understand that my involvement in this study, and data from this research, will remain strictly confidential. Only the researchers involved in the study will have access to identifying data. It has been explained to me what will happen to data once the research study has been completed.</p>
+
+     <p class="font-italic">I hereby freely and fully consent to participate in the study which has been fully explained to me. Having given this consent I understand that I have the right to withdraw from the study at any time without disadvantage to myself and without being obliged to give any reason. I also understand that should I withdraw, the researcher reserves the right to use my fully anonymised data in the write-up of the study and in any further analysis that may be conducted by the researcher.</p>
+
+     <p>If you are <b>happy</b> to continue then please confirm that you consent to taking part in this study by checking the box below and selecting "Next". If you do not wish to participate then select "No thanks"</p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      I agree to participate.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Next</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">No thanks</button>
+  	   </div>
+     </form>
+</div>
+
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_101.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 100  UK Reference/Trial version  ------------------ }}
 
 {{else if project.p1000_100}}

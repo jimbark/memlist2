@@ -359,11 +359,11 @@ app.get('/memory', function(req, res){
     req.session.project = { name: "p1000_004" };
     return res.redirect(303, '/?project=p1000_004');
 });
-app.get('/greenwich', function(req, res){
-    res.locals.project = { p1000_005: 'cheese' };
-    req.session.project = { name: "p1000_005" };
-    return res.redirect(303, '/?project=p1000_005');
-});
+//app.get('/greenwich', function(req, res){
+//    res.locals.project = { p1000_005: 'cheese' };
+//    req.session.project = { name: "p1000_005" };
+//    return res.redirect(303, '/?project=p1000_005');
+//});
 app.get('/sports', function(req, res){
     res.locals.project = { p1000_006: 'cheese' };
     req.session.project = { name: "p1000_006" };
@@ -428,6 +428,11 @@ app.get('/trial', function(req, res){
     res.locals.project = { p1000_100: 'cheese' };
     req.session.project = { name: "p1000_100" };
     return res.redirect(303, '/?project=p1000_100');
+});
+app.get('/menopause', function(req, res){
+    res.locals.project = { p1000_101: 'cheese' };
+    req.session.project = { name: "p1000_101" };
+    return res.redirect(303, '/?project=p1000_101');
 });
 app.get('/cte', function(req, res){
     res.locals.project = { p1001_001: 'cheese' };
@@ -1048,6 +1053,71 @@ app.post('/demographics', function(req, res){
 	console.log('Contact Summary (from visible form field): ' + req.body.contactsummary);
 	}
 
+    var inSex = "null";
+    if (req.body.sex) {
+	inCountry = req.body.sex;
+	console.log('Sex (from visible form field): ' + req.body.sex);
+	}
+    var inEthnicity = "null";
+    if (req.body.ethnicity) {
+	inEthnicity = req.body.ethnicity;
+	console.log('Ethnicity (from visible form field): ' + req.body.ethnicity);
+	}
+    var inPeriods = "null";
+    if (req.body.periods) {
+	inPeriods = req.body.periods;
+	console.log('Periods (from visible form field): ' + req.body.periods);
+	}
+    var inContraceptive = "null";
+    if (req.body.contraceptive) {
+	inContraceptive = req.body.contraceptive;
+	console.log('Contraceptive (from visible form field): ' + req.body.contraceptive);
+	}
+    var inMedicalPeriods = "null";
+    if (req.body.medicalPeriods) {
+	inMedicalPeriods = req.body.medicalPeriods;
+	console.log('MedicalPeriods (from visible form field): ' + req.body.medicalPeriods);
+	}
+    var inAnxiety = "null";
+    if (req.body.anxiety) {
+	inAnxiety = req.body.anxiety;
+	console.log('Anxiety (from visible form field): ' + req.body.anxiety);
+	}
+    var inLiveAlone = "null";
+    if (req.body.liveAlone) {
+	inLiveAlone = req.body.liveAlone;
+	console.log('LiveAlone (from visible form field): ' + req.body.liveAlone);
+	}
+    var inSocialise = "null";
+    if (req.body.socialise) {
+	inSocialise = req.body.socialise;
+	console.log('Socialise (from visible form field): ' + req.body.socialise);
+	}
+    var inFirstPeriod = "null";
+    if (req.body.firstPeriod) {
+	inFirstPeriod = req.body.firstPeriod;
+	console.log('FirstPeriod (from visible form field): ' + req.body.firstPeriod);
+	}
+    var inHrtType = "null";
+    if (req.body.hrtType) {
+	inHrtType = req.body.hrtType;
+	console.log('HrtType (from visible form field): ' + req.body.hrtType);
+	}
+    var inHrtDuration = "null";
+    if (req.body.hrtDuration) {
+	inHrtDuration = req.body.hrtDuration;
+	console.log('HrtDuration (from visible form field): ' + req.body.hrtDuration);
+	}
+    var inSmoking = "null";
+    if (req.body.smoking) {
+	inSmoking = req.body.smoking;
+	console.log('Smoking (from visible form field): ' + req.body.smoking);
+	}
+    var inAlcohol = "null";
+    if (req.body.alcohol) {
+	inAlcohol = req.body.alcohol;
+	console.log('Alcohol (from visible form field): ' + req.body.alcohol);
+	}
 
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
@@ -1114,6 +1184,20 @@ app.post('/demographics', function(req, res){
 	    "#AN": 'country',
 	    "#AO": 'contactsummary',
 
+	    "#AP": 'sex',
+	    "#AQ": 'ethnicity',
+	    "#AR": 'periods',
+	    "#AS": 'contraceptive',
+	    "#AT": 'medicalPeriods',
+	    "#AU": 'anxiety',
+	    "#AV": 'liveAlone',
+	    "#AW": 'socialise',
+	    "#AX": 'firstPeriod',
+	    "#AY": 'hrtType',
+	    "#AZ": 'hrtDuration',
+	    "#BA": 'smoking',
+	    "#BB": 'alcohol',
+
 	},
 	ExpressionAttributeValues: {
 	    ":a": { S: inEmail},
@@ -1160,9 +1244,24 @@ app.post('/demographics', function(req, res){
 	    ":an": {S: inCountry},
 	    ":ao": {S: inContactSummary},
 
+	    ":ap": {S: inSex},
+	    ":aq": {S: inEthnicity},
+	    ":ar": {S: inPeriods},
+	    ":as": {S: inContraceptive},
+	    ":at": {S: inMedicalPeriods},
+	    ":au": {S: inAnxiety},
+	    ":av": {S: inLiveAlone},
+	    ":aw": {S: inSocialise},
+	    ":ax": {S: inFirstPeriod},
+	    ":ay": {S: inHrtType},
+	    ":az": {S: inHrtDuration},
+	    ":ba": {S: inSmoking},
+	    ":bb": {S: inAlcohol},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao"
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb "
+
     };
 
     User.updateById(authId, updates, function (err, data) {
