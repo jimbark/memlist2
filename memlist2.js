@@ -1055,7 +1055,7 @@ app.post('/demographics', function(req, res){
 
     var inSex = "null";
     if (req.body.sex) {
-	inCountry = req.body.sex;
+	inSex = req.body.sex;
 	console.log('Sex (from visible form field): ' + req.body.sex);
 	}
     var inEthnicity = "null";
@@ -1118,6 +1118,70 @@ app.post('/demographics', function(req, res){
 	inAlcohol = req.body.alcohol;
 	console.log('Alcohol (from visible form field): ' + req.body.alcohol);
 	}
+
+
+
+    var inExerciseFrequency = "null";
+    if (req.body.exerciseFrequency) {
+	inExerciseFrequency = req.body.exerciseFrequency;
+	console.log('ExerciseFrequency (from visible form field): ' + req.body.exerciseFrequency);
+	}
+    var inExerciseDuration = "null";
+    if (req.body.exerciseDuration) {
+	inExerciseDuration = req.body.exerciseDuration;
+	console.log('ExerciseDuration (from visible form field): ' + req.body.exerciseDuration);
+	}
+    var inExercise = "null";
+    if (req.body.exercise) {
+	inExercise = req.body.exercise;
+	console.log('Exercise (from visible form field): ' + req.body.exercise);
+	}
+    var inSportCurrent = "null";
+    if (req.body.sportCurrent) {
+	inSportCurrent = req.body.sportCurrent;
+	console.log('SportCurrent (from visible form field): ' + req.body.sportCurrent);
+	}
+    var inSportCurrentDuration = "null";
+    if (req.body.sportCurrentDuration) {
+	inSportCurrentDuration = req.body.sportCurrentDuration;
+	console.log('SportCurrentDuration (from visible form field): ' + req.body.sportCurrentDuration);
+	}
+    var inSportCurrentFrequency = "null";
+    if (req.body.sportCurrentFrequency) {
+	inSportCurrentFrequency = req.body.sportCurrentFrequency;
+	console.log('SportCurrentFrequency (from visible form field): ' + req.body.sportCurrentFrequency);
+	}
+    var inPracticeDuration = "null";
+    if (req.body.practiceDuration) {
+	inPracticeDuration = req.body.practiceDuration;
+	console.log('PracticeDuration (from visible form field): ' + req.body.practiceDuration);
+	}
+    var inPracticeFrequency = "null";
+    if (req.body.practiceFrequency) {
+	inPracticeFrequency = req.body.practiceFrequency;
+	console.log('PracticeFrequency (from visible form field): ' + req.body.practiceFrequency);
+	}
+    var inMatchDuration = "null";
+    if (req.body.matchDuration) {
+	inMatchDuration = req.body.matchDuration;
+	console.log('MatchDuration (from visible form field): ' + req.body.matchDuration);
+	}
+    var inProtocol = "null";
+    if (req.body.protocol) {
+	inProtocol = req.body.protocol;
+	console.log('Protocol (from visible form field): ' + req.body.protocol);
+	}
+    var inContinued = "null";
+    if (req.body.continued) {
+	inContinued = req.body.continued;
+	console.log('Continued (from visible form field): ' + req.body.continued);
+	}
+
+
+
+
+
+
 
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
@@ -1198,6 +1262,18 @@ app.post('/demographics', function(req, res){
 	    "#BA": 'smoking',
 	    "#BB": 'alcohol',
 
+	    "#BC": 'exerciseFrequency',
+	    "#BD": 'exerciseDuration',
+	    "#BE": 'exercise',
+	    "#BF": 'sportCurrent',
+	    "#BG": 'sportCurrentDuration',
+	    "#BH": 'sportCurrentFrequency',
+	    "#BI": 'practiceDuration',
+	    "#BJ": 'practiceFrequency',
+	    "#BK": 'matchDuration',
+	    "#BL": 'protocol',
+	    "#BM": 'continued',
+
 	},
 	ExpressionAttributeValues: {
 	    ":a": { S: inEmail},
@@ -1258,9 +1334,21 @@ app.post('/demographics', function(req, res){
 	    ":ba": {S: inSmoking},
 	    ":bb": {S: inAlcohol},
 
+	    ":bc": {S: inExerciseFrequency},
+	    ":bd": {S: inExerciseDuration},
+	    ":be": {S: inExercise},
+	    ":bf": {S: inSportCurrent},
+	    ":bg": {S: inSportCurrentDuration},
+	    ":bh": {S: inSportCurrentFrequency},
+	    ":bi": {S: inPracticeDuration},
+	    ":bj": {S: inPracticeFrequency},
+	    ":bk": {S: inMatchDuration},
+	    ":bl": {S: inProtocol},
+	    ":bm": {S: inContinued},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb "
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm "
 
     };
 
