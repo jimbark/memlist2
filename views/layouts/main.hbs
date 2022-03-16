@@ -84,6 +84,33 @@
                 </li>
               </ul>
 
+	      {{! ----------------- Institution 1000   Project 102 American Football ------------------ }}
+	      {{else if project.p1000_102}}
+
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/withdraw">Withdraw</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/privacy">Privacy</a>
+                </li>
+                <li class="nav-item">
+		  {{! --- if logged out ---}}
+		  {{#if logNav}}
+		  <a class="nav-link" href="/login">Login</a>
+		  {{! --- else must be logged in ---}}
+		  {{else}}
+		  <a class="nav-link" href="/logout">Logout</a>
+		  {{/if}}
+                </li>
+              </ul>
+
 	      {{! ----------------- Institution 1000   Project 101 UK Menopause ------------------ }}
 	      {{else if project.p1000_101}}
 

@@ -434,6 +434,12 @@ app.get('/menopause', function(req, res){
     req.session.project = { name: "p1000_101" };
     return res.redirect(303, '/?project=p1000_101');
 });
+app.get('/football', function(req, res){
+    res.locals.project = { p1000_102: 'cheese' };
+    req.session.project = { name: "p1000_102" };
+    return res.redirect(303, '/?project=p1000_102');
+});
+
 app.get('/cte', function(req, res){
     res.locals.project = { p1001_001: 'cheese' };
     req.session.project = { name: "p1001_001" };
@@ -1177,11 +1183,51 @@ app.post('/demographics', function(req, res){
 	console.log('Continued (from visible form field): ' + req.body.continued);
 	}
 
-
-
-
-
-
+    var inAfPositionNumber = "null";
+    if (req.body.afPositionNumber) {
+	inAfPositionNumber = req.body.afPositionNumber;
+	console.log('AfPositionNumber (from visible form field): ' + req.body.afPositionNumber);
+	}
+    var inAfPositionType = "null";
+    if (req.body.afPositionType) {
+	inAfPositionType = req.body.afPositionType;
+	console.log('AfPositionType (from visible form field): ' + req.body.afPositionType);
+	}
+    var inAfPosition = "null";
+    if (req.body.afPosition) {
+	inAfPosition = req.body.afPosition;
+	console.log('AfPosition (from visible form field): ' + req.body.afPosition);
+	}
+    var inAfConcussionType = "null";
+    if (req.body.afConcussionType) {
+	inAfConcussionType = req.body.afConcussionType;
+	console.log('AfConcussionType (from visible form field): ' + req.body.afConcussionType);
+	}
+    var inAfSkill = "null";
+    if (req.body.afSkill) {
+	inAfSkill = req.body.afSkill;
+	console.log('AfSkill (from visible form field): ' + req.body.afSkill);
+	}
+    var inAfMultiSkill = "null";
+    if (req.body.afMultiSkill) {
+	inAfMultiSkill = req.body.afMultiSkill;
+	console.log('AfMultiSkill (from visible form field): ' + req.body.afMultiSkill);
+	}
+    var inAfMultiNonSkill = "null";
+    if (req.body.afMultiNonSkill) {
+	inAfMultiNonSkill = req.body.afMultiNonSkill;
+	console.log('AfMultiNonSkill (from visible form field): ' + req.body.afMultiNonSkill);
+	}
+    var inAfSkillBoth = "null";
+    if (req.body.afSkillBoth) {
+	inAfSkillBoth = req.body.afSkillBoth;
+	console.log('AfSkillBoth (from visible form field): ' + req.body.afSkillBoth);
+	}
+    var inAfConcussionSkill = "null";
+    if (req.body.afConcussionSkill) {
+	inAfConcussionSkill = req.body.afConcussionSkill;
+	console.log('AfConcussionSkill (from visible form field): ' + req.body.afConcussionSkill);
+	}
 
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
@@ -1274,6 +1320,16 @@ app.post('/demographics', function(req, res){
 	    "#BL": 'protocol',
 	    "#BM": 'continued',
 
+	    "#BN": 'afPositionNumber',
+	    "#BO": 'afPositionType',
+	    "#BP": 'afPosition',
+	    "#BQ": 'afConcussionType',
+	    "#BR": 'afSkill',
+	    "#BS": 'afMultiSkill',
+	    "#BT": 'afMultiNonSkill',
+	    "#BU": 'afSkillBoth',
+	    "#BV": 'afConcussionSkill',
+
 	},
 	ExpressionAttributeValues: {
 	    ":a": { S: inEmail},
@@ -1346,9 +1402,19 @@ app.post('/demographics', function(req, res){
 	    ":bl": {S: inProtocol},
 	    ":bm": {S: inContinued},
 
+	    ":bn": {S: inAfPositionNumber},
+	    ":bo": {S: inAfPositionType},
+	    ":bp": {S: inAfPosition},
+	    ":bq": {S: inAfConcussionType},
+	    ":br": {S: inAfSkill},
+	    ":bs": {S: inAfMultiSkill},
+	    ":bt": {S: inAfMultiNonSkill},
+	    ":bu": {S: inAfSkillBoth},
+	    ":bv": {S: inAfConcussionSkill},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm "
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv "
 
     };
 
