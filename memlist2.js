@@ -439,6 +439,11 @@ app.get('/football', function(req, res){
     req.session.project = { name: "p1000_102" };
     return res.redirect(303, '/?project=p1000_102');
 });
+app.get('/rugby', function(req, res){
+    res.locals.project = { p1000_103: 'cheese' };
+    req.session.project = { name: "p1000_103" };
+    return res.redirect(303, '/?project=p1000_103');
+});
 
 app.get('/cte', function(req, res){
     res.locals.project = { p1001_001: 'cheese' };
@@ -1229,6 +1234,12 @@ app.post('/demographics', function(req, res){
 	console.log('AfConcussionSkill (from visible form field): ' + req.body.afConcussionSkill);
 	}
 
+    var inKnockedOut = "null";
+    if (req.body.knockedOut) {
+	inKnockedOut = req.body.knockedOut;
+	console.log('KnockedOut (from visible form field): ' + req.body.knockedOut);
+	}
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
 
@@ -1330,6 +1341,8 @@ app.post('/demographics', function(req, res){
 	    "#BU": 'afSkillBoth',
 	    "#BV": 'afConcussionSkill',
 
+	    "#BW": 'knockedOut',
+
 	},
 	ExpressionAttributeValues: {
 	    ":a": { S: inEmail},
@@ -1412,9 +1425,11 @@ app.post('/demographics', function(req, res){
 	    ":bu": {S: inAfSkillBoth},
 	    ":bv": {S: inAfConcussionSkill},
 
+	    ":bw": {S: inKnockedOut},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv "
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv, #BW= :bw "
 
     };
 

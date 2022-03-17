@@ -54,6 +54,91 @@
      {{/section}}
 </div>
 
+{{! ----------------- Institution 1000   Project 103  UK Rugby   ------------------ }}
+
+{{else if project.p1000_103}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Consent to Participate in a Research Study</h5>
+
+     <p>The purpose of this page is to provide you with the information that you need to consider in deciding whether to participate in this research study.</p>
+
+     <p>
+     The Memory and Sports Project studies being conducted by Goldsmiths University of London. The lead researcher is currently PhD student Terry McGibbon, under the supervision of neuropsychologist Dr Ashok Jansari. The current study is being conducted by MSc student Niamh Mitchell.
+    </p>
+
+     <h5>Study Description</h5>
+
+     <p>
+     People's ability to learn and recall new information varies with age, and is influenced by brain related conditions such as chronic traumatic encephalopathy (CTE) and Alzheimer's disease. This study aims to identify how memory varies within the general population. Participants are required to memorise pairs of words, and recall them at two later times. This study will not cause any physical or mental harm, so you will not experience any distress whilst participating in this study.
+     </p>
+
+     <h5>Data Confidentiality</h5>
+
+     <p>
+There is complete anonymity and confidentiality of the data, which will be kept safe electronically. Your personal details such as age and gender will be personally unidentifiable and only seen by the researchers conducting the study. This information will not be shared with any other organisation, and will not be included in any report or other publications arising from the study, and only the results will be kept after the study is completed.
+
+     </p>
+
+     <h5>Right to withdraw</h5>
+
+     <p>
+You are not obliged to take part in this study and should not feel coerced. You are free to withdraw at any time. Should you choose to withdraw from the study you may do so without disadvantage to yourself and without any obligation to give a reason.
+     </p>
+
+     <h5>Contacts</h5>
+
+     <p>
+If you have any questions or concerns about how the study has been conducted, please contact Niamh Mitchell (nmitc003@gold.ac.uk) or Dr Ashok Jansari (a.jansari@gold.ac.uk)
+     </p>
+
+     <h5>Disclaimer</h5>
+
+     <p class="font-italic">I am aged 16 or over. </p>
+
+     <p class="font-italic">I have the read the information relating to the above research study, which has explained the nature and purposes of the research, and the procedure I will be involved in.</p>
+
+     <p class="font-italic">I understand that my involvement in this study, and data from this research, will remain strictly confidential. Only the researchers involved in the study will have access to identifying data. It has been explained to me what will happen to data once the research study has been completed.</p>
+
+     <p class="font-italic">I hereby freely and fully consent to participate in the study which has been fully explained to me. Having given this consent I understand that I have the right to withdraw from the study at any time without disadvantage to myself and without being obliged to give any reason. I also understand that should I withdraw, the researcher reserves the right to use my fully anonymised data in the write-up of the study and in any further analysis that may be conducted by the researcher.</p>
+
+     <p>If you are happy to continue then please confirm that you consent to taking part in this study by checking the box below and selecting "Next". If you do not wish to participate then select "No thanks"</p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      I agree to participate.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Next</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">No thanks</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_103.js"></script>
+     {{/section}}
+</div>
+
 
 {{! ----------------- Institution 1000   Project 102 American Football   ------------------ }}
 
