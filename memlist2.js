@@ -1240,6 +1240,17 @@ app.post('/demographics', function(req, res){
 	console.log('KnockedOut (from visible form field): ' + req.body.knockedOut);
 	}
 
+    var inRuPosition = "null";
+    if (req.body.ruPosition) {
+	inRuPosition = req.body.ruPosition;
+	console.log('RuPosition (from visible form field): ' + req.body.ruPosition);
+	}
+    var inConcussionSource = "null";
+    if (req.body.concussionSource) {
+	inConcussionSource = req.body.concussionSource;
+	console.log('ConcussionSource (from visible form field): ' + req.body.concussionSource);
+	}
+
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
 
@@ -1342,6 +1353,8 @@ app.post('/demographics', function(req, res){
 	    "#BV": 'afConcussionSkill',
 
 	    "#BW": 'knockedOut',
+	    "#BX": 'ruPosition',
+	    "#BY": 'concussionSource',
 
 	},
 	ExpressionAttributeValues: {
@@ -1426,10 +1439,12 @@ app.post('/demographics', function(req, res){
 	    ":bv": {S: inAfConcussionSkill},
 
 	    ":bw": {S: inKnockedOut},
+	    ":bx": {S: inRuPosition},
+	    ":by": {S: inConcussionSource},
 
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv, #BW= :bw "
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv, #BW= :bw, #BX= :bx, #BY= :by "
 
     };
 
