@@ -478,6 +478,740 @@
 </div>
 
 
+{{! ----------------- Institution 1000   Project 105  AUS sports version  ------------------ }}
+
+{{else if project.p1000_105}}
+
+<div class="row justify-content-center">
+<div class="col-10 ">
+
+<div>
+
+     <h5 class="pt-3">Demographic information</h5>
+     <p>The following information will be used to investigate how memory varies for different groups within the general population.</p>
+
+</div>
+
+<form action="/demographics?form=demographics" method="POST">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+
+  <div class="form-group row">
+    <label for="inputAge" class="col-sm-2 col-form-label text-left">Age</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputAge" name="age" required>
+      <option>16</option>
+      <option>17</option>
+      <option>18</option>
+      <option>19</option>
+      <option selected>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+      <option>25</option>
+      <option>26</option>
+      <option>27</option>
+      <option>28</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>35</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
+      <option>42</option>
+      <option>43</option>
+      <option>44</option>
+      <option>45</option>
+      <option>46</option>
+      <option>47</option>
+      <option>48</option>
+      <option>49</option>
+      <option>50</option>
+      <option>51</option>
+      <option>52</option>
+      <option>53</option>
+      <option>54</option>
+      <option>55</option>
+      <option>56</option>
+      <option>57</option>
+      <option>58</option>
+      <option>59</option>
+      <option>60</option>
+      <option>61</option>
+      <option>62</option>
+      <option>63</option>
+      <option>64</option>
+      <option>65</option>
+      <option>66</option>
+      <option>67</option>
+      <option>68</option>
+      <option>69</option>
+      <option>70</option>
+      <option>71</option>
+      <option>72</option>
+      <option>73</option>
+      <option>74</option>
+      <option>75</option>
+      <option>76</option>
+      <option>77</option>
+      <option>78</option>
+      <option>79</option>
+      <option>80</option>
+      <option>81</option>
+      <option>82</option>
+      <option>83</option>
+      <option>84</option>
+      <option>85</option>
+      <option>86</option>
+      <option>87</option>
+      <option>88</option>
+      <option>89</option>
+      <option>90</option>
+      <option>91</option>
+      <option>92</option>
+      <option>93</option>
+      <option>94</option>
+      <option>95</option>
+      <option>96</option>
+      <option>97</option>
+      <option>99</option>
+      <option>100</option>
+      <option>over 100</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputGender" class="col-sm-2 col-form-label text-left">Gender</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputGender" name="gender" required>
+      	 	<option selected>Female</option>
+		<option>Male</option>
+		<option>Other</option>
+    		</select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputEducation" class="col-sm-2 col-form-label text-left">Highest education level completed</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputEducation" name="education" required>
+                <option>Primary School</option>
+                <option selected>Secondary School / UK O Levels or GCSEs</option>
+                <option>High School Graduate / UK A Levels</option>
+                <option>Technical or Trade Certificate</option>
+                <option>Diploma</option>
+                <option>Batchelor’s Degree</option>
+                <option>Master’s Degree</option>
+                <option>Doctorate, PhD</option>
+    		</select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputEnglish" class="col-sm-2 col-form-label text-left">Standard of English</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputEnglish" name="english" required>
+      	 	<option selected>First language</option>
+		<option>Non-native but Fluent</option>
+		<option>Conversational</option>
+		<option>Below conversational</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputNationality" class="col-sm-2 col-form-label text-left">Nationality</label>
+    <div class="col-auto">
+    	 <select class="form-control bfh-countries" style="width:250px;" data-country="GB" id="inputNationality" name="nationality" required></select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputCountry" class="col-sm-2 col-form-label text-left">Country of residence</label>
+    <div class="col-auto">
+    	 <select class="form-control bfh-countries" style="width:250px;" data-country="GB" id="inputCountry" name="country" required></select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">Do you have any diagnosed medical condition(s) which might affect your memory?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputMedical" name="medical" required>
+                <option selected>No</option>
+                <option>Yes, dementia</option>
+                <option>Yes, epilepsy</option>
+                <option>Yes, stroke</option>
+                <option>Yes, brain surgery</option>
+                <option>Yes, significant head injury</option>
+                <option>Yes, other</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputVision" class="col-sm-4 col-form-label text-left">Do you have normal or corrected-to-normal vision?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputVision" name="vision" required>
+                <option selected>Yes</option>
+                <option>No</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">Do you have any reading problems e.g. dyslexia?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputDyslexia" name="dyslexia" required>
+                <option selected>No</option>
+                <option>Yes</option>
+                </select>
+    </div>
+  </div>
+ 
+  <div class="form-group row align-items-center">
+    <label for="inputProblems" class="col-sm-4 col-form-label text-left">Do you suffer from any memory problems or ‘forgetfulness’?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputProblems" name="problems" required>
+                <option selected>No</option>
+                <option>Don't know</option>
+                <option>Yes, but rarely</option>
+                <option>Yes, occasionally</option>
+                <option>Yes, frequently</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">How do you think your memory <b>compares to other people of your age</b>?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputOthersComparison" name="othersComparison" required>
+                <option>Better</option>
+                <option selected>Same</option>
+                <option>Somewhat worse</option>
+                <option>Much worse</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">How do you think your memory <b>compares with when you were younger</b>?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputSelfComparison" name="selfComparison" required>
+                <option>Better</option>
+                <option selected>Same</option>
+                <option>Somewhat worse</option>
+                <option>Much worse</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputConversation" class="col-sm-4 col-form-label text-left">Do you ever forget what you’ve just read or heard in a conversation?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputConversation" name="conversation" required>
+                <option selected>Rarely/Never</option>
+                <option>Occasionally</option>
+                <option>Frequently</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputRating" class="col-sm-4 col-form-label text-left">Rate your memory on a scale of 1 to 10, with 1 worst and 10 best.</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputRating" name="rating" required>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option selected>10</option>
+    </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputSteroids" class="col-sm-4 col-form-label text-left">Have you ever taken steroids, either for health reasons or for strength/body-building? (please remember data is anonymous, so you can be honest)</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputSteroids" name="steroids" required>
+                <option selected>Yes</option>
+                <option>No</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputDrugFrequency" class="col-sm-4 col-form-label text-left">If you use recreational drugs (e.g. cannabis, cocaine, ecstasy) how frequently do you use them? (please remember data is anonymous, so you can be honest)</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputDrugFrequency" name="drugfrequency" required>
+      <option selected>Not applicable</option>
+      <option>once or more per week</option>
+      <option>once per month</option>
+      <option>once per year</option>
+      <option>less than once per year</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputCogChanges" class="col-sm-4 col-form-label text-left">Have you ever experienced cognitive changes (e.g. confusion, memory loss, changes in attention) when <b><u>not</u></b> under the influence of any drug?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputCogChanges" name="cogchanges" required>
+                <option selected>Yes</option>
+                <option>No</option>
+                </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputExerciseFrequency" class="col-sm-4 col-form-label text-left"><b>Apart from playing a sport</b>, do you take any <b><u>other</u></b> form of exercise?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputExerciseFrequency" name="exerciseFrequency" required>
+      <option selected>Never</option>
+      <option>Very occasionally</option>
+      <option>Once per week</option>
+      <option>Twice a week</option>
+      <option>3 times a week</option>
+      <option>4 times a week</option>
+      <option>5 times a week</option>
+      <option>More than 5 times a week</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputExerciseDuration" class="col-sm-4 col-form-label text-left">If applicable, how long have you been taking non-sport exercise?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputExerciseDuration" name="exerciseDuration" required>
+      <option selected>Not applicable</option>
+      <option>Less than 1 year</option>
+      <option>For 1 or 2 years</option>
+      <option>For 3 or 4 years</option>
+      <option>For 5 years or more</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputExercise" class="col-sm-4 col-form-label text-left">If applicable, what is your main form of <b>non-sport</b> exercise?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputExercise" name="exercise" required>
+      <option selected>Not applicable</option>
+      <option>Walking</option>
+      <option>Running</option>
+      <option>Gym / weight training</option>
+      <option>Exercise classes (e.g. spin, Zumba, dance)</option>
+      <option>Other</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportCurrentFrequency" class="col-sm-4 col-form-label text-left">Do you play any sport(s) currently?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportCurrentFrequency" name="sportCurrentFrequency" required>
+      <option selected>No, never</option>
+      <option>Yes, very occasionally</option>
+      <option>Yes, once per week</option>
+      <option>Yes, twice a week</option>
+      <option>Yes, 3 times a week</option>
+      <option>Yes, 4 times a week</option>
+      <option>Yes, 5 times a week</option>
+      <option>Yes, more than 5 times a week</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportCurrentDuration" class="col-sm-4 col-form-label text-left">If applicable, how long have you been playing your current sport(s)?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportCurrentDuration" name="sportCurrentDuration" required>
+      <option selected>Not applicable</option>
+      <option>Less than 1 year</option>
+      <option>For 1 or 2 years</option>
+      <option>For 3 or 4 years</option>
+      <option>For 5 years or more</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportCurrent" class="col-sm-4 col-form-label text-left">If applicable, what is your main current sport (the one you play for the greatest length of time)?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportCurrent" name="sportCurrent" required>
+      <option selected>Not applicable</option>
+      <option>Soccer/Association Football</option>
+      <option>American Football</option>
+      <option>Rugby</option>
+      <option>Boxing</option>
+      <option>Other martial art(s)</option>
+      <option>Wrestling</option>
+      <option>Ice Hockey</option>
+      <option>Hockey</option>
+      <option>Gaelic Football</option>
+      <option>Hurling</option>
+      <option>Australian Rules Football</option>
+      <option>Cycling</option>
+      <option>Athletics (track & field)</option>
+      <option>Other contact sport</option>
+      <option>Other non-contact sport</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputContact" class="col-sm-4 col-form-label text-left">Do you, or have you <b><u>ever</u></b> played contact sport(s) (i.e. involves physical contact between players)?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputContact" name="contact" required>
+                <option selected>Yes</option>
+                <option>No</option>
+                </select>
+    </div>
+  </div>
+
+  <p>
+  If you answered Yes to the previous question, please answer the remaining questions for the contact sport you played for the greatest length of time. If you answered No you can scroll to the bottom and Submit your answers.
+  </p>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSport" class="col-sm-4 col-form-label text-left">What is/was your main contact sport?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSport" name="sport" required>
+      <option selected>Not applicable</option>
+      <option>American Football</option>
+      <option>Rugby</option>
+      <option>Soccer/Association football</option>
+      <option>Boxing</option>
+      <option>Other martial art(s)</option>
+      <option>Wrestling</option>
+      <option>Ice Hockey</option>
+      <option>Hockey</option>
+      <option>Gaelic Football</option>
+      <option>Hurling</option>
+      <option>Australian Rules Football</option>
+      <option>Other contact sport</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputActive" class="col-sm-4 col-form-label text-left">Are you still playing this sport? (actively playing vs retired)</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputActive" name="active" required>
+		<option selected>Not applicable</option>
+      	 	<option>Yes</option>
+		<option>No, I am retired</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputPracticeDuration" class="col-sm-4 col-form-label text-left">Typically, how long is/was a practice session not including weight training?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputPracticeDuration" name="practiceDuration" required>
+      <option selected>Not applicable</option>
+      <option>less than 1 hour</option>
+      <option>1 to 2 hours</option>
+      <option>2 to 3 hours</option>
+      <option>3 hours or more</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputMatchDuration" class="col-sm-4 col-form-label text-left">How long is/was a typical match of your contact sport?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputMatchDuration" name="matchDuration" required>
+      <option selected>Not applicable</option>
+      <option>less than 1 hour</option>
+      <option>1 to 2 hours</option>
+      <option>2 to 3 hours</option>
+      <option>3 hours or more</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputPracticeFrequency" class="col-sm-4 col-form-label text-left">How many practice sessions do/did you have in a week not including weight training?</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputPracticeFrequency" name="practiceFrequency" required>
+      	 	<option selected>Not applicable</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+		<option>More than 5</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportLevel" class="col-sm-4 col-form-label text-left">What is/was your standard of playing?</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputSportLevel" name="sportlevel" required>
+		<option selected>Not applicable</option>
+      	 	<option>Amateur</option>
+		<option>Semi-professional</option>
+		<option>Professional</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportAge" class="col-sm-4 col-form-label text-left">How old were you when you began playing?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportAge" name="sportage" required>
+      <option selected>Not applicable</option>
+      <option>5 years or under</option>
+      <option>06 - 10 years</option>
+      <option>11 - 15 years</option>
+      <option>16 - 20 years</option>
+      <option>Over 20 years</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportLength" class="col-sm-4 col-form-label text-left">How long have you been/did you play for?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportLength" name="sportlength" required>
+      <option selected>Not applicable</option>
+      <option>1 year or less</option>
+      <option>02 - 05 years</option>
+      <option>06 - 10 years</option>
+      <option>11 - 15 years</option>
+      <option>Over 15 years</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportMatches" class="col-sm-4 col-form-label text-left">Number of lifetime matches played (approximately)?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportMatches" name="sportmatches" required>
+      <option selected>Not applicable</option>
+      <option>10 - 50</option>
+      <option>51 - 100</option>
+      <option>101 - 200</option>
+      <option>Over 200</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputInjury" class="col-sm-4 col-form-label text-left">During your sporting career, did you ever suffer a concussion? If so, how many have you sustained?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputInjury" name="injury" required>
+      <option selected>None/not applicable</option>
+      <option>1 concussion</option>
+      <option>02 - 05 concussions</option>
+      <option>06 - 10 concussions</option>
+      <option>Over 10 concussions</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputProtocol" class="col-sm-4 col-form-label text-left">If you have sustained a concussion, did your team or organisation follow a concussion protocol?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputProtocol" name="protocol" required>
+      <option selected>Not applicable</option>
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSessionKnocks" class="col-sm-4 col-form-label text-left">In a typical training session or game, how many knocks or bumps to the head did/do you sustain on average?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSessionKnocks" name="sessionknocks" required>
+      <option selected>None/not applicable</option>
+      <option>1 knock</option>
+      <option>02 - 05 knocks</option>
+      <option>06 - 10 knocks</option>
+      <option>Over 10 knocks</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputFirstInjury" class="col-sm-4 col-form-label text-left">If you’ve ever suffered a concussion through sports, how old were you when you had your first concussion or head injury?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputFirstInjury" name="firstinjury" required>
+      <option selected>Not applicable</option>
+      <option>5 years or under</option>
+      <option>06 - 10 years</option>
+      <option>11 - 15 years</option>
+      <option>16 - 20 years</option>
+      <option>Over 20 years</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputLastInjury" class="col-sm-4 col-form-label text-left">If you’ve ever suffered a concussion through sports, how long is it since your last concussion or head injury?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputLastInjury" name="lastinjury" required>
+      <option selected>Not applicable</option>
+      <option>Less than 1 year</option>
+      <option>01 - 05 years</option>
+      <option>06 - 10 years</option>
+      <option>Over 10 years</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputContinued" class="col-sm-4 col-form-label text-left">If you’ve suffered a concussion during sports, did you ever continue playing your sport that day, despite having suffered the concussion?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputContinued" name="continued" required>
+      <option selected>Not applicable</option>
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSportNumber" class="col-sm-4 col-form-label text-left">How many contact sports have you played in total?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputSportNumber" name="sportnumber" required>
+      <option selected>Not applicable</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>Over 3</option>
+    </select>
+    </div>
+  </div>
+
+
+  <p>
+  If you participate, or have participated, in martial arts then please answer the remaining questions for the martial art you have played for the greatest length of time. If not, you can scroll to the end and Submit your answers. 
+  </p>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputProtectionTrain" class="col-sm-4 col-form-label text-left">How often do/did you wear head protection during martial arts training (including sparring)?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputProtectionTrain" name="protectionTrain" required>
+      <option selected>Not applicable</option>
+      <option>Never</option>
+      <option>Rarely</option>
+      <option>Sometimes</option>
+      <option>Often</option>
+      <option>Always</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputProtectionComp" class="col-sm-4 col-form-label text-left">How often do/did you wear head protection during martial arts competitions?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputProtectionComp" name="protectionComp" required>
+      <option selected>Not applicable</option>
+      <option>Never</option>
+      <option>Rarely</option>
+      <option>Sometimes</option>
+      <option>Often</option>
+      <option>Always</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputBlowsTrain" class="col-sm-4 col-form-label text-left">How often do/did you usually receive blows to the head during martial arts training (including sparring)?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputBlowsTrain" name="blowsTrain" required>
+      <option selected>Not applicable</option>
+      <option>Never</option>
+      <option>Rarely</option>
+      <option>Sometimes</option>
+      <option>Often</option>
+      <option>Always</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputBlowsComp" class="col-sm-4 col-form-label text-left">How often do/did you usually receive blows to the head during martial arts competitions?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputBlowsComp" name="blowsComp" required>
+      <option selected>Not applicable</option>
+      <option>Never</option>
+      <option>Rarely</option>
+      <option>Sometimes</option>
+      <option>Often</option>
+      <option>Always</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputForceTrain" class="col-sm-4 col-form-label text-left">During martial arts training (including sparring), how would you describe the force of the blows you receive/received to the head?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputForceTrain" name="forceTrain" required>
+      <option selected>Not applicable</option>
+      <option>Negligible</option>
+      <option>Mild</option>
+      <option>Mediums</option>
+      <option>Severe</option>
+      <option>Very severe</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputForceComp" class="col-sm-4 col-form-label text-left">During martial arts competitions, how would you describe the force of the blows you receive/received to the head?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputForceComp" name="forceComp" required>
+      <option selected>Not applicable</option>
+      <option>Negligible</option>
+      <option>Mild</option>
+      <option>Mediums</option>
+      <option>Severe</option>
+      <option>Very severe</option>
+    </select>
+    </div>
+  </div>
+
+
+
+<div class="text-center">
+  <button type="submit" class="btn btn-primary">Next</button>
+</div>
+
+</form>
+
+
+</div>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_105.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 104  UK Treatment Seeking version  ------------------ }}
 
 {{else if project.p1000_104}}
