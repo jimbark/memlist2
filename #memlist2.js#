@@ -557,8 +557,7 @@ app.get('/learn', function(req, res){
 	    }
 	    else if (user.status == 'learnt'){
 		// if returning participant display 30min test page
-		res.render('delayed', {hr24TestTime: user.hour24});
-	    }
+		res.render('delayed', {hr24TestTime: user.hour   }
 	    else if (user.status == 'demoed'){
 		// if demo has been completed display learn page
 		res.render('learn');
