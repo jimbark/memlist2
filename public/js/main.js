@@ -3,7 +3,7 @@
 // Bootstrap and HTML Boilerplate
 // *********************************************************
 
-// project: p1000_001,  Main UK version, with recognition and 2/1 criteria
+// project: p1000_001,  Main UK version, with recognition 1 criteria
 
 // Constants
 
@@ -77,16 +77,16 @@ var mL1 = [
 var mL1 = [
     ['waist','spray',0,0,1],
     ['stove','dirt',0,0,1],
-    ['grip','coil',0,0,2],
-    ['juice','pork',0,0,2],
-    ['sole','crow',0,0,2],
+    ['grip','coil',0,0,1],
+    ['juice','pork',0,0,1],
+    ['sole','crow',0,0,1],
     ['blade','calf',0,0,1],
     ['fork','vest',0,0,1],
     ['steel','bark',0,0,1],
     ['pump','loop',0,0,1],
-    ['troop','leak',0,0,2],
-    ['tribe','sweep',0,0,2],
-    ['rash','paste',0,0,2]
+    ['troop','leak',0,0,1],
+    ['tribe','sweep',0,0,1],
+    ['rash','paste',0,0,1]
 ];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
