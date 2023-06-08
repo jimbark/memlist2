@@ -54,7 +54,8 @@ var mL1 = [
 ];
 */
 
-// study lists with 3 recalls for all pairs, and only 12 pairs
+/*
+// original study lists with 3 recalls for all pairs, and only 12 pairs
 var mL1 = [
     ['vita','spray',0,0,3],
     ['suola','corvo',0,0,3],
@@ -68,6 +69,23 @@ var mL1 = [
     ['forca','veste',0,0,3],
     ['tribù','forma',0,0,3],
     ['globo','sacco',0,0,3],
+];
+*/
+
+// study lists with new pairs and 2 recalls for all pairs, and only 12 pairs
+var mL1 = [
+    ['cinta','mappa',0,0,2],
+    ['suola','corvo',0,0,2],
+    ['pompa','nodo',0,0,2],
+    ['tono','fusto',0,0,2],
+    ['stufa','terra',0,0,2],
+    ['lama','seta',0,0,2],
+    ['pila','porto',0,0,2],
+    ['calce','sala',0,0,2],
+    ['presa','molla',0,0,2],
+    ['ladro','vena',0,0,2],
+    ['tribù','raggio',0,0,2],
+    ['globo','sacco',0,0,2],
 ];
 
 //var mL1 = [['giraffe','snooker',0,0,1], ['hairpin','magpie',0,0,1],['parcel','guitar',0,0,1],['salad','tinsel',0,0,1]];
@@ -88,7 +106,8 @@ var del1L1 = [
 ];
 */
 
-// first delayed test list, doing all 12 at both time intervals
+/*
+// old word-pairs first delayed test list, doing all 12 at both time intervals
 // randomise order: 11,4,12,7,3,8,2,5,9,6,1,10
 var del1L1 = [
     ['tribù','forma',0,0,3],
@@ -99,17 +118,36 @@ var del1L1 = [
     ['calce','suite',0,0,3],
     ['suola','corvo',0,0,3],
     ['buco','terra',0,0,3],
-    ['presa','molla',0,0,3],
+    ['pila','porto',0,0,2],
     ['lama','seta',0,0,3],
     ['vita','spray',0,0,3],
     ['forca','veste',0,0,3],
+];
+*/
+
+// first delayed test list, doing all 12 at both time intervals
+// randomise order: 11,4,12,7,3,8,2,5,9,6,1,10
+var del1L1 = [
+    ['tribù','raggio',0,0,2],
+    ['tono','fusto',0,0,2],
+    ['globo','sacco',0,0,2],
+    ['pila','porto',0,0,2],
+    ['pompa','nodo',0,0,2],
+    ['calce','sala',0,0,2],
+    ['suola','corvo',0,0,2],
+    ['stufa','terra',0,0,2],
+    ['presa','molla',0,0,2],
+    ['lama','seta',0,0,2],
+    ['cinta','mappa',0,0,2],
+    ['ladro','vena',0,0,2],
 ];
 
 //var del1L1 = [['giraffe','snooker',0,0], ['hairpin','magpie',0,0]];
 //var del1L1 = [['l1c1','l1a1',0,0], ['l1c2','l1a2',0,0],['l1c3','l1a3',0,0]];
 var del1L2 = [['l2c1','l2a1',0,0,0], ['l2c2','l2a2',0,0,0],['l2c3','l2a3',0,0,0]];
 
-// second delayed test lists
+/*
+// old word-pairs second delayed test lists
 // randomise order: 7,2,8,6,11,1,4,10,12,5,3,9
 var del2L1 = [
     ['pila','porto',0,0,3],
@@ -124,6 +162,24 @@ var del2L1 = [
     ['buco','terra',0,0,3],
     ['pompa','loop',0,0,3],
     ['presa','molla',0,0,3],
+];
+*/
+
+// second delayed test lists
+// randomise order: 7,2,8,6,11,1,4,10,12,5,3,9
+var del2L1 = [
+    ['pila','porto',0,0,2],
+    ['suola','corvo',0,0,2],
+    ['calce','sala',0,0,2],
+    ['lama','seta',0,0,2],
+    ['tribù','raggio',0,0,2],
+    ['cinta','mappa',0,0,2],
+    ['tono','fusto',0,0,2],
+    ['ladro','vena',0,0,2],
+    ['globo','sacco',0,0,2],
+    ['stufa','terra',0,0,2],
+    ['pompa','nodo',0,0,2],
+    ['presa','molla',0,0,2],
 ];
 
 //var del2L1 = [['parcel','guitar',0,0],['salad','tinsel',0,0]];
