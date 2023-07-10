@@ -1302,6 +1302,42 @@ app.post('/demographics', function(req, res){
 	console.log('ForceComp (from visible form field): ' + req.body.forceComp);
 	}
 
+    var inBlurred = "null";
+    if (req.body.blurred) {
+	inBlurred = req.body.blurred;
+	console.log('Blurred (from visible form field): ' + req.body.blurred);
+	}
+    var inDizzy = "null";
+    if (req.body.dizzy) {
+	inDizzy = req.body.dizzy;
+	console.log('Dizzy (from visible form field): ' + req.body.dizzy);
+	}
+    var inMemoryLoss = "null";
+    if (req.body.memoryloss) {
+	inMemoryLoss = req.body.memoryloss;
+	console.log('MemoryLoss (from visible form field): ' + req.body.memoryloss);
+	}
+    var inDepression = "null";
+    if (req.body.depression) {
+	inDepression = req.body.depression;
+	console.log('Depression (from visible form field): ' + req.body.depression);
+	}
+    var inConfusion = "null";
+    if (req.body.confusion) {
+	inConfusion = req.body.confusion;
+	console.log('Confusion (from visible form field): ' + req.body.confusion);
+	}
+    var inErratic = "null";
+    if (req.body.erratic) {
+	inErratic = req.body.erratic;
+	console.log('Erratic (from visible form field): ' + req.body.erratic);
+	}
+    var inAggression = "null";
+    if (req.body.aggression) {
+	inAggression = req.body.aggression;
+	console.log('Aggression (from visible form field): ' + req.body.aggression);
+	}
+
 
     console.log('Form (from querystring): ' + req.query.form);
     //console.log('CSRF token (from hidden form field): ' + req.body._csrf);
@@ -1415,6 +1451,14 @@ app.post('/demographics', function(req, res){
 	    "#CD": 'forceTrain',
 	    "#CE": 'forceComp',
 
+	    "#CF": 'blurred',
+	    "#CG": 'dizzy',
+	    "#CH": 'memoryloss',
+	    "#CI": 'depression',
+	    "#CJ": 'confusion',
+	    "#CK": 'erratic',
+	    "#CL": 'aggression',
+
 	},
 	ExpressionAttributeValues: {
 	    ":a": { S: inEmail},
@@ -1508,9 +1552,17 @@ app.post('/demographics', function(req, res){
 	    ":cd": {S: inForceTrain},
 	    ":ce": {S: inForceComp},
 
+	    ":cf": {S: inBlurred},
+	    ":cg": {S: inDizzy},
+	    ":ch": {S: inMemoryLoss},
+	    ":ci": {S: inDepression},
+	    ":cj": {S: inConfusion},
+	    ":ck": {S: inErratic},
+	    ":cl": {S: inAggression},
+
 	},
 	ReturnValues: "ALL_NEW",
-	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv, #BW= :bw, #BX= :bx, #BY= :by, #BZ= :bz, #CA= :ca, #CB= :cb, #CC= :cc, #CD= :cd, #CE= :ce "
+	UpdateExpression: "SET #A = :a, #B = :b,#C = :c,#D = :d,#E = :e,#F = :f,#G = :g,#H = :h,#I = :i,#J = :j,#K = :k,#L = :l,#M = :m,#N = :n,#O = :o,#P = :p,#Q = :q,#R = :r,#S = :s,#T = :t,#U = :u,#V = :v,#W = :w,#X = :x,#Y = :y, #AA = :aa, #AB = :ab, #AC = :ac, #AD = :ad, #AE = :ae, #AF = :af, #AG = :ag, #AH = :ah, #AI = :ai, #AJ = :aj, #AK = :ak, #AL = :al, #AM = :am, #AN = :an, #AO = :ao, #AP = :ap, #AQ = :aq, #AR = :ar, #AS = :as, #AT = :at, #AU = :au, #AV = :av, #AW = :aw, #AX = :ax, #AY = :ay, #AZ = :az, #BA = :ba, #BB = :bb, #BC = :bc, #BD = :bd, #BE = :be, #BF = :bf, #BG = :bg, #BH = :bh, #BI = :bi, #BJ = :bj, #BK = :bk, #BL = :bl, #BM = :bm, #BN = :bn, #BO = :bo, #BP = :bp, #BQ = :bq, #BR = :br, #BS = :bs, #BT = :bt, #BU = :bu, #BV= :bv, #BW= :bw, #BX= :bx, #BY= :by, #BZ= :bz, #CA= :ca, #CB= :cb, #CC= :cc, #CD= :cd, #CE= :ce, #CF= :cf, #CG= :cg, #CH= :ch, #CI= :ci, #CJ= :cj, #CK= :ck, #CL= :cl "
 
     };
 
