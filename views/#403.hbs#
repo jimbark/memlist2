@@ -1,8 +1,9 @@
-{{! ----------------- Institution 1001   Project 001  AUS CTE ------------------ }}
+{{! ----------------- Institution 1001   Project 001  AUS CTE  ------------------ }}
 
 {{#if project.p1001_001}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -11,11 +12,13 @@
 </div>
 
 
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version  ------------------ }}
 
 {{else if project.p1000_108}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -24,11 +27,13 @@
 </div>
 
 
+
 {{! ----------------- Institution 1000   Project 107  UK battle re-enactment  ------------------ }}
 
 {{else if project.p1000_107}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -36,12 +41,12 @@
      {{/section}}
 </div>
 
-
-{{! ----------------- Institution 1000   Project 106 UK RPS 1 week 2nd delay  ------------------ }}
+{{! ----------------- Institution 1000   Project 106 UK RPS 1 wek 2nd delay  ------------------ }}
 
 {{else if project.p1000_106}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -55,7 +60,8 @@
 
 {{else if project.p1000_105}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -68,7 +74,8 @@
 
 {{else if project.p1000_104}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -81,7 +88,8 @@
 
 {{else if project.p1000_103}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -89,13 +97,12 @@
      {{/section}}
 </div>
 
-
-
 {{! ----------------- Institution 1000   Project 102  American Football  ------------------ }}
 
 {{else if project.p1000_102}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -108,7 +115,8 @@
 
 {{else if project.p1000_101}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -121,7 +129,8 @@
 
 {{else if project.p1000_100}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -130,11 +139,12 @@
 </div>
 
 
-{{! ----------------- Institution 1000   Project 080  Greek ------------------ }}
+{{! ----------------- Institution 1000   Project 080  Greek  ------------------ }}
 
 {{else if project.p1000_080}}
 
-<h1>404 – Δε βρέθηκε</h1>
+<h5>Σφάλμα 403 – Η φόρμα εμπεριέχει σφάλματα.</h5>
+<p>Για περαιτέρω πληροφορίες παρακαλώ επικοινωνήστε με τον Terry McGibbon στο tmcgi001@gold.ac.uk </p>
 
 <div>
      {{#section "projectjs"}}
@@ -143,11 +153,12 @@
 </div>
 
 
-{{! ----------------- Institution 1000   Project 070  Elika CTE English ------------------ }}
+{{! ----------------- Institution 1000   Project 070  Elika CTE English  ------------------ }}
 
 {{else if project.p1000_070}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -156,11 +167,13 @@
 </div>
 
 
-{{! ----------------- Institution 1000   Project 060  Polish ------------------ }}
+
+{{! ----------------- Institution 1000   Project 060  Polish  ------------------ }}
 
 {{else if project.p1000_060}}
 
-<h1>404 - Nie znaleziono</h1>
+<h5>Błąd 403 - zmieniono formularz.</h5>
+<p>W celu uzyskania dalszych informacji prosimy skontaktować się z Terrym McGibbonem, email: tmcgi001@gold.ac.uk.</p>
 
 
 <div>
@@ -170,11 +183,13 @@
 </div>
 
 
-{{! ----------------- Institution 1000   Project 050  Turkish ------------------ }}
+
+{{! ----------------- Institution 1000   Project 050  Turkish  ------------------ }}
 
 {{else if project.p1000_050}}
 
-<h1>404 – Bulunamadı</h1>
+<h5>Hata 403 – Form tahrif edildi.</h5>
+<p>Daha fazla bilgi için tmcgi001@gold.ac.uk adresinden Terry McGibbon ile iletişime geçebilirsiniz.</p>
 
 <div>
      {{#section "projectjs"}}
@@ -187,7 +202,8 @@
 
 {{else if project.p1000_040}}
 
-<h1>404 – Server non trovato</h1>
+<h5>Errore 403 – Il modulo è stato manomesso.</h5>
+<p>Per ulteriori informazioni contattare Terry McGibbon (email: tmcgi001@gold.ac.uk).</p>
 
 
 <div>
@@ -197,11 +213,12 @@
 </div>
 
 
-{{! ----------------- Institution 1000   Project 030  French ------------------ }}
+{{! ----------------- Institution 1000   Project 030  French  ------------------ }}
 
 {{else if project.p1000_030}}
 
-<h1>404 - Non trouvé</h1>
+<h5>Erreur 403 - Le formulaire a été manipulé.</h5>
+<p>Pour plus d'informations, contactez Terry McGibbon à l'adresse suivante : tmcgi001@gold.ac.uk</p>
 
 
 <div>
@@ -211,11 +228,12 @@
 </div>
 
 
-{{! ----------------- Institution 1000   Project 020  Indian English ------------------ }}
+{{! ----------------- Institution 1000   Project 020  Indian English  ------------------ }}
 
 {{else if project.p1000_020}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 
 <div>
@@ -225,12 +243,12 @@
 </div>
 
 
-
 {{! ----------------- Institution 1000   Project 010 Norwegian ------------------ }}
 
 {{else if project.p1000_010}}
 
-<h1>404- Ikke funnet</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For mer informasjon kontakt Terry McGibbon på tmcgi001@gold.ac.uk</p>
 
 
 <div>
@@ -244,7 +262,8 @@
 
 {{else if project.p1000_009}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 
 <div>
@@ -258,7 +277,8 @@
 
 {{else if project.p1000_008}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 
 <div>
@@ -272,7 +292,8 @@
 
 {{else if project.p1000_007}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -285,7 +306,8 @@
 
 {{else if project.p1000_006}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -298,7 +320,8 @@
 
 {{else if project.p1000_005}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -311,7 +334,8 @@
 
 {{else if project.p1000_004}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -324,7 +348,8 @@
 
 {{else if project.p1000_003}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 <div>
      {{#section "projectjs"}}
@@ -337,7 +362,8 @@
 
 {{else if project.p1000_002}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 
 <div>
@@ -354,7 +380,8 @@
 
 {{else}}
 
-<h1>404 - Not Found</h1>
+<h5>403 error - Form has been tampered with.</h5>
+<p>For further information contact Terry McGibbon at tmcgi001@gold.ac.uk</p>
 
 {{/if}}
 
