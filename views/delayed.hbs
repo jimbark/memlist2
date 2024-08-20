@@ -118,6 +118,129 @@
 
 
 
+{{! ----------------- Institution 1001   Project 020  Spanish version ------------------ }}
+
+{{else if project.p1001_020}}
+
+<div id="introduction" style="display: block">
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+	     <h5 class='text-center'>¡Bienvenido de nuevo! </h5>
+
+       	    <p  id='study' style="display: block">Gracias por volver para su primera prueba diferida. Se le examinará de algunos de los pares de palabras que aprendió anteriormente, y de la misma manera que antes. Se le mostrará la primera palabra de un par y se le pedirá que introduzca la segunda. Esto no debería llevar más de 3 minutos.</p>
+       	    <p  id='study' style="display: block">Cuando esté preparado pulse el botón de abajo para empezar.</p>
+    	</div>
+    </div>
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-auto text-center">
+           <button type="button" onclick="startTest()" class="btn btn-primary">Empezar Prueba</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Wordpair to memorise:<b id='wordpair'></b> </p>
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Escriba la segunda palabra del par. Pulse Volver o el botón Enviar para continuar
+          <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">¡Correcta!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">Incorrect!</span></p>
+     <p>The correct wordpair is:</p>
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+
+   </div>
+</div>
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Enviar</button>
+    </div>
+  </div>
+
+</form>
+
+
+<div id="postDelayedInstructions" style="display: none">
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Instrucciones Posteriores a la Prueba Diferida</h5>
+     <p>¡Bien hecho! Gracias por completar la fase de prueba de 55 minutos de nuestro estudio.</p>
+     <p> Usted ha obtenido una puntuación de <span id='correctAnswers'>12</span> sobre <span id='totalAnswers'>12</span>.</p>
+
+     <p>Si desea conservar un registro de su puntuación, anótela ahora, ya que no se volverá a mostrar de nuevo. 
+     </p>
+
+     <p>Para la etapa final, necesitamos que vuelva dentro de 24 horas, es decir, alrededor de las <b> {{hr24TestTime}} </b>, para someterse a una nueva prueba. Le recomendamos que anote esta hora, haga una foto o ponga una alarma en su teléfono para acordarse de volver.</p>
+     <p>No es necesario que empiece exactamente a la hora; está BIEN si llega un poco antes o un poco después. </p>
+     <p>Si no puede volver a la hora correcta, haga la prueba diferida siempre que pueda, ya que sus datos seguirán ayudando a nuestra investigación.</p>
+     <p>Cuando vuelva, visite nuestra página de inicio y entre en el sitio como participante que vuelve.</p>
+     <p>Por favor, no intente ensayar los pares de palabras, ya que invalidaría los resultados de la investigación.</p>
+
+</div>
+</div>
+
+<div class="row justify-content-center">
+     <div class="col-auto text-center">
+          <a href="/" class="btn btn-primary" role="button">Volver a la página de inicio</a>
+     </div>
+</div>
+
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1001_020.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version ------------------ }}
 
 {{else if project.p1000_108}}

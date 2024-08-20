@@ -56,6 +56,57 @@
 
 
 
+{{! ----------------- Institution 1001   Project 020 Spanish version  ------------------ }}
+
+{{else if project.p1001_020}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Consentimiento para Participar en un Estudio de Investigación.</h5>
+
+     <p>El investigador en cuyo estudio está participando debe explicarle la naturaleza del estudio, explicarle cómo puede retirarse, y pedirle su consentimiento para continuar. Por favor, confirme que ha sido así aceptando la declaración que figura a continuación. </p>
+
+     <h5>Renuncia de responsabilidad</h5>
+
+     <p class="font-italic">Confirmo que he dado mi consentimiento para participar en un estudio de investigación.</p>
+
+     <p>Si usted ha dado su consentimiento y desea continuar, por favor confírmelo marcando la casilla de abajo y seleccionando "Siguiente". Si usted no ha dado su consentimiento o no desea participar, seleccione "No, gracias"</p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      Estoy de acuerdo en participar.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Siguiente</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">No, gracias</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1001_020.js"></script>
+     {{/section}}
+</div>
+
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version  ------------------ }}
 
 {{else if project.p1000_108}}

@@ -84,6 +84,33 @@
                 </li>
               </ul>
 
+	      {{! ----------------- Institution 1001   Project 020  Spanish version ------------------ }}
+	      {{else if project.p1001_020}}
+
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">Acerca de</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/withdraw">Retirarse</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/privacy">Privacidad</a>
+                </li>
+                <li class="nav-item">
+		  {{! --- if logged out ---}}
+		  {{#if logNav}}
+		  <a class="nav-link" href="/login">Iniciar sesión</a>
+		  {{! --- else must be logged in ---}}
+		  {{else}}
+		  <a class="nav-link" href="/logout">Cerrar sesión</a>
+		  {{/if}}
+                </li>
+              </ul>
+
 	      {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version ------------------ }}
 	      {{else if project.p1000_108}}
 

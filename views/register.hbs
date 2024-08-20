@@ -479,6 +479,286 @@
 
 
 
+{{! ----------------- Institution 1001   Project 020 Spanish version ------------------ }}
+
+{{else if project.p1001_020}}
+
+<div class="row justify-content-center">
+<div class="col-10 ">
+
+
+<div>
+
+     <h5 class="pt-3">Información demográfica</h5>
+     <p>La siguiente información será utilizada para investigar cómo la memoria varía en diferentes grupos dentro de la población general.</p>
+
+</div>
+
+<form action="/demographics?form=demographics" method="POST">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+
+  <div class="form-group row">
+    <label for="inputAge" class="col-sm-2 col-form-label text-left">Edad</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputAge" name="age" required>
+      <option selected>18</option>
+      <option>19</option>
+      <option>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+      <option>25</option>
+      <option>26</option>
+      <option>27</option>
+      <option>28</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>35</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
+      <option>42</option>
+      <option>43</option>
+      <option>44</option>
+      <option>45</option>
+      <option>46</option>
+      <option>47</option>
+      <option>48</option>
+      <option>49</option>
+      <option>50</option>
+      <option>51</option>
+      <option>52</option>
+      <option>53</option>
+      <option>54</option>
+      <option>55</option>
+      <option>56</option>
+      <option>57</option>
+      <option>58</option>
+      <option>59</option>
+      <option>60</option>
+      <option>61</option>
+      <option>62</option>
+      <option>63</option>
+      <option>64</option>
+      <option>65</option>
+      <option>66</option>
+      <option>67</option>
+      <option>68</option>
+      <option>69</option>
+      <option>70</option>
+      <option>71</option>
+      <option>72</option>
+      <option>73</option>
+      <option>74</option>
+      <option>75</option>
+      <option>76</option>
+      <option>77</option>
+      <option>78</option>
+      <option>79</option>
+      <option>80</option>
+      <option>81</option>
+      <option>82</option>
+      <option>83</option>
+      <option>84</option>
+      <option>85</option>
+      <option>86</option>
+      <option>87</option>
+      <option>88</option>
+      <option>89</option>
+      <option>90</option>
+      <option>91</option>
+      <option>92</option>
+      <option>93</option>
+      <option>94</option>
+      <option>95</option>
+      <option>96</option>
+      <option>97</option>
+      <option>99</option>
+      <option>100</option>
+      <option>más de 100</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputGender" class="col-sm-2 col-form-label text-left">Género</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputGender" name="gender" required>
+      	 	<option selected>Femenino</option>
+		<option>Masculino</option>
+		<option>Otro</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputEducation" class="col-sm-2 col-form-label text-left">Nivel educativo más alto completado</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputEducation" name="education" required>
+                <option>Educación primaria</option>
+                <option selected>ESO / COU / EGB</option>
+                <option>Bachillerato / BUP</option>
+                <option>Formación profesional</option>
+                <option>Licenciatura</option>
+                <option>Título de Grado</option>
+                <option>Título de Máster</option>
+                <option>Doctorado</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputEnglish" class="col-sm-2 col-form-label text-left">Nivel de Español</label>
+    <div class="col-auto">
+    	 <select class="form-control" id="inputEnglish" name="english" required>
+      	 	<option selected>Lengua materna</option>
+		<option>Fluente</option>
+		<option>Conversacional</option>
+		<option>Por debajo de conversacional</option>
+    		</select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputNationality" class="col-sm-2 col-form-label text-left">Nacionalidad</label>
+    <div class="col-auto">
+    	 <select class="form-control bfh-countries" style="width:250px;" data-country="ES" id="inputNationality" name="nationality" required></select>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="inputMedcial" class="col-sm-4 col-form-label text-left">¿Tiene alguna condición(es) médica(s) diagnosticada(s) que pueda(n) afectar a su memoria?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputMedical" name="medical" required>
+                <option selected>No</option>
+                <option>Sí, demencia</option>
+                <option>Sí, epilepsia</option>
+                <option>Sí, ictus</option>
+                <option>Sí, cirugía cerebral</option>
+                <option>Sí, lesion cerebral importante</option>
+                <option>Sí, otras</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputDyslexia" class="col-sm-4 col-form-label text-left">¿Tiene problemas de lectura, p. ej., dislexia?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputDyslexia" name="dyslexia" required>
+                <option selected>No</option>
+                <option>Si</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputProblems" class="col-sm-4 col-form-label text-left">¿Sufre algún problema de memoria u “olvidos”?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputProblems" name="problems" required>
+                <option selected>No</option>
+                <option>No lo sé</option>
+                <option>Sí, pero raramente</option>
+                <option>Sí, ocasionalmente</option>
+                <option>Sí, frecuentemente</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputOthersComparison" class="col-sm-4 col-form-label text-left">¿Cómo cree que es su memoria en comparación con la de otras personas de su edad?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputOthersComparison" name="othersComparison" required>
+                <option selected>Igual o mejor</option>
+                <option>Algo peor</option>
+                <option>Mucho peor</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputSelfComparison" class="col-sm-4 col-form-label text-left">¿Cómo cree que es su memoria en comparación con cuando era más joven?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputSelfComparison" name="selfComparison" required>
+                <option selected>Igual o mejor</option>
+                <option>Algo peor</option>
+                <option>Mucho peor</option>
+                </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="inputConversation" class="col-sm-4 col-form-label text-left">¿Olvida lo que acaba de leer o escuchar en una conversación?</label>
+    <div class="col-auto">
+         <select class="form-control" id="inputConversation" name="conversation" required>
+                <option selected>Raramente / Nunca </option>
+                <option>Ocasionalmente</option>
+                <option>Frecuentemente</option>
+                </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row row align-items-center">
+    <label for="inputRating" class="col-sm-4 col-form-label text-left">Puntúe su memoria en una escala del 1 al 10, siendo 1 la peor y 10 la mejor.</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputRating" name="rating" required>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option selected>10</option>
+    </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row row align-items-center">
+    <label for="inputContactSummary" class="col-sm-4 col-form-label text-left">¿Ha practicado deportes de contacto (rugby, fútbol americano, artes marciales, etc)?</label>
+    <div class="col-auto">
+    <select class="form-control" id="inputContactSummary" name="contactsummary" required>
+      <option selected>Nunca he practicado deportes de contacto</option>
+      <option>Muy ocasionalmente</option>
+      <option>Regularmente durante menos de un año</option>
+      <option>Regularmente durante 1 o 2 años </option>
+      <option>Regularmente durante 3 o 4 años </option>
+      <option>Regularmente durante más de 5 años </option>
+    </select>
+    </div>
+  </div>
+
+
+<div class="text-center">
+  <button type="submit" class="btn btn-primary">Siguiente</button>
+</div>
+
+</form>
+
+
+</div>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1001_020.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version ------------------ }}
 
 {{else if project.p1000_108}}

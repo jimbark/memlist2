@@ -27,6 +27,37 @@
 </div>
 
 
+
+{{! ----------------- Institution 1001   Project 020  Spanish version ------------------ }}
+
+{{else if project.p1001_020}}
+
+    <div class="row justify-content-center pt-3">
+        <div class="col-10 text-center">
+            <h5 class='text-center'>Retirarse del estudio. </h5>
+     	    <p>Si desea retirarse del estudio, haga clic en el botón Retirarse. Toda la información personal relativa a su participación se eliminará de nuestra base de datos.</p>
+            <p>Si se retira, no podrá reanudar su participación en este estudio en una fecha posterior. No obstante, podrá seguir participando en nuestros futuros estudios.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+    	 <form class="form-horizontal" action="/withdraw?form=menu" method="POST">
+	       <input type="hidden" name="_csrf" value={{_csrfToken}}>
+    	       <div class="form-group row align-items-center">
+  	       	    <button type="submit" class="btn btn-primary" id="menuWithdraw">Retirarse</button>
+  	       </div>
+     	 </form>
+    </div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1001_020.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version ------------------ }}
 
 {{else if project.p1000_108}}

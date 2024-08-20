@@ -96,6 +96,106 @@
 </div>
 
 
+
+{{! ----------------- Institution 1001   Project 020 Spanish version  ------------------ }}
+
+{{else if project.p1001_020}}
+
+<div id="introduction" style="display: block">
+
+
+    <div class="row justify-content-center">
+        <div class="col text-center">
+	     <h5 class='text-center pt-3'>Demostración de aprendizaje de palabras.</h5>
+            <p  id='study' style="display: block">Cuando esté preparado, pulse el botón de abajo para iniciar la demostración. </p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto text-center">
+          <button type="button" onclick="startDemo()" class="btn btn-primary">Empezar Demo</button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row justify-content-center text-center pt-3">
+   <div class="col-10">
+
+<div id='studyText' style="display: none">
+     <p>Pareja de palabras para memorizar:<b id='wordpair'></b> </p> 
+     <p> </p>
+</div>
+
+<div id='testText' style="display: none">
+     <p>Escriba la segunda palabra del par. Pulse Volver o el botón Enviar para continuar:
+      	  <b id='dcue'></b>:<b id='danswer'></b> </p>
+     <p> </p>
+</div>
+
+<div id='feedbackCorrect' style="display: none">
+     <p><span class="text-success">¡Correcta!</span></p>
+     <p>La pareja de palabras correcta es:</p> 
+     <p><span id='cue'>Cue word  </span> : <span id='answer'>Answer</span> </p>
+</div>
+
+<div id='feedbackIncorrect' style="display: none">
+     <p><span class="text-danger">¡Incorrecta!</span></p>
+     <p>La pareja de palabras correcta es:</p> 
+     <p><span id='icue'>Cue word  </span> : <span id='ianswer'>Answer</span> </p>
+</div>
+
+<p  id='testOver' style="display: none">Test is complete! 
+    Total learning time was: <b id='duration'>0ms</b>
+    Total correct answers:  <b id='correctAnswers'>0</b>
+    Total incorrect answers:  <b id='incorrectAnswers'>0</b>
+</p>
+
+
+   </div>
+</div> 
+
+
+<form id="studyForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right" id="sCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext" id="sAnswerWord" value="Answer word">
+    </div>
+  </div>
+</form>
+
+<form id="testForm" style="display: none">
+  <input type="hidden" name="_csrf" value={{_csrfToken}}>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <input type="text" style="width:100px;" readonly class="form-control-plaintext text-right pr-3" id="tCueWord" value="Cue word">
+    </div>
+    <div class="col-auto">
+      <input type="text" autocomplete="off" style="width:100px;" class="form-control" id="tAnswerWord" placeholder="">
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <div class="col-auto">
+      <button type="button" id="check" onclick="checkAnswer()" class="btn btn-primary">Enviar</button>
+    </div>
+  </div>
+
+</form>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1001_020.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version  ------------------ }}
 
 {{else if project.p1000_108}}

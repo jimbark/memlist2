@@ -1,4 +1,4 @@
-var express= require('express');
+ebvalmtr express= require('express');
 
 var app = express();
 
@@ -296,7 +296,7 @@ app.use(function(req, res, next){
 
 // setup res.locals content for the main layout to use
 app.use(function(req, res, next){
-    res.locals.copyrightYear = '2024';
+    res.locals.copyrightYear = '2023';
 
     if (env === 'production') {
 	res.locals.secureSeal = ('<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=kHYQLI7RQKLF1a0LwlCl250qpaI4MxJV1FuVnNgSmXzxO0ANBqmy0Gaghqbf"></script></span>');
@@ -474,12 +474,6 @@ app.get('/cte', function(req, res){
     res.locals.project = { p1001_001: 'cheese' };
     req.session.project = { name: "p1001_001" };
     return res.redirect(303, '/?project=p1001_001');
-});
-
-app.get('/espanol', function(req, res){
-    res.locals.project = { p1001_020: 'cheese' };
-    req.session.project = { name: "p1001_020" };
-    return res.redirect(303, '/?project=p1001_020');
 });
 
 
