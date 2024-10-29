@@ -182,7 +182,7 @@ var del2L1 = [
     ['humo','noche',0,0,0],
     ['lluvia','tribu',0,0,0],
     ['tierra','cuadro',0,0,0],
-    ['copa','fugo',0,0,0],
+    ['copa','fuga',0,0,0],
     ['torre','mano',0,0,0],
     ['cable','isla',0,0,0],
     ['cinta','puente',0,0,0],
