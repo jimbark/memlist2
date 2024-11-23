@@ -107,6 +107,59 @@
 </div>
 
 
+
+{{! ----------------- Institution 1000   Project 109 UK 1min30m with FCR cutdown version  ------------------ }}
+
+{{else if project.p1000_109}}
+
+<div class="row justify-content-center">
+   <div class="col-10">
+
+     <h5 class="pt-3">Consent to Participate in a Research Study</h5>
+
+     <p>The researcher whose study you are participating in must explain to you the nature of the study, explain how you can withdraw, and ask you for your consent to proceed. Please confirm that this happened by accepting the declaration below.  </p>
+
+     <h5>Disclaimer</h5>
+
+     <p class="font-italic">I confirm that I have given my consent to participate in a research study.</p>
+
+     <p>If you have given consent and are happy to continue then please confirm this by checking the box below and selecting "Next". If you have not given consent or do not wish to participate then select "No thanks"</p>
+
+   </div>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/register?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  	   	<div class="form-check pr-3">
+ 		      <label class="form-check-label">
+  		      <input type="checkbox" class="form-check-input" id="consented" name="consented">
+  		      I agree to participate.
+  		      </label>
+  		</div>
+  		<button type="submit" class="btn btn-primary" disabled id="consentSubmit">Next</button>
+  	   </div>
+     </form>
+</div>
+
+<div class="row justify-content-center">
+     <form class="form-horizontal" action="/withdraw?form=consent" method="POST">
+     	   <input type="hidden" name="_csrf" value="{{_csrfToken}}"> 
+     	   <div class="form-group row align-items-center">
+  		<button type="submit" class="btn btn-primary" id="consentWithdraw">No thanks</button>
+  	   </div>
+     </form>
+</div>
+
+<div>
+     {{#section "projectjs"}}
+     <script src="js/p1000_109.js"></script>
+     {{/section}}
+</div>
+
+
+
 {{! ----------------- Institution 1000   Project 108 UK 1min24hr with FCR cutdown version  ------------------ }}
 
 {{else if project.p1000_108}}
